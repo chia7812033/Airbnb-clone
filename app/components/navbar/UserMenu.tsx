@@ -5,8 +5,11 @@ import Avatar from "../Avatar";
 
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const UserMenu = () => {
+  const registerModal = useRegisterModal();
+
   const [isClick, setIsClick] = useState(false);
 
   const toggleOpen = useCallback(() => {
@@ -17,21 +20,21 @@ const UserMenu = () => {
     <div className='relative'>
       <div
         className='
-        flex
-        flex-row
-        items-center
-        gap-3
-        cursor-pointer'
+          flex
+          flex-row
+          items-center
+          gap-3
+          cursor-pointer'
       >
         <div
           className='
-          hidden
-          lg:block
-          rounded-full
-          hover:bg-gray-100
-          transition
-          px-3
-          py-2'
+            hidden
+            lg:block
+            rounded-full
+            hover:bg-gray-100
+            transition
+            px-3
+            py-2'
         >
           Airbnb your home
         </div>
@@ -49,18 +52,18 @@ const UserMenu = () => {
         <div
           onClick={toggleOpen}
           className='
-          flex
-          flex-row
-          border
-          rounded-full
-          lg:p-3
-          lg:py-2
-          md:p-2
-          p-1
-          hover:shadow-md
-          transition
-          gap-2
-          items-center'
+            flex
+            flex-row
+            border
+            rounded-full
+            lg:p-3
+            lg:py-2
+            md:p-2
+            p-1
+            hover:shadow-md
+            transition
+            gap-2
+            items-center'
         >
           <Bars3Icon className='w-6 h-6' />
           <div className='hidden md:block'>
@@ -70,8 +73,27 @@ const UserMenu = () => {
       </div>
 
       {isClick && (
-        <div className='absolute right-0 w-[40vm] md:w-3/4 shadow-md border-[1px] rounded-xl flex flex-col bg-white py-2 mt-2 text-sm'>
-          <MenuItem onClick={() => {}} label={"Sign up"} isBold={true} />
+        <div
+          className='
+            absolute
+            right-0
+            w-[40vm]
+            md:w-3/4
+            shadow-md
+            border-[1px]
+            rounded-xl
+            flex
+            flex-col
+            bg-white
+            py-2
+            mt-2
+            text-sm'
+        >
+          <MenuItem
+            onClick={registerModal.onOpen}
+            label={"Sign up"}
+            isBold={true}
+          />
           <MenuItem onClick={() => {}} label={"Log in"} isBold={false} />
           <div className='border-b-[1px] my-2' />
           <MenuItem

@@ -14,7 +14,9 @@ const Search = () => {
         shadow-sm
         hover:shadow-md
         transition
-        cursor-pointer'
+        cursor-pointer
+        border-[1px]
+        border-gray-200'
     >
       <div
         className='
@@ -24,18 +26,53 @@ const Search = () => {
           justify-between'
       >
         <div
-          className='text-sm px-4 font-semibold'>Anywhere</div>
+          className='
+            text-sm
+            px-4
+            font-semibold'
+        >
+          Anywhere
+        </div>
         <div
-          className='text-sm hidden sm:block px-4 font-semibold border-l-[1px] text-center flex-1'>
+          className='
+            text-sm
+            hidden
+            sm:block
+            px-4
+            font-semibold
+            border-l-[1px]
+            text-center
+            flex-1'
+        >
           Any week
         </div>
         <div
-          className='flex flex-row items-center justify-between pr-2'>
+          className='
+            flex
+            flex-row
+            items-center
+            justify-between
+            pr-2'
+        >
           <div
-            className='hidden sm:block text-sm border-l-[1px] px-4 text-gray-500'>
+            className='
+              hidden
+              sm:block
+              text-sm
+              border-l-[1px]
+              px-4
+              text-gray-500'
+          >
             Add guests
           </div>
-          <MagnifyingGlassCircleIcon className='h-8 w-8 text-rose-500 rounded-full transition' />
+          <MagnifyingGlassCircleIcon
+            className='
+              h-8
+              w-8
+            text-rose-500
+              rounded-full
+              transition'
+          />
         </div>
       </div>
     </div>
