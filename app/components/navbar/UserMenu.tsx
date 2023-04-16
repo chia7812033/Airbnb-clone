@@ -1,6 +1,7 @@
 "use client";
 
-import { GlobeAltIcon, Bars3Icon } from "@heroicons/react/24/outline";
+import { RiGlobalLine } from "react-icons/ri";
+import { HiBars3 } from "react-icons/hi2";
 import Avatar from "../Avatar";
 
 import { useCallback, useState } from "react";
@@ -38,7 +39,8 @@ const UserMenu = () => {
         >
           Airbnb your home
         </div>
-        <GlobeAltIcon
+        <RiGlobalLine
+          size={32}
           className='
             hidden
             md:block
@@ -65,7 +67,7 @@ const UserMenu = () => {
             gap-2
             items-center'
         >
-          <Bars3Icon className='w-6 h-6' />
+          <HiBars3 size={26} className='' />
           <div className='hidden md:block'>
             <Avatar />
           </div>

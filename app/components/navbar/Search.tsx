@@ -1,6 +1,6 @@
 "use client";
 
-import { MagnifyingGlassCircleIcon } from "@heroicons/react/24/solid";
+import { IoSearchCircleSharp } from "react-icons/io5";
 
 const Search = () => {
   return (
@@ -65,10 +65,9 @@ const Search = () => {
           >
             Add guests
           </div>
-          <MagnifyingGlassCircleIcon
+          <IoSearchCircleSharp
+            size={32}
             className='
-              h-8
-              w-8
             text-rose-500
               rounded-full
               transition'

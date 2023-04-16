@@ -7,6 +7,10 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
+import { toast } from "react-hot-toast";
+import Button from "../Button";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -34,7 +38,7 @@ const RegisterModal = () => {
         registerModal.onClose();
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error.message);
       })
       .finally(() => {
         setIsLoading(false);
@@ -66,9 +70,49 @@ const RegisterModal = () => {
         disabled={isLoading}
         register={register}
         errors={errors}
-              required
-              type="password"
+        required
+        type='password'
       />
+    </div>
+  );
+
+  const footer = (
+    <div>
+      <hr />
+      <Button
+        outline
+        label={"Continue with Google"}
+        icon={FcGoogle}
+        onClick={() => {}}
+      />
+      <Button
+        outline
+        label={"Continue with GitHub"}
+        icon={FaGithub}
+        onClick={() => {}}
+      />
+      <div
+        className='
+            text-neutral-500
+            text-center
+            mt-4
+            font-light'
+      >
+        <div className='flex gap-2 justify-center'>
+          <div>Already have an account?</div>
+					<div
+						onClick={() => {}}
+            className='
+              hover:text-black
+              hover:underline
+              hover:font-semibold
+              transition:
+              cursor-pointer'
+          >
+            Login
+          </div>
+        </div>
+      </div>
     </div>
   );
 
@@ -81,6 +125,7 @@ const RegisterModal = () => {
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={body}
+      footer={footer}
     />
   );
 };

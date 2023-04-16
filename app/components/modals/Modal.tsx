@@ -1,6 +1,6 @@
 "use client";
 
-import { XMarkIcon } from "@heroicons/react/24/solid";
+import {RxCross1} from 'react-icons/rx'
 import { useCallback, useEffect, useState } from "react";
 import Button from "../Button";
 
@@ -147,7 +147,7 @@ const Modal: React.FC<ModalProps> = ({
                     right-9
                     '
                 >
-                  <XMarkIcon className='w-6 h-6' />
+                  <RxCross1 size={20}/>
                 </button>
                 <div
                   className='
@@ -183,6 +183,7 @@ const Modal: React.FC<ModalProps> = ({
                     onClick={handleSubmit}
                   />
                 </div>
+                {footer}
               </div>
             </div>
           </div>
