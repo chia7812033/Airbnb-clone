@@ -11,7 +11,7 @@ const Heading: React.FC<ClientProps> = ({ title, subtitle, center }) => {
     <div className={center ? "text-centet" : "text-start"}>
       <div
         className='
-          text-2xl font-bold
+            text-2xl font-bold
         '
       >
         {title}

@@ -100,8 +100,8 @@ const RegisterModal = () => {
       >
         <div className='flex gap-2 justify-center'>
           <div>Already have an account?</div>
-          <div
-            onClick={() => {}}
+					<div
+						onClick={() => {}}
             className='
               hover:text-black
               hover:underline
