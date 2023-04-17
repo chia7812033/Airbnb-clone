@@ -1,6 +1,6 @@
 "use client";
 
-import { CurrencyDollarIcon } from "@heroicons/react/24/outline";
+import {BsCurrencyDollar} from 'react-icons/bs'
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface ClientProps {
@@ -27,10 +27,9 @@ const Input: React.FC<ClientProps> = ({
   return (
     <div className='w-full relative'>
       {formatPrice && (
-        <CurrencyDollarIcon
+        <BsCurrencyDollar
+          size={24}
           className='
-            w-6
-            h-6
             text-neutral-700
             absolute
             top-5
@@ -76,8 +75,7 @@ const Input: React.FC<ClientProps> = ({
               peer-placeholder-shown:translate-y-0
               peer-focus:-translate-y-4
               peer-focus:scale-75
-              ${errors[id] ? 'text-red-600' : 'text-gray-400'}`
-              }
+              ${errors[id] ? "text-red-600" : "text-gray-400"}`}
       >
         {label}
       </label>
