@@ -7,9 +7,11 @@ import Avatar from "../Avatar";
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const UserMenu = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
 
   const [isClick, setIsClick] = useState(false);
 
@@ -96,7 +98,7 @@ const UserMenu = () => {
             label={"Sign up"}
             isBold={true}
           />
-          <MenuItem onClick={() => {}} label={"Log in"} isBold={false} />
+          <MenuItem onClick={loginModal.onOpen} label={"Log in"} isBold={false} />
           <div className='border-b-[1px] my-2' />
           <MenuItem
             onClick={() => {}}
