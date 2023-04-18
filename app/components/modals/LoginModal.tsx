@@ -1,7 +1,6 @@
 "use client";
 
 import { signIn } from "next-auth/react";
-import axios from "axios";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState, useCallback } from "react";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
@@ -37,22 +36,19 @@ const LoginModal = () => {
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     setIsLoading(true);
 
-    signIn("credentials", { ...data, redirect: false})
-      .then((calllback) => {
-        setIsLoading(false);
+    signIn("credentials", { ...data, redirect: false }).then((calllback) => {
+      setIsLoading(false);
 
-        if (calllback?.ok) {
-          toast.success("Logged in!");
-          router.refresh();
-          loginModal.onClose();
-          return;
-        }
+      if (calllback?.ok) {
+        toast.success("Logged in!");
+        router.refresh();
+        loginModal.onClose();
+      }
 
-        if (calllback?.error) {
-          toast.error(calllback.error);
-          return;
-        }
-      })
+      if (calllback?.error) {
+        toast.error(calllback.error);
+      }
+    });
   };
 
   const body = (
@@ -85,13 +81,17 @@ const LoginModal = () => {
         outline
         label={"Continue with Google"}
         icon={FcGoogle}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <Button
         outline
         label={"Continue with GitHub"}
         icon={FaGithub}
-        onClick={() => {}}
+        onClick={() => {
+          signIn("github");
+        }}
       />
       <div
         className='

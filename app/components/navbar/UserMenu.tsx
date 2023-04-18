@@ -2,14 +2,21 @@
 
 import { RiGlobalLine } from "react-icons/ri";
 import { HiBars3 } from "react-icons/hi2";
-import Avatar from "../Avatar";
+import CustomAvatar from "../CustomAvatar";
 
 import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
+import { toast } from "react-hot-toast";
+import { SafeUser } from "@/app/types";
 
-const UserMenu = () => {
+interface UserMenuProps {
+  currentUser?: SafeUser | null;
+}
+
+const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
 
@@ -71,7 +78,7 @@ const UserMenu = () => {
         >
           <HiBars3 size={26} className='' />
           <div className='hidden md:block'>
-            <Avatar />
+            <CustomAvatar currentUser={currentUser} />
           </div>
         </div>
       </div>
@@ -93,12 +100,47 @@ const UserMenu = () => {
             mt-2
             text-sm'
         >
-          <MenuItem
-            onClick={registerModal.onOpen}
-            label={"Sign up"}
-            isBold={true}
-          />
-          <MenuItem onClick={loginModal.onOpen} label={"Log in"} isBold={false} />
+          {currentUser ? (
+            <>
+              <MenuItem onClick={() => {}} label={"My trips"} isBold={true} />
+              <MenuItem
+                onClick={() => {}}
+                label={"My favorites"}
+                isBold={true}
+              />
+              <MenuItem
+                onClick={() => {}}
+                label={"My reservations"}
+                isBold={true}
+              />
+              <MenuItem
+                onClick={() => {}}
+                label={"My properties"}
+                isBold={true}
+              />
+              <MenuItem
+                onClick={() => {
+                  signOut();
+                  toast.success("Your have successfully logged out");
+                }}
+                label={"Logout"}
+                isBold={true}
+              />
+            </>
+          ) : (
+            <>
+              <MenuItem
+                onClick={registerModal.onOpen}
+                label={"Sign up"}
+                isBold={true}
+              />
+              <MenuItem
+                onClick={loginModal.onOpen}
+                label={"Log in"}
+                isBold={false}
+              />
+            </>
+          )}
           <div className='border-b-[1px] my-2' />
           <MenuItem
             onClick={() => {}}
