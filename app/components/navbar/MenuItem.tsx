@@ -5,7 +5,7 @@ import React from "react";
 interface MenuItemProps {
   onClick: () => void;
   label: string;
-  isBold: boolean;
+  isBold?: boolean;
 }
 
 const MenuItem: React.FC<MenuItemProps> = ({ onClick, label, isBold }) => {

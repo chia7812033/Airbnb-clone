@@ -13,7 +13,6 @@ import Button from "../Button";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import { isReturnStatement } from "typescript";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -74,6 +73,11 @@ const LoginModal = () => {
     </div>
   );
 
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
+
   const footer = (
     <div>
       <hr />
@@ -101,17 +105,17 @@ const LoginModal = () => {
             font-light'
       >
         <div className='flex gap-2 justify-center'>
-          <div>Already have an account?</div>
+          <div>First time to airbnb?</div>
           <div
-            onClick={() => {}}
+            onClick={toggle}
             className='
-              hover:text-black
+            text-black
               hover:underline
               hover:font-semibold
-              transition:
+              transition
               cursor-pointer'
           >
-            Login
+            Sign up
           </div>
         </div>
       </div>

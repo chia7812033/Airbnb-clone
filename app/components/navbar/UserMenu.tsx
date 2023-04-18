@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import useRentModal from "@/app/hooks/useRentModal";
 import { signOut } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { SafeUser } from "@/app/types";
@@ -19,12 +20,22 @@ interface UserMenuProps {
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const registerModal = useRegisterModal();
   const loginModal = useLoginModal();
+  const rentModal = useRentModal();
 
   const [isClick, setIsClick] = useState(false);
 
   const toggleOpen = useCallback(() => {
     setIsClick((state) => !state);
   }, []);
+
+  const onRent = useCallback(() => {
+    if (!currentUser) {
+      loginModal.onOpen();
+      return;
+    }
+
+    rentModal.onOpen();
+  }, [currentUser, loginModal, rentModal]);
 
   return (
     <div className='relative'>
@@ -37,6 +48,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           cursor-pointer'
       >
         <div
+          onClick={onRent}
           className='
             hidden
             lg:block
@@ -49,12 +61,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           Airbnb your home
         </div>
         <RiGlobalLine
-          size={32}
+          size={40}
           className='
             hidden
             md:block
-            w-10
-            h-10
           hover:bg-gray-100
             transition
             rounded-full
@@ -102,22 +112,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
         >
           {currentUser ? (
             <>
-              <MenuItem onClick={() => {}} label={"My trips"} isBold={true} />
-              <MenuItem
-                onClick={() => {}}
-                label={"My favorites"}
-                isBold={true}
-              />
-              <MenuItem
-                onClick={() => {}}
-                label={"My reservations"}
-                isBold={true}
-              />
-              <MenuItem
-                onClick={() => {}}
-                label={"My properties"}
-                isBold={true}
-              />
+              <MenuItem onClick={() => {}} label={"My trips"} />
+              <MenuItem onClick={() => {}} label={"My favorites"} />
+              <MenuItem onClick={() => {}} label={"My reservations"} />
+              <MenuItem onClick={() => {}} label={"My properties"} />
               <MenuItem
                 onClick={() => {
                   signOut();
@@ -132,22 +130,14 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <MenuItem
                 onClick={registerModal.onOpen}
                 label={"Sign up"}
-                isBold={true}
+                isBold
               />
-              <MenuItem
-                onClick={loginModal.onOpen}
-                label={"Log in"}
-                isBold={false}
-              />
+              <MenuItem onClick={loginModal.onOpen} label={"Log in"} />
             </>
           )}
           <div className='border-b-[1px] my-2' />
-          <MenuItem
-            onClick={() => {}}
-            label={"Airbnb your home"}
-            isBold={false}
-          />
-          <MenuItem onClick={() => {}} label={"Help"} isBold={false} />
+          <MenuItem onClick={rentModal.onOpen} label={"Airbnb your home"} />
+          <MenuItem onClick={() => {}} label={"Help"} />
         </div>
       )}
     </div>

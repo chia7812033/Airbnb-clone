@@ -5,6 +5,7 @@ import axios from "axios";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { useState, useCallback } from "react";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
@@ -15,6 +16,7 @@ import { FaGithub } from "react-icons/fa";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
+  const loginModal = useLoginModal();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -77,6 +79,11 @@ const RegisterModal = () => {
     </div>
   );
 
+    const toggle = useCallback(() => {
+      registerModal.onClose();
+      loginModal.onOpen();
+    }, [loginModal, registerModal]);
+
   const footer = (
     <div>
       <hr />
@@ -84,13 +91,17 @@ const RegisterModal = () => {
         outline
         label={"Continue with Google"}
         icon={FcGoogle}
-        onClick={() => {signIn("google");}}
+        onClick={() => {
+          signIn("google");
+        }}
       />
       <Button
         outline
         label={"Continue with GitHub"}
         icon={FaGithub}
-        onClick={() => {signIn("github");}}
+        onClick={() => {
+          signIn("github");
+        }}
       />
       <div
         className='
@@ -101,13 +112,13 @@ const RegisterModal = () => {
       >
         <div className='flex gap-2 justify-center'>
           <div>Already have an account?</div>
-					<div
-						onClick={() => {}}
+          <div
+            onClick={toggle}
             className='
-              hover:text-black
+            text-black
               hover:underline
               hover:font-semibold
-              transition:
+              transition
               cursor-pointer'
           >
             Login

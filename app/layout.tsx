@@ -5,7 +5,9 @@ import Navbar from "./components/navbar/Navbar";
 import RegisterModal from "./components/modals/RegisterModal";
 import ToastProvider from "./providers/ToastProvider";
 import LoginModal from "./components/modals/LoginModal";
+import RentModal from "./components/modals/RentModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import ClientOnly from "./components/ClientOnly";
 
 export const metadata = {
   title: "Airbnb Clone",
@@ -20,7 +22,7 @@ export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-  }) {
+}) {
   const currentUser = await getCurrentUser();
 
   return (
@@ -29,7 +31,9 @@ export default async function RootLayout({
         <ToastProvider />
         <RegisterModal />
         <LoginModal />
-        <Navbar currentUser={currentUser}/>
+        <RentModal />
+        <Navbar currentUser={currentUser} />
+
         {children}
       </body>
     </html>
