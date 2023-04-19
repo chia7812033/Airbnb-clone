@@ -13,6 +13,7 @@ import CategoryInput from "../inputs/CategoryInput";
 import CountrySelect from "../inputs/CountrySelect";
 import useCountries from "@/app/hooks/useCountries";
 import dynamic from "next/dynamic";
+import Counter from "../inputs/Counter";
 
 const RentModal = () => {
   const rentModal = useRentModal();
@@ -70,6 +71,9 @@ const RentModal = () => {
 
   const category = watch("category");
   const location = watch("location");
+  const guestCount = watch("guestCount");
+  const roomCount = watch("roomCount");
+  const bathroomCount = watch("bathroomCount");
 
   const Map = useMemo(
     () => dynamic(() => import("../Map"), { ssr: false }),
@@ -114,8 +118,8 @@ const RentModal = () => {
     body = (
       <div>
         <Heading
-          title={"Where is your property?"}
-          subtitle={"Choose the location"}
+          title={"Where is your place?"}
+          subtitle={"Choose one of the location"}
         />
         <CountrySelect
           value={location}
@@ -128,7 +132,38 @@ const RentModal = () => {
     );
   }
 
-  const footer = <></>;
+  if (step === STEPS.INFO) {
+    body = (
+      <div>
+        <Heading
+          title={"Share some info about your place"}
+          subtitle={"Tell us some appealing!"}
+        />
+        <Counter
+          title={"Guests"}
+          subtitle={"Share some info about your place"}
+          value={guestCount}
+          onChange={(value) => setCustomValue("guestCount", value)}
+        />
+        <Counter
+          title={"Rooms"}
+          subtitle={"How many room do you have?"}
+          value={roomCount}
+          onChange={(value) => setCustomValue("roomCount", value)}
+        />
+        <Counter
+          title={"Bathrooms"}
+          subtitle={"How many bathroom do you have?"}
+          value={bathroomCount}
+          onChange={(value) => setCustomValue("bathroomCount", value)}
+        />
+      </div>
+    );
+  }
+
+  if (step === STEPS.IMAGES) {
+    body = <div></div>;
+  }
 
   return (
     <Modal
@@ -141,7 +176,6 @@ const RentModal = () => {
       onClose={rentModal.onClose}
       onSubmit={onNext}
       body={body}
-      footer={footer}
     />
   );
 };
