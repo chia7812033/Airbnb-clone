@@ -7,7 +7,6 @@ import ToastProvider from "./providers/ToastProvider";
 import LoginModal from "./components/modals/LoginModal";
 import RentModal from "./components/modals/RentModal";
 import getCurrentUser from "./actions/getCurrentUser";
-import ClientOnly from "./components/ClientOnly";
 
 export const metadata = {
   title: "Airbnb Clone",
