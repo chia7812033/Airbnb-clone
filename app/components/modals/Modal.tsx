@@ -147,7 +147,7 @@ const Modal: React.FC<ModalProps> = ({
                     right-9
                     '
                 >
-                  <RxCross1 size={20}/>
+                  <RxCross1 size={20} />
                 </button>
                 <div
                   className='
@@ -174,6 +174,7 @@ const Modal: React.FC<ModalProps> = ({
                       disabled={disabled}
                       label={secondaryActionLabel}
                       onClick={handleSecondaryAction}
+                      wFull
                     />
                   )}
 
@@ -181,6 +182,7 @@ const Modal: React.FC<ModalProps> = ({
                     disabled={disabled}
                     label={actionLabel}
                     onClick={handleSubmit}
+                    wFull
                   />
                 </div>
                 {footer}

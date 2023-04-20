@@ -9,6 +9,7 @@ interface ButtonProps {
   outline?: boolean;
   small?: boolean;
   icon?: IconType;
+  wFull?: boolean;
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   outline,
   small,
   icon: Icon,
+  wFull,
 }) => {
   return (
     <button
@@ -30,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
         rounded-lg
         hover:opacity-80
         transition
-        w-full
+        ${wFull ? "w-full" : "px-2"}
         border-[2px]
         mt-2
         mb-1
