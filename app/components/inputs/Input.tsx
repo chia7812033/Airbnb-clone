@@ -25,7 +25,7 @@ const Input: React.FC<ClientProps> = ({
   errors,
 }) => {
   return (
-    <div className='w-full relative'>
+    <div className='w-full relative my-2'>
       {formatPrice && (
         <BsCurrencyDollar
           size={24}
