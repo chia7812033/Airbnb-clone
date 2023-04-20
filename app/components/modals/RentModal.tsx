@@ -14,6 +14,7 @@ import CountrySelect from "../inputs/CountrySelect";
 import useCountries from "@/app/hooks/useCountries";
 import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
+import ImageUpload from "../inputs/ImageUpload";
 
 const RentModal = () => {
   const rentModal = useRentModal();
@@ -162,7 +163,16 @@ const RentModal = () => {
   }
 
   if (step === STEPS.IMAGES) {
-    body = <div></div>;
+    body = (
+      <div>
+        <Heading
+          title={"Upload some photos about your place!"}
+          subtitle={"Show us some beautiful pictures"}
+        />
+
+        <ImageUpload />
+      </div>
+    );
   }
 
   return (
