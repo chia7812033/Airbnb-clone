@@ -1,14 +1,15 @@
+import getLisings from "./actions/getLisings";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
+import ListingCard from "./components/listings/ListingCard";
+import getCurrentUser from "./actions/getCurrentUser";
 
-export default function Home() {
-  const isEmpty = true;
+export default async function Home() {
+  const listings = await getLisings();
+  const currentUser = await getCurrentUser();
 
-  if (isEmpty) {
-    return (
-      <EmptyState showReset/>
-    );
-
+  if (listings.length === 0) {
+    return <EmptyState showReset />;
   }
 
   return (
@@ -24,7 +25,13 @@ export default function Home() {
           xl:grid-cols-5
           gap-8'
       >
-        <div>Some words</div>
+        {listings.map((listing: any) => (
+          <ListingCard
+            key={listing.id}
+            currentUser={currentUser}
+            data={listing}
+          />
+        ))}
       </div>
     </Container>
   );
