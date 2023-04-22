@@ -5,9 +5,16 @@ import useFavorites from "../hooks/useFavorite";
 interface LikeButtonProps {
   listingId: string;
   currentUser?: SafeUser | null;
+  black?: boolean;
+  aboslute?: boolean;
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ listingId, currentUser }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({
+  listingId,
+  currentUser,
+  black,
+  aboslute,
+}) => {
   const { isFavorite, toggleFavorite } = useFavorites({
     listingId,
     currentUser,
@@ -16,12 +23,17 @@ const LikeButton: React.FC<LikeButtonProps> = ({ listingId, currentUser }) => {
   return (
     <div
       onClick={toggleFavorite}
-      className='absolute top-2 right-2 hover:opacity-70 transition'
+      className={`${
+        aboslute && "absolute top-2 right-2 "
+      } hover:opacity-70 transition`}
     >
       {isFavorite ? (
         <AiFillHeart size={24} className='text-rose-600' />
       ) : (
-        <AiOutlineHeart size={24} className='text-white' />
+        <AiOutlineHeart
+          size={24}
+          className={`${black ? "text-black" : "text-white"}`}
+        />
       )}
     </div>
   );

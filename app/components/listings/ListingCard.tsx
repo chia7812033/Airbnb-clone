@@ -79,7 +79,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             alt={data.title}
             className='object-cover h-full w-full hover:scale-110 transition rounded-xl'
           />
-          <LikeButton currentUser={currentUser} listingId={data.id} />
+          <LikeButton currentUser={currentUser} listingId={data.id} aboslute/>
         </div>
         <div className='font-semibold text-lg'>
           {location?.region},{" "}
