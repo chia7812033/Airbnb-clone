@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
@@ -52,9 +51,9 @@ export async function DELETE(
     throw new Error("Invalid listing Id");
   }
 
-  let favoriteIds = [...(currentUser.favoriteIds || [])];
+  let favoriteIds = [...currentUser.favoriteIds];
 
-  favoriteIds.filter((id) => id != listingId);
+  favoriteIds = favoriteIds.filter((id) => id != listingId);
 
   const user = await prisma.user.update({
     where: {

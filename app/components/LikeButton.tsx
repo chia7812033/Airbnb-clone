@@ -1,5 +1,6 @@
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { SafeUser } from "../types";
+import useFavorites from "../hooks/useFavorite";
 
 interface LikeButtonProps {
   listingId: string;
@@ -7,8 +8,10 @@ interface LikeButtonProps {
 }
 
 const LikeButton: React.FC<LikeButtonProps> = ({ listingId, currentUser }) => {
-  const isFavorite = true;
-  const toggleFavorite = () => {};
+  const { isFavorite, toggleFavorite } = useFavorites({
+    listingId,
+    currentUser,
+  });
 
   return (
     <div
@@ -16,9 +19,9 @@ const LikeButton: React.FC<LikeButtonProps> = ({ listingId, currentUser }) => {
       className='absolute top-2 right-2 hover:opacity-70 transition'
     >
       {isFavorite ? (
-        <AiFillHeart size={32} className='text-rose-600' />
+        <AiFillHeart size={24} className='text-rose-600' />
       ) : (
-        <AiOutlineHeart size={32} className='text-white' />
+        <AiOutlineHeart size={24} className='text-white' />
       )}
     </div>
   );

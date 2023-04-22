@@ -82,12 +82,19 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <LikeButton currentUser={currentUser} listingId={data.id} />
         </div>
         <div className='font-semibold text-lg'>
-          {location?.region}, {location?.label}
+          {location?.region},{" "}
+          {location?.label
+            ? location?.label.length > 20
+              ? `${location?.label.slice(0, 20)}...`
+              : location?.label
+            : ""}
         </div>
         <div className='text-gray-600'>{reservationDate || data.category}</div>
-        <div className="flex gap-2">
+        <div className='flex gap-2'>
           <div>{`$ ${data.price}`}</div>
-          {!reservation && <div className='font-light text-gray-500'>night</div>}
+          {!reservation && (
+            <div className='font-light text-gray-500'>night</div>
+          )}
         </div>
         {onAction && actionLabel && (
           <Button
