@@ -56,7 +56,7 @@ const ListingBody: React.FC<ListingBodyProps> = ({
           </div>
         </div>
       </div>
-      <div className='relative w-2/3 h-[60vh] my-4'>
+      <div className='relative w-full md:5/6 lg:w-4/5 xl:w-3/4 2xl:2/3 h-[60vh] my-4'>
         <Image
           alt={imageSrc}
           src={imageSrc}

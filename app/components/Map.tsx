@@ -25,7 +25,7 @@ const Map: React.FC<MapProps> = ({ position }) => {
     <div>
       <MapContainer
         center={(position?.latlng as L.LatLngExpression) || [40, 116]}
-        zoom={6}
+        zoom={8}
         scrollWheelZoom={false}
         className='h-[35vh] rounded-lg border-2 border-black'
       >

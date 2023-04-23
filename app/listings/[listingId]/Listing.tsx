@@ -28,7 +28,11 @@ const Listing: React.FC<ListingProps> = ({
 
   return (
     <Container>
-      <div className='flex flex-col px-20'>
+      <div
+        className='flex flex-col xl:px-20
+      md:px-10
+      sm:px-2'
+      >
         <div>
           <ListingBody
             currentUser={currentUser}
