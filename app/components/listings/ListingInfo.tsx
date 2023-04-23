@@ -54,7 +54,9 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         }`}</div>
       </div>
       <hr />
-      <Map position={location} />
+      <div className='w-full lg:w-3/4'>
+        <Map position={location} />
+      </div>
     </div>
   );
 };

@@ -9,8 +9,8 @@ interface IParams {
 
 const ListingPage = async ({ params }: { params: IParams }) => {
   const { listingId } = params;
-    const listing = await getListingById(listingId as string);
-    const currentUser = await getCurrentUser();
+  const listing = await getListingById(listingId as string);
+  const currentUser = await getCurrentUser();
 
   if (!listing) {
     return (
@@ -22,7 +22,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
   return (
     <div>
-      <Listing listing={listing} currentUser={currentUser}/>
+      <Listing listing={listing} currentUser={currentUser} />
     </div>
   );
 };

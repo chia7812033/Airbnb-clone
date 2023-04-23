@@ -3,6 +3,8 @@ import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 import getCurrentUser from "./actions/getCurrentUser";
+import { Suspense } from "react";
+import Loading from "./listings/[listingId]/loading";
 
 export default async function Home() {
   const listings = await getLisings();
@@ -14,8 +16,9 @@ export default async function Home() {
 
   return (
     <Container>
-      <div
-        className='
+      <Suspense fallback={<Loading />}>
+        <div
+          className='
           pt-24
           grid
           grid-cols-1
@@ -24,15 +27,16 @@ export default async function Home() {
           lg:grid-cols-4
           xl:grid-cols-5
           gap-8'
-      >
-        {listings.map((listing: any) => (
-          <ListingCard
-            key={listing.id}
-            currentUser={currentUser}
-            data={listing}
-          />
-        ))}
-      </div>
+        >
+          {listings.map((listing: any) => (
+            <ListingCard
+              key={listing.id}
+              currentUser={currentUser}
+              data={listing}
+            />
+          ))}
+        </div>
+      </Suspense>
     </Container>
   );
 }
