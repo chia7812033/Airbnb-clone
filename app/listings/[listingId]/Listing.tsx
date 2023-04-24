@@ -23,9 +23,15 @@ interface ListingProps {
   reservations?: Reservation[];
 }
 
+const tomorrow = () => {
+  let today = new Date();
+  today.setDate(today.getDate() + 1);
+  return today;
+};
+
 const initialDateRange = {
   startDate: new Date(Date.now()),
-  endDate: new Date(Date.now()),
+  endDate: tomorrow(),
   key: "selection",
 };
 
@@ -34,6 +40,7 @@ const Listing: React.FC<ListingProps> = ({
   listing,
   reservations = [],
 }) => {
+  console.log(initialDateRange);
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
   }, [listing.category]);
@@ -75,13 +82,12 @@ const Listing: React.FC<ListingProps> = ({
         dateRange.endDate
       );
       if (dateCount && listing.price) {
-        setTotalPrice(dateCount * listing.price);
+        setTotalPrice(Math.abs(dateCount) * listing.price);
       } else {
-        setTotalPrice(dateCount);
+        setTotalPrice(listing.price);
       }
-      setTotalPrice(listing.price);
     }
-  }, [dateRange.startDate, dateRange.endDate, listing.price]);
+  }, [dateRange, listing.price]);
 
   return (
     <Container>
@@ -108,7 +114,7 @@ const Listing: React.FC<ListingProps> = ({
             />
           </div>
 
-          <div className='mr-0'>
+          <div className='mr-0 w-1/3 lg:w-1/4'>
             <ListingReservation
               price={listing.price}
               totalPrice={totalPrice}

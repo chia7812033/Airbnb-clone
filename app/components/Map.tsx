@@ -22,7 +22,7 @@ interface MapProps {
 
 const Map: React.FC<MapProps> = ({ position }) => {
   return (
-    <div>
+    <div className='z-10'>
       <MapContainer
         center={(position?.latlng as L.LatLngExpression) || [40, 116]}
         zoom={8}
