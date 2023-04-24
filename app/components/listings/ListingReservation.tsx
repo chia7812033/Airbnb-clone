@@ -2,7 +2,6 @@ import Button from "../Button";
 import ListingDate from "./ListingDate";
 import useReservation from "@/app/hooks/useReservation";
 import { differenceInCalendarDays } from "date-fns";
-import { useEffect } from "react";
 
 interface ListingReservationProps {
   price: number;
@@ -18,7 +17,6 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabledDate,
 }) => {
   const reservationStore = useReservation();
-  const dateRange = reservationStore.dateRange;
 
   return (
     <div className='flex flex-col gap-2 border-[1px] border-gray-400 shadow-md rounded-2xl p-4'>

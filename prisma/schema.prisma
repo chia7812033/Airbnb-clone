@@ -70,6 +70,7 @@ model Reservation {
   startDate  DateTime
   endDate    DateTime
   totalPrice Int
+  guestCount Int      @default(1)
   createdAt  DateTime @default(now())
   status     Status   @default(Active)
 

@@ -7,6 +7,7 @@ interface CounterProps {
   title: string;
   subtitle?: string;
   onChange: (value: number) => void;
+  noBorder?: boolean;
 }
 
 const Counter: React.FC<CounterProps> = ({
@@ -14,6 +15,7 @@ const Counter: React.FC<CounterProps> = ({
   subtitle,
   value,
   onChange,
+  noBorder,
 }) => {
   const onAdd = () => {
     onChange(value + 1);
@@ -27,15 +29,14 @@ const Counter: React.FC<CounterProps> = ({
 
   return (
     <div
-      className='
-        grid
+      className={` grid
         grid-cols-2
         my-4
-        border-b-2
+        ${noBorder ? "border-none" : "border-b-2"}
         border-gray-300
         items-center
         gap-2
-        py-4'
+        py-4`}
     >
       <div className='flex flex-col'>
         <div className='text-lg font-semibold'>{title}</div>

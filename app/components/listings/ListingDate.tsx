@@ -1,9 +1,10 @@
-import { Range } from "react-date-range";
-import { format, parseISO } from "date-fns";
 import DatePicker from "../DatePicker";
+import ListingGuest from "./ListingGuest";
 import useDateModal from "@/app/hooks/useDateModal";
-import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
+import useGuestModal from "@/app/hooks/useGuestModal";
 import useReservation from "@/app/hooks/useReservation";
+import { format, parseISO } from "date-fns";
+import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
 interface ListingDateProps {
   disabledDate: Date[];
@@ -12,11 +13,15 @@ interface ListingDateProps {
 const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
   const dateModal = useDateModal();
   const reservationStore = useReservation();
+  const guestModal = useGuestModal();
 
   return (
     <div className=' flex flex-col gap-2 border-[0.5px] rounded-xl p-2 relative cursor-pointer'>
       <div
-        onClick={() => dateModal.onOpen()}
+        onClick={() => {
+          dateModal.onOpen();
+          guestModal.onClose();
+        }}
         className='grid grid-cols-2 justify-between gap-2 border-b-[0.5px] pb-1'
       >
         <div className='border-r-[0.5px] pr-2'>
@@ -40,12 +45,30 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
           </div>
         </div>
       </div>
-      <div className='flex justify-between items-center'>
-        <div>
-          <div className='text-xs/[20px] font-bolder'>GUESTS</div>
-          <div className='text-sm'>{`1 guest`}</div>
+      <div className='relative'>
+        <div
+          onClick={() => {
+            guestModal.isOpen ? guestModal.onClose() : guestModal.onOpen();
+            dateModal.onClose();
+          }}
+          className='flex justify-between items-center relative'
+        >
+          <div>
+            <div className='text-xs/[20px] font-bolder'>GUESTS</div>
+            <div className='text-sm'>{`${reservationStore.guestCount} guest`}</div>
+          </div>
+          <div>
+            {guestModal.isOpen ? (
+              <AiFillCaretUp size={24} className='mr-2' />
+            ) : (
+              <AiFillCaretDown size={24} className='mr-2' />
+            )}
+          </div>
         </div>
-        <AiFillCaretDown size={24} className='mr-2' />
+
+        <div className='absolute z-40'>
+          {guestModal.isOpen && <ListingGuest />}
+        </div>
       </div>
 
       <div className='absolute -top-4 right-0 z-50'>

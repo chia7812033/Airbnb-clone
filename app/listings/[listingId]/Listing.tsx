@@ -51,7 +51,6 @@ const Listing: React.FC<ListingProps> = ({
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const dateRange = reservationStore.dateRange;
-  const totalPrice = reservationStore.totalPrice;
 
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
@@ -63,8 +62,9 @@ const Listing: React.FC<ListingProps> = ({
       .post("/api/reservations", {
         startDate: dateRange.startDate,
         endDate: dateRange.endDate,
-        totalPrice,
+        totalPrice: reservationStore.totalPrice,
         listingId: listing?.id,
+        guestCount: reservationStore.guestCount,
       })
       .then(() => {
         toast.success("Listing reserved");
@@ -81,7 +81,6 @@ const Listing: React.FC<ListingProps> = ({
     router,
     currentUser,
     loginModal,
-    totalPrice,
     dateRange,
   ]);
 
