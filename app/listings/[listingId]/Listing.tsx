@@ -2,8 +2,7 @@
 
 import { Range } from "react-date-range";
 import Container from "@/app/components/Container";
-import { SafeUser, SafeListing } from "@/app/types";
-import { Reservation } from "@prisma/client";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
 import ListingBody from "../../components/listings/ListingBody";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { categories } from "@/app/components/navbar/Categories";
@@ -12,7 +11,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { toast } from "react-hot-toast";
-import { differenceInCalendarDays } from "date-fns";
+import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 
 interface ListingProps {
@@ -20,7 +19,7 @@ interface ListingProps {
   listing: SafeListing & {
     user: SafeUser;
   };
-  reservations?: Reservation[];
+  reservations?: SafeReservation[];
 }
 
 const tomorrow = () => {
@@ -40,7 +39,21 @@ const Listing: React.FC<ListingProps> = ({
   listing,
   reservations = [],
 }) => {
-  console.log(initialDateRange);
+  const disabledDates = useMemo(() => {
+    let dates: Date[] = [];
+
+    reservations.forEach((reservation: any) => {
+      const range = eachDayOfInterval({
+        start: new Date(reservation.startDate),
+        end: new Date(reservation.endDate),
+      });
+
+      dates = [...dates, ...range];
+    });
+
+    return dates;
+  }, [reservations]);
+
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
   }, [listing.category]);
@@ -122,6 +135,7 @@ const Listing: React.FC<ListingProps> = ({
               dateRange={dateRange}
               onSubmit={onCreateReservation}
               disabled={isLoading}
+              disabledDate={disabledDates}
             />
           </div>
         </div>

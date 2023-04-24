@@ -6,11 +6,13 @@ import useDateModal from "@/app/hooks/useDateModal";
 interface ListingDateProps {
   dateRange: Range;
   onChangeDate: (value: Range) => void;
+  disabledDate: Date[];
 }
 
 const ListingDate: React.FC<ListingDateProps> = ({
   dateRange,
   onChangeDate,
+  disabledDate,
 }) => {
   const dateModal = useDateModal();
 
@@ -46,7 +48,11 @@ const ListingDate: React.FC<ListingDateProps> = ({
 
       <div className='absolute -top-4 right-0 z-50'>
         {dateModal.isOpen && (
-          <DatePicker dateRange={dateRange} onChangeDate={onChangeDate} />
+          <DatePicker
+            dateRange={dateRange}
+            onChangeDate={onChangeDate}
+            disabledDate={disabledDate}
+          />
         )}
       </div>
     </div>

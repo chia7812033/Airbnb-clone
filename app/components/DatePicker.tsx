@@ -9,9 +9,14 @@ import useDateModal from "@/app/hooks/useDateModal";
 interface DatePickerProps {
   onChangeDate: (value: Range) => void;
   dateRange: Range;
+  disabledDate: Date[];
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({ onChangeDate, dateRange }) => {
+const DatePicker: React.FC<DatePickerProps> = ({
+  onChangeDate,
+  dateRange,
+  disabledDate,
+}) => {
   const DateModal = useDateModal();
 
   return (
@@ -24,6 +29,7 @@ const DatePicker: React.FC<DatePickerProps> = ({ onChangeDate, dateRange }) => {
         direction='horizontal'
         minDate={new Date()}
         maxDate={addDays(new Date(), 30)}
+        disabledDates={disabledDate}
       />
       <div className='flex justify-end px-4 -mt-4'>
         <Button label='Close' onClick={DateModal.onClose} outline />

@@ -10,6 +10,7 @@ interface ListingReservationProps {
   dateRange: Range;
   onSubmit: () => void;
   disabled: boolean;
+  disabledDate: Date[];
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -19,6 +20,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   dateRange,
   onSubmit,
   disabled,
+  disabledDate,
 }) => {
   return (
     <div className='flex flex-col gap-2 border-[1px] border-gray-400 shadow-md rounded-2xl p-4'>
@@ -27,7 +29,11 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         <span className='text-gray-400 font-normal text-md'> night</span>
       </div>
 
-      <ListingDate dateRange={dateRange} onChangeDate={onChangeDate} />
+      <ListingDate
+        dateRange={dateRange}
+        onChangeDate={onChangeDate}
+        disabledDate={disabledDate}
+      />
 
       <Button label='Reserve' onClick={onSubmit} />
       <div className='text-center text-sm text-gray-500 font-light'>
