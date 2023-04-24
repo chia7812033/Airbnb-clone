@@ -1,14 +1,14 @@
 "use client";
 
+import Button from "../Button";
+import LikeButton from "../LikeButton";
 import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { Listing, Reservation } from "@prisma/client";
-import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
 import { format } from "date-fns";
 import Image from "next/image";
-import LikeButton from "../LikeButton";
-import Button from "../Button";
+import { useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
 
 interface ListingCardProps {
   currentUser?: SafeUser | null;
@@ -84,14 +84,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <div className='font-semibold text-lg'>
           {location?.region},{" "}
           {location?.label
-            ? location?.label.length > 20
-              ? `${location?.label.slice(0, 20)}...`
+            ? location?.label.length > 15
+              ? `${location?.label.slice(0, 15)}...`
               : location?.label
             : ""}
         </div>
         <div className='text-gray-600'>{reservationDate || data.category}</div>
         <div className='flex gap-2'>
-          <div>{`$ ${data.price}`}</div>
+          <div>{`$ ${reservation ? reservation.totalPrice : data.price}`}</div>
           {!reservation && (
             <div className='font-light text-gray-500'>night</div>
           )}

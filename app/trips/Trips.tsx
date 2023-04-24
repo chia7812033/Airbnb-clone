@@ -1,13 +1,13 @@
 "use client";
 
-import { useCallback } from "react";
 import Container from "../components/Container";
 import Heading from "../components/Heading";
 import ListingCard from "../components/listings/ListingCard";
 import { SafeReservation, SafeUser } from "../types";
 import axios from "axios";
-import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useCallback } from "react";
+import { toast } from "react-hot-toast";
 
 interface TripsProps {
   currentUser?: SafeUser | null;
@@ -19,7 +19,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
   const onCancel = useCallback(
     (id: string) => {
       axios
-        .delete(`/api/reservations/${id}`)
+        .put(`/api/reservations/${id}`)
         .then(() => {
           toast.success("Cancel successfully");
           router.refresh();

@@ -5,26 +5,22 @@ import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import Button from "./Button";
 import useDateModal from "@/app/hooks/useDateModal";
+import useReservation from "../hooks/useReservation";
 
 interface DatePickerProps {
-  onChangeDate: (value: Range) => void;
-  dateRange: Range;
   disabledDate: Date[];
 }
 
-const DatePicker: React.FC<DatePickerProps> = ({
-  onChangeDate,
-  dateRange,
-  disabledDate,
-}) => {
+const DatePicker: React.FC<DatePickerProps> = ({ disabledDate }) => {
   const DateModal = useDateModal();
+  const reservationStore = useReservation();
 
   return (
     <div className='flex flex-col border-2 border-black rounded-xl overflow-hidden shadow-lg'>
       <DateRange
         editableDateInputs={true}
-        onChange={(item) => onChangeDate(item.selection)}
-        ranges={[dateRange]}
+        onChange={(item) => reservationStore.setDateRange(item.selection)}
+        ranges={[reservationStore.dateRange]}
         months={2}
         direction='horizontal'
         minDate={new Date()}

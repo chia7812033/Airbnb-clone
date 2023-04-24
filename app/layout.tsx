@@ -1,12 +1,11 @@
-import { Nunito } from "next/font/google";
-
-import "./globals.css";
-import Navbar from "./components/navbar/Navbar";
-import RegisterModal from "./components/modals/RegisterModal";
-import ToastProvider from "./providers/ToastProvider";
-import LoginModal from "./components/modals/LoginModal";
-import RentModal from "./components/modals/RentModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import LoginModal from "./components/modals/LoginModal";
+import RegisterModal from "./components/modals/RegisterModal";
+import RentModal from "./components/modals/RentModal";
+import Navbar from "./components/navbar/Navbar";
+import "./globals.css";
+import ToastProvider from "./providers/ToastProvider";
+import { Nunito } from "next/font/google";
 
 export const metadata = {
   title: "Airbnb Clone",
@@ -32,7 +31,7 @@ export default async function RootLayout({
         <LoginModal />
         <RentModal />
         <Navbar currentUser={currentUser} />
-        <div className="pt-24">{children}</div>
+        <div className='pt-24'>{children}</div>
       </body>
     </html>
   );
