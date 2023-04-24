@@ -1,7 +1,7 @@
 "use client";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import { Listing, Reservation } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
@@ -12,8 +12,8 @@ import Button from "../Button";
 
 interface ListingCardProps {
   currentUser?: SafeUser | null;
-  data: Listing;
-  reservation?: Reservation;
+  data: SafeListing;
+  reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
@@ -79,7 +79,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             alt={data.title}
             className='object-cover h-full w-full hover:scale-110 transition rounded-xl'
           />
-          <LikeButton currentUser={currentUser} listingId={data.id} aboslute/>
+          <LikeButton currentUser={currentUser} listingId={data.id} aboslute />
         </div>
         <div className='font-semibold text-lg'>
           {location?.region},{" "}

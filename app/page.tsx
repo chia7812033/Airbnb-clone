@@ -4,7 +4,7 @@ import EmptyState from "./components/EmptyState";
 import ListingCard from "./components/listings/ListingCard";
 import getCurrentUser from "./actions/getCurrentUser";
 import { Suspense } from "react";
-import Loading from "./listings/[listingId]/loading";
+import Loading from "./loading";
 
 export default async function Home() {
   const listings = await getLisings();
