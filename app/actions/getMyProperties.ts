@@ -1,8 +1,15 @@
+import getCurrentUser from "./getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-export default async function getLisings() {
+export default async function getMyProperties() {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) throw new Error("No authentication");
+
   try {
     const listings = await prisma.listing.findMany({
+      where: {
+        userId: currentUser.id,
+      },
       orderBy: {
         createdAt: "desc",
       },
@@ -13,7 +20,7 @@ export default async function getLisings() {
       createdAt: item.createdAt.toISOString(),
     }));
 
-    return listings;
+    return SafeListing;
   } catch (error: any) {
     throw new Error(error.message);
   }

@@ -1,3 +1,4 @@
+import getCurrentUser from "./getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
 interface IParams {
@@ -7,6 +8,11 @@ interface IParams {
 }
 
 export default async function getReservations(params: IParams) {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    throw new Error("Not authenticated");
+  }
+
   try {
     const { listingId, userId, authorId } = params;
 
@@ -26,6 +32,7 @@ export default async function getReservations(params: IParams) {
       where: query,
       include: {
         listing: true,
+        user: true,
       },
       orderBy: {
         createdAt: "desc",
@@ -40,6 +47,12 @@ export default async function getReservations(params: IParams) {
       listing: {
         ...res.listing,
         createdAt: res.listing.createdAt.toISOString(),
+      },
+      user: {
+        ...res.user,
+        createdAt: res.user.createdAt.toISOString(),
+        updatedAt: res.user.updatedAt.toISOString(),
+        emailVerified: res.user.emailVerified?.toISOString(),
       },
     }));
 

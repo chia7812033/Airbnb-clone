@@ -1,18 +1,17 @@
 "use client";
 
-import { RiGlobalLine } from "react-icons/ri";
-import { HiBars3 } from "react-icons/hi2";
 import CustomAvatar from "../CustomAvatar";
-
-import { useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useRentModal from "@/app/hooks/useRentModal";
-import { signOut } from "next-auth/react";
-import { toast } from "react-hot-toast";
 import { SafeUser } from "@/app/types";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
+import { toast } from "react-hot-toast";
+import { HiBars3 } from "react-icons/hi2";
+import { RiGlobalLine } from "react-icons/ri";
 
 interface UserMenuProps {
   currentUser?: SafeUser | null;
@@ -115,18 +114,26 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           {currentUser ? (
             <>
               <MenuItem
-                onClick={() => {
-                  router.push("/trips");
-                }}
+                onClick={() => router.push("/trips")}
                 label={"My trips"}
               />
-              <MenuItem onClick={() => {}} label={"My favorites"} />
-              <MenuItem onClick={() => {}} label={"My reservations"} />
-              <MenuItem onClick={() => {}} label={"My properties"} />
+              <MenuItem
+                onClick={() => router.push("/favorites")}
+                label={"My favorites"}
+              />
+              <MenuItem
+                onClick={() => router.push("./reservations")}
+                label={"My reservations"}
+              />
+              <MenuItem
+                onClick={() => router.push("./properties")}
+                label={"My properties"}
+              />
               <MenuItem
                 onClick={() => {
                   signOut();
-                  toast.success("Your have successfully logged out");
+                  toast.success("Logged out successfully");
+                  router.push("/");
                 }}
                 label={"Logout"}
                 isBold={true}

@@ -1,18 +1,18 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import axios from "axios";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useState, useCallback } from "react";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import Modal from "./Modal";
+import Button from "../Button";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
+import Modal from "./Modal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import axios from "axios";
+import { signIn } from "next-auth/react";
+import { useState, useCallback } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
-import Button from "../Button";
-import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const RegisterModal = () => {
   const registerModal = useRegisterModal();
@@ -39,6 +39,7 @@ const RegisterModal = () => {
       .post("api/register", data)
       .then(() => {
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch((error) => {
         toast.error(error.message);
@@ -79,10 +80,10 @@ const RegisterModal = () => {
     </div>
   );
 
-    const toggle = useCallback(() => {
-      registerModal.onClose();
-      loginModal.onOpen();
-    }, [loginModal, registerModal]);
+  const toggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const footer = (
     <div>
@@ -94,6 +95,7 @@ const RegisterModal = () => {
         onClick={() => {
           signIn("google");
         }}
+        wFull
       />
       <Button
         outline
@@ -102,6 +104,7 @@ const RegisterModal = () => {
         onClick={() => {
           signIn("github");
         }}
+        wFull
       />
       <div
         className='

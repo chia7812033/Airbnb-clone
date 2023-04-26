@@ -1,7 +1,7 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getReservations from "../actions/getReservations";
 import EmptyState from "../components/EmptyState";
-import Trips from "./Trips";
+import Reservations from "./Reservations";
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -12,13 +12,13 @@ const TripsPage = async () => {
     );
   }
 
-  const reservations = await getReservations({ userId: currentUser.id });
+  const reservations = await getReservations({ authorId: currentUser.id });
 
   if (reservations.length === 0) {
     return <EmptyState />;
   }
 
-  return <Trips currentUser={currentUser} reservations={reservations} />;
+  return <Reservations currentUser={currentUser} reservations={reservations} />;
 };
 
 export default TripsPage;

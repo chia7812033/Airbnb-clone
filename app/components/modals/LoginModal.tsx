@@ -1,18 +1,18 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-import { useState, useCallback } from "react";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import Modal from "./Modal";
+import Button from "../Button";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
-import { toast } from "react-hot-toast";
-import Button from "../Button";
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
+import Modal from "./Modal";
+import useLoginModal from "@/app/hooks/useLoginModal";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState, useCallback } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const LoginModal = () => {
   const router = useRouter();
@@ -38,14 +38,15 @@ const LoginModal = () => {
     signIn("credentials", { ...data, redirect: false }).then((calllback) => {
       setIsLoading(false);
 
+      if (calllback?.error) {
+        toast.error(calllback.error);
+        return;
+      }
+
       if (calllback?.ok) {
         toast.success("Logged in!");
         router.refresh();
         loginModal.onClose();
-      }
-
-      if (calllback?.error) {
-        toast.error(calllback.error);
       }
     });
   };
@@ -88,6 +89,7 @@ const LoginModal = () => {
         onClick={() => {
           signIn("google");
         }}
+        wFull
       />
       <Button
         outline
@@ -96,6 +98,7 @@ const LoginModal = () => {
         onClick={() => {
           signIn("github");
         }}
+        wFull
       />
       <div
         className='

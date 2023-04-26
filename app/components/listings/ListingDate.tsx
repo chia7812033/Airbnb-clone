@@ -16,7 +16,11 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
   const guestModal = useGuestModal();
 
   return (
-    <div className=' flex flex-col gap-2 border-[0.5px] rounded-xl p-2 relative cursor-pointer'>
+    <div
+      className={`flex flex-col gap-2 border-[0.5px] ${
+        guestModal.isOpen ? "rounded-t-xl" : "rounded-xl"
+      } p-2 relative cursor-pointer`}
+    >
       <div
         onClick={() => {
           dateModal.onOpen();
@@ -45,7 +49,7 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
           </div>
         </div>
       </div>
-      <div className='relative'>
+      <div>
         <div
           onClick={() => {
             guestModal.isOpen ? guestModal.onClose() : guestModal.onOpen();
@@ -53,7 +57,7 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
           }}
           className='flex justify-between items-center relative'
         >
-          <div>
+          <div className='flex flex-col'>
             <div className='text-xs/[20px] font-bolder'>GUESTS</div>
             <div className='text-sm'>{`${reservationStore.guestCount} guest`}</div>
           </div>
@@ -66,12 +70,12 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
           </div>
         </div>
 
-        <div className='absolute z-40'>
+        <div className='absolute z-40 w-full left-0'>
           {guestModal.isOpen && <ListingGuest />}
         </div>
       </div>
 
-      <div className='absolute -top-4 right-0 z-50'>
+      <div className='absolute -top-4 right-0 z-50 shadow-lg'>
         {dateModal.isOpen && <DatePicker disabledDate={disabledDate} />}
       </div>
     </div>

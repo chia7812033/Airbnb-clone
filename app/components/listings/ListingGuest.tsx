@@ -5,7 +5,7 @@ const ListingGuest = () => {
   const reservationStore = useReservation();
 
   return (
-    <div className='bg-white border-2 rounded-lg px-4'>
+    <div className='bg-white border-[0.5px] border-t-0 rounded-b-lg px-4 shadow-lg'>
       <Counter
         title={"Guests"}
         value={reservationStore.guestCount}

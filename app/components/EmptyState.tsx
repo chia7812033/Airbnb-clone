@@ -1,23 +1,25 @@
 "use client";
 
-import Heading from "./Heading";
 import Button from "./Button";
+import Heading from "./Heading";
 import { useRouter } from "next/navigation";
 
 interface EmptyStateProps {
+  title?: string;
+  subtitle?: string;
   showReset?: boolean;
 }
 
-const EmptyState: React.FC<EmptyStateProps> = ({ showReset }) => {
+const EmptyState: React.FC<EmptyStateProps> = ({
+  showReset,
+  title = "No exact match",
+  subtitle = "Please retry with another filter",
+}) => {
   const router = useRouter();
 
   return (
     <div className='flex flex-col justify-center items-center h-[65vh]'>
-      <Heading
-        center
-        title='No exact match'
-        subtitle='Please retry with another filter'
-      />
+      <Heading center title={title} subtitle={subtitle} />
       {showReset && (
         <Button
           label='Reset filter'

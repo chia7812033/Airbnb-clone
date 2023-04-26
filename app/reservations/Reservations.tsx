@@ -9,12 +9,15 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "react-hot-toast";
 
-interface TripsProps {
+interface ReservationsProps {
   currentUser?: SafeUser | null;
   reservations: SafeReservation[];
 }
 
-const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
+const Reservations: React.FC<ReservationsProps> = ({
+  currentUser,
+  reservations,
+}) => {
   const router = useRouter();
   const onCancel = useCallback(
     (id: string) => {
@@ -32,8 +35,8 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
   return (
     <Container>
       <Heading
-        title='Your trips'
-        subtitle='Where have you been? Where will you go?'
+        title='Your all reservations'
+        subtitle='These are all reservations comes from all over the world'
       />
       <div
         className='
@@ -48,22 +51,30 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
           gap-8'
       >
         {reservations.map((res) => (
-          <ListingCard
-            key={res.id}
-            data={res.listing}
-            reservation={res}
-            actionId={res.id}
-            actionLabel={
-              res.status === "Cancel" ? "Already Canceled" : "Cancel"
-            }
-            onAction={res.status === "Cancel" ? () => {} : onCancel}
-            currentUser={currentUser}
-            disabled={res.status === "Cancel"}
-          />
+          <div className='col-span-1 flex flex-col gap-2' key={res.id}>
+            <ListingCard
+              key={res.id}
+              data={res.listing}
+              reservation={res}
+              actionId={res.id}
+              actionLabel={
+                res.status === "Cancel" ? "Already Canceled" : "Cancel"
+              }
+              onAction={res.status === "Cancel" ? () => {} : onCancel}
+              currentUser={currentUser}
+              disabled={res.status === "Cancel"}
+            />
+            <div className='text-center'>
+              By{" "}
+              <span className='hover:underline cursor-pointer'>
+                {res.user.name}
+              </span>
+            </div>
+          </div>
         ))}
       </div>
     </Container>
   );
 };
 
-export default Trips;
+export default Reservations;
