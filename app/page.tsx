@@ -2,6 +2,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import getLisings from "./actions/getLisings";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
+import ListingContainer from "./components/ListingContainer";
 import ListingCard from "./components/listings/ListingCard";
 import Loading from "./loading";
 import { Suspense } from "react";
@@ -21,17 +22,7 @@ export default async function Home({ searchParams }: HomeProps) {
   return (
     <Container>
       <Suspense fallback={<Loading />}>
-        <div
-          className='
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8'
-        >
+        <ListingContainer>
           {listings.map((listing: any) => (
             <ListingCard
               key={listing.id}
@@ -39,7 +30,7 @@ export default async function Home({ searchParams }: HomeProps) {
               data={listing}
             />
           ))}
-        </div>
+        </ListingContainer>
       </Suspense>
     </Container>
   );

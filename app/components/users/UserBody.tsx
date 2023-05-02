@@ -11,7 +11,7 @@ const UserBody: React.FC<UserBodyProps> = ({ user }) => {
   return (
     <div className='relative border-2 border-gray-200 rounded-xl'>
       <div className='flex flex-col gap-2 px-4 py-8'>
-        <div className='mb-4 z-20 grow-0 bg-white w-min p-1 rounded-full'>
+        <div className='mb-4 z-10 grow-0 bg-white w-min p-1 rounded-full'>
           <CustomAvatar currentUser={user} size='130' />
         </div>
         <div className='text-2xl font-bold'>{user.name}</div>
@@ -21,13 +21,11 @@ const UserBody: React.FC<UserBodyProps> = ({ user }) => {
           <Button outline label={"Share profile"} onClick={() => {}} />
         </div>
       </div>
-      <div className='absolute bottom-2/3 z-10 w-full h-1/3'>
+      <div className='absolute bottom-2/3 w-full h-1/3'>
         <Image
           className='rounded-t-xl object-cover'
           fill
-          src={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy3VmlSmeD-o8l2zy6HO_Ag82JW674giomyg&usqp=CAU"
-          }
+          src={"/images/profile-bg.jpg"}
           alt='profile-bg'
         />
       </div>

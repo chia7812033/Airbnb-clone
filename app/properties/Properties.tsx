@@ -2,6 +2,7 @@
 
 import Container from "../components/Container";
 import Heading from "../components/Heading";
+import ListingContainer from "../components/ListingContainer";
 import ListingCard from "../components/listings/ListingCard";
 import { SafeListing, SafeUser } from "../types";
 
@@ -14,18 +15,7 @@ const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {
   return (
     <Container>
       <Heading title='My properties' subtitle='Consider to host more place?' />
-      <div
-        className='
-          py-8
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8'
-      >
+      <ListingContainer>
         {properties.map((property) => (
           <ListingCard
             key={property.id}
@@ -36,7 +26,7 @@ const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {
             currentUser={currentUser}
           />
         ))}
-      </div>
+      </ListingContainer>
     </Container>
   );
 };

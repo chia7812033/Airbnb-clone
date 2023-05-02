@@ -1,9 +1,10 @@
-import { SafeUser } from "@/app/types";
-import { IconType } from "react-icons";
-import useCountries from "@/app/hooks/useCountries";
 import ListingCategory from "./ListingCategory";
+import useCountries from "@/app/hooks/useCountries";
+import { SafeUser } from "@/app/types";
 import dynamic from "next/dynamic";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
+import { IconType } from "react-icons";
 
 interface ListingInfoProps {
   user: SafeUser;
@@ -24,6 +25,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   bathroomCount,
   locationValue,
 }) => {
+  const router = useRouter();
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
   const Map = useMemo(
@@ -35,7 +37,13 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
     <div className='flex flex-col gap-4 text-md pt-6 pb-10'>
       <div className='flex justify-between pr-4 items-center'>
         <div className='text-xl'>
-          Host by <span className='font-semibold'>{user.name}</span>
+          Host by{" "}
+          <span
+            onClick={() => router.push(`/users/${user.id}`)}
+            className='font-semibold hover:underline cursor-pointer'
+          >
+            {user.name}
+          </span>
         </div>
         {category && (
           <ListingCategory label={category.label} icon={category.icon} />

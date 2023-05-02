@@ -1,4 +1,5 @@
 import User from "./User";
+import getProperties from "@/app/actions/getProperties";
 import getUserById from "@/app/actions/getUserById";
 import EmptyState from "@/app/components/EmptyState";
 
@@ -9,6 +10,7 @@ interface IParams {
 const ListingPage = async ({ params }: { params: IParams }) => {
   const { userId } = params;
   const user = await getUserById(userId as string);
+  const properties = await getProperties(userId);
 
   if (!user) {
     return (
@@ -20,7 +22,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
 
   return (
     <div className='pb-4'>
-      <User user={user} />
+      <User user={user} properties={properties} />
     </div>
   );
 };

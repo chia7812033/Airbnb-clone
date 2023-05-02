@@ -2,6 +2,7 @@
 
 import Container from "../components/Container";
 import Heading from "../components/Heading";
+import ListingContainer from "../components/ListingContainer";
 import ListingCard from "../components/listings/ListingCard";
 import { SafeReservation, SafeUser } from "../types";
 import axios from "axios";
@@ -35,18 +36,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
         title='Your trips'
         subtitle='Where have you been? Where will you go?'
       />
-      <div
-        className='
-          py-8
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8'
-      >
+      <ListingContainer>
         {reservations.map((res) => (
           <ListingCard
             key={res.id}
@@ -61,7 +51,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
             disabled={res.status === "Cancel"}
           />
         ))}
-      </div>
+      </ListingContainer>
     </Container>
   );
 };

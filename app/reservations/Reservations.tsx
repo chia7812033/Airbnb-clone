@@ -2,6 +2,7 @@
 
 import Container from "../components/Container";
 import Heading from "../components/Heading";
+import ListingContainer from "../components/ListingContainer";
 import ListingCard from "../components/listings/ListingCard";
 import { SafeReservation, SafeUser } from "../types";
 import axios from "axios";
@@ -38,18 +39,7 @@ const Reservations: React.FC<ReservationsProps> = ({
         title='Your all reservations'
         subtitle='These are all reservations comes from all over the world'
       />
-      <div
-        className='
-          py-8
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
-          gap-8'
-      >
+      <ListingContainer>
         {reservations.map((res) => (
           <div className='col-span-1 flex flex-col gap-2' key={res.id}>
             <ListingCard
@@ -72,7 +62,7 @@ const Reservations: React.FC<ReservationsProps> = ({
             </div>
           </div>
         ))}
-      </div>
+      </ListingContainer>
     </Container>
   );
 };
