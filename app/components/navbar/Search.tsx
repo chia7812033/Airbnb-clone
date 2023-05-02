@@ -1,8 +1,27 @@
 "use client";
 
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
+import { useState } from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
 
 const Search = () => {
+  const [search, setSearch] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const onSubmit = () => {
+    const params = new URLSearchParams(searchParams);
+    params.set("search", search);
+    router.replace(`/?${params}`);
+  };
+
+  const onSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const params = new URLSearchParams(searchParams);
+    params.set("search", search);
+    router.replace(`$/?${params}`);
+  };
+
   return (
     <div
       className='
@@ -25,12 +44,20 @@ const Search = () => {
           items-center
           justify-between'
       >
-        <div className='flex gap-2 px-3 pl-4 w-full'>
-          <input
-            type='text'
-            placeholder='Search'
-            className='outline-none w-full'
-          />
+        <div className='flex gap-2 px-3 pl-4 w-full items-center justify-between'>
+          <form onSubmit={onSubmitForm} className='w-full'>
+            <input
+              type='text'
+              placeholder='Search'
+              value={search}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+              className='outline-none w-full'
+            />
+            <input type='submit' className='hidden' />
+          </form>
+
           <IoSearchCircleSharp
             size={32}
             className='
@@ -38,6 +65,7 @@ const Search = () => {
             text-rose-500
               rounded-full
               transition'
+            onClick={onSubmit}
           />
         </div>
       </div>

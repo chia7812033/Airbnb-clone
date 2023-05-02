@@ -6,8 +6,12 @@ import ListingCard from "./components/listings/ListingCard";
 import Loading from "./loading";
 import { Suspense } from "react";
 
-export default async function Home() {
-  const listings = await getLisings();
+interface HomeProps {
+  searchParams: { search: string };
+}
+
+export default async function Home({ searchParams }: HomeProps) {
+  const listings = await getLisings(searchParams.search);
   const currentUser = await getCurrentUser();
 
   if (listings.length === 0) {

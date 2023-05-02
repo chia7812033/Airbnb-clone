@@ -1,7 +1,7 @@
 "use client";
 
-import {BsCurrencyDollar} from 'react-icons/bs'
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { BsCurrencyDollar } from "react-icons/bs";
 
 interface ClientProps {
   id: string;

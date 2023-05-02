@@ -1,24 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
-import useRentModal from "@/app/hooks/useRentModal";
-
-import Modal from "./Modal";
 import Heading from "../Heading";
-import Map from "../Map";
-import { categories } from "../navbar/Categories";
 import CategoryInput from "../inputs/CategoryInput";
-import CountrySelect from "../inputs/CountrySelect";
-import useCountries from "@/app/hooks/useCountries";
-import dynamic from "next/dynamic";
 import Counter from "../inputs/Counter";
+import CountrySelect from "../inputs/CountrySelect";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
+import { categories } from "../navbar/Categories";
+import Modal from "./Modal";
+import useRentModal from "@/app/hooks/useRentModal";
 import axios from "axios";
-import { toast } from "react-hot-toast";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
+import { useState, useMemo } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { toast } from "react-hot-toast";
 
 const RentModal = () => {
   const rentModal = useRentModal();
