@@ -99,8 +99,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           className='
             absolute
             right-0
-            w-[40vm]
-            md:w-3/4
+            w-3/4
             shadow-md
             border-[1px]
             rounded-xl

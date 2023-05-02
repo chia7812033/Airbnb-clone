@@ -67,13 +67,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
   }, [reservation]);
 
   return (
-    <div className='col-span-1 cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-[0.5px] border-gray-300'>
+    <div
+      onClick={() => {
+        router.push(`/listings/${data.id}`);
+      }}
+      className='col-span-1 cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-[0.5px] border-gray-300'
+    >
       <div className='flex flex-col mb-2 gap-2'>
         <div className='aspect-square relative gap-2 rounded-t-xl overflow-hidden'>
           <Image
-            onClick={() => {
-              router.push(`/listings/${data.id}`);
-            }}
             fill
             src={data.imageSrc}
             alt={data.title}
@@ -82,14 +84,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <LikeButton currentUser={currentUser} listingId={data.id} aboslute />
         </div>
         <div className='px-2'>
-          <div className='font-semibold text-lg'>
-            {location?.region},{" "}
-            {location?.label
-              ? location?.label.length > 15
-                ? `${location?.label.slice(0, 15)}...`
-                : location?.label
-              : ""}
-          </div>
+          <div className='font-semibold text-lg'>{data.title}</div>
           <div className='text-gray-600'>
             {reservationDate || data.category}
           </div>

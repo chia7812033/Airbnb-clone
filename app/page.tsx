@@ -23,7 +23,6 @@ export default async function Home({ searchParams }: HomeProps) {
       <Suspense fallback={<Loading />}>
         <div
           className='
-          pt-8
           grid
           grid-cols-1
           sm:grid-cols-2

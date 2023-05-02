@@ -4,10 +4,16 @@ import ListingBody from "../../components/listings/ListingBody";
 import Container from "@/app/components/Container";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
+import ListingReviews from "@/app/components/listings/ListingReviews";
 import { categories } from "@/app/components/navbar/Categories";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useReservation from "@/app/hooks/useReservation";
-import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
+import {
+  SafeUser,
+  SafeListing,
+  SafeReservation,
+  SafeReview,
+} from "@/app/types";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -20,12 +26,14 @@ interface ListingProps {
     user: SafeUser;
   };
   reservations?: SafeReservation[];
+  reviews?: SafeReview[];
 }
 
 const Listing: React.FC<ListingProps> = ({
   currentUser,
   listing,
   reservations = [],
+  reviews = [],
 }) => {
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
@@ -133,6 +141,11 @@ const Listing: React.FC<ListingProps> = ({
           </div>
         </div>
       </div>
+      <ListingReviews
+        listingId={listing.id}
+        currentUser={currentUser}
+        reviews={reviews}
+      />
     </Container>
   );
 };

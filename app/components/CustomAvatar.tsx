@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { SafeUser } from "../types";
-import { divIcon } from "leaflet";
+import Image from "next/image";
 
 interface CustomAvatarProps {
   currentUser?: SafeUser | null;
@@ -25,7 +24,9 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({ currentUser }) => {
       return (
         <>
           {currentUser.name ? (
-            <div className="bg-gray-300 rounded-full px-3 py-1 text-xl">{currentUser.name[0]}</div>
+            <div className='bg-gray-300 rounded-full px-3 py-1 text-xl'>
+              {currentUser.name[0]}
+            </div>
           ) : (
             <Image
               src={"/images/placeholder.jpg"}
