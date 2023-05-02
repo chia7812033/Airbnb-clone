@@ -10,7 +10,7 @@ interface IParams {
 export default async function getReservations(params: IParams) {
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    throw new Error("Not authenticated");
+    return [];
   }
 
   try {

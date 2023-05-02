@@ -13,7 +13,6 @@ const ListingReviews: React.FC<ListingReviewsProps> = ({
   currentUser,
   reviews = [],
 }) => {
-  console.log(reviews);
   return (
     <div className='flex-col gap-2'>
       <div className='text-xl font-semibold md-2'>Reviews</div>

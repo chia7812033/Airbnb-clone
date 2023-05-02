@@ -1,8 +1,8 @@
 "use client";
 
-import {RxCross1} from 'react-icons/rx'
-import { useCallback, useEffect, useState } from "react";
 import Button from "../Button";
+import { useCallback, useEffect, useState } from "react";
+import { RxCross1 } from "react-icons/rx";
 
 interface ModalProps {
   isOpen?: boolean;

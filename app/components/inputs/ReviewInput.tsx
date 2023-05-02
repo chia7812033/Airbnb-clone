@@ -30,12 +30,13 @@ const ReviewInput: React.FC<ReviewInputProps> = ({
       })
       .finally(function () {
         setIsLoading(false);
+        setData("");
         router.refresh();
       });
   };
 
   return (
-    <div>
+    <div className='my-2'>
       <form onSubmit={onSubmit}>
         <input
           value={data}

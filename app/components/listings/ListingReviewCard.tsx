@@ -12,12 +12,14 @@ const ListingReviewCard: React.FC<ListingReviewCardProps> = ({
   review,
 }) => {
   return (
-    <div className='flex-col gap-2'>
+    <div className='flex gap-2 my-2'>
       <div>
         <CustomAvatar currentUser={author} />
-        {author.name}
       </div>
-      <div>{review}</div>
+      <div className='flex-col gap-2 rounded-xl bg-slate-200 px-4 py-2'>
+        <div className='text-sm cursor-pointer'>{author.name}</div>
+        <div className='text-md'>{review}</div>
+      </div>
     </div>
   );
 };

@@ -1,56 +1,44 @@
 "use client";
 
 import { SafeUser } from "../types";
-import Image from "next/image";
+import { useRouter } from "next/navigation";
+import Avatar from "react-avatar";
 
 interface CustomAvatarProps {
   currentUser?: SafeUser | null;
+  size?: string;
 }
 
-const CustomAvatar: React.FC<CustomAvatarProps> = ({ currentUser }) => {
-  if (currentUser) {
-    if (currentUser.image) {
-      return (
-        <Image
-          src={currentUser.image}
-          height='30'
-          width='30'
-          alt='avatar'
-          className='rounded-full'
-          style={{ objectFit: "contain" }}
-        />
-      );
-    } else {
-      return (
+const CustomAvatar: React.FC<CustomAvatarProps> = ({
+  currentUser,
+  size = "36",
+}) => {
+  const router = useRouter();
+
+  return (
+    <>
+      {currentUser ? (
         <>
-          {currentUser.name ? (
-            <div className='bg-gray-300 rounded-full px-3 py-1 text-xl'>
-              {currentUser.name[0]}
-            </div>
+          {currentUser.image ? (
+            <Avatar
+              onClick={() => router.push(`/users/${currentUser.id}`)}
+              src={currentUser.image || ""}
+              size={size}
+              round={true}
+            />
           ) : (
-            <Image
-              src={"/images/placeholder.jpg"}
-              height='30'
-              width='30'
-              alt='avatar'
-              className='rounded-full'
-              style={{ objectFit: "contain" }}
+            <Avatar
+              onClick={() => router.push(`/users/${currentUser.id}`)}
+              name={currentUser.name || "User"}
+              size={size}
+              round={true}
             />
           )}
         </>
-      );
-    }
-  }
-
-  return (
-    <Image
-      src={"/images/placeholder.jpg"}
-      height='30'
-      width='30'
-      alt='avatar'
-      className='rounded-full'
-      style={{ objectFit: "contain" }}
-    />
+      ) : (
+        <Avatar src={"/images/placeholder.jpg"} size={size} round={true} />
+      )}
+    </>
   );
 };
 

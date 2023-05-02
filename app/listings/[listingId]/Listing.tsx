@@ -116,6 +116,7 @@ const Listing: React.FC<ListingProps> = ({
             imageSrc={listing.imageSrc}
             id={listing.id}
             locationValue={listing.locationValue}
+            reviews={reviews.length}
           />
         </div>
         <div className='flex flex-row w-full gap-4'>
