@@ -8,8 +8,8 @@ import ToastProvider from "./providers/ToastProvider";
 import { Nunito } from "next/font/google";
 
 export const metadata = {
-  title: "Airbnb Clone",
-  description: "An Airbnb Clone",
+  title: "Travel Anywhere",
+  description: "This is my website",
 };
 
 const font = Nunito({

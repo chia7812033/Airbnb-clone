@@ -59,7 +59,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             px-3
             py-2'
         >
-          Airbnb your home
+          Host your home
         </div>
         <RiGlobalLine
           size={40}
@@ -72,7 +72,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             p-2'
         />
         <div
-          onClick={toggleOpen}
           className='
             flex
             flex-row
@@ -82,14 +81,16 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             lg:py-2
             md:p-2
             p-1
-            hover:shadow-md
-            transition
             gap-2
             items-center'
         >
-          <HiBars3 size={26} className='' />
-          <div className='hidden md:block'>
-            <CustomAvatar currentUser={currentUser} />
+          <HiBars3
+            onClick={toggleOpen}
+            size={26}
+            className='hover:scale-110 transition'
+          />
+          <div className='hidden md:block hover:opacity-80 transition'>
+            <CustomAvatar currentUser={currentUser} profile />
           </div>
         </div>
       </div>
@@ -149,7 +150,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             </>
           )}
           <div className='border-b-[1px] my-2' />
-          <MenuItem onClick={rentModal.onOpen} label={"Airbnb your home"} />
+          <MenuItem onClick={rentModal.onOpen} label={"Host your home"} />
           <MenuItem onClick={() => {}} label={"Help"} />
         </div>
       )}

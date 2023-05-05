@@ -38,8 +38,8 @@ const Button: React.FC<ButtonProps> = ({
         border-[2px]
         mt-2
         mb-1
-        ${outline ? `bg-black` : "bg-rose-400"}
-        ${outline ? "border-black" : "border-rose-400"}
+        ${outline ? `bg-black` : "bg-orange-500"}
+        ${outline ? "border-black" : "bg-orange-500"}
         text-white
         ${small ? "py-1" : "py-3"}
         ${small ? "text-sm" : "text-md"}

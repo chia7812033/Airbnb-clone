@@ -7,13 +7,16 @@ import Avatar from "react-avatar";
 interface CustomAvatarProps {
   currentUser?: SafeUser | null;
   size?: string;
+  profile?: boolean;
 }
 
 const CustomAvatar: React.FC<CustomAvatarProps> = ({
   currentUser,
   size = "36",
+  profile,
 }) => {
   const router = useRouter();
+  const url = profile ? "/profile" : `/users/${currentUser?.id}`;
 
   return (
     <>
@@ -21,14 +24,14 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
         <>
           {currentUser.image ? (
             <Avatar
-              onClick={() => router.push(`/users/${currentUser.id}`)}
+              onClick={() => router.push(url)}
               src={currentUser.image || ""}
               size={size}
               round={true}
             />
           ) : (
             <Avatar
-              onClick={() => router.push(`/users/${currentUser.id}`)}
+              onClick={() => router.push(url)}
               name={currentUser.name || "User"}
               size={size}
               round={true}

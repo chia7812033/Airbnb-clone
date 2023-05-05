@@ -84,7 +84,16 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <LikeButton currentUser={currentUser} listingId={data.id} aboslute />
         </div>
         <div className='px-2'>
-          <div className='font-semibold text-lg'>{data.title}</div>
+          <div className='font-semibold text-lg'>
+            {data.title.length > 22 ? (
+              <>
+                {data.title.slice(0, 20)}
+                <span className='text-gray-400'>...</span>
+              </>
+            ) : (
+              data.title
+            )}
+          </div>
           <div className='text-gray-600'>
             {reservationDate || data.category}
           </div>

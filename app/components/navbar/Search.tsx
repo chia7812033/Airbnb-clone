@@ -62,7 +62,7 @@ const Search = () => {
             size={32}
             className='
               cursor-pointer
-            text-rose-500
+            text-orange-500
               rounded-full
               transition'
             onClick={onSubmit}
