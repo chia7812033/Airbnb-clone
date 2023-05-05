@@ -3,6 +3,10 @@ import getReservations from "../actions/getReservations";
 import EmptyState from "../components/EmptyState";
 import Trips from "./Trips";
 
+export const metadata = {
+  title: "My Trips",
+};
+
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
 
@@ -15,7 +19,12 @@ const TripsPage = async () => {
   const reservations = await getReservations({ userId: currentUser.id });
 
   if (reservations.length === 0) {
-    return <EmptyState />;
+    return (
+      <EmptyState
+        title='No any trip found'
+        subtitle={"Want to find some place to go?"}
+      />
+    );
   }
 
   return <Trips currentUser={currentUser} reservations={reservations} />;

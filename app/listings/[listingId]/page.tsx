@@ -4,9 +4,23 @@ import getListingById from "@/app/actions/getListingById";
 import getReservations from "@/app/actions/getReservations";
 import getReviews from "@/app/actions/getReviews";
 import EmptyState from "@/app/components/EmptyState";
+import { Metadata } from "next";
 
 interface IParams {
   listingId: string;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: IParams;
+}): Promise<Metadata> {
+  const { listingId } = params;
+  const listing = await getListingById(listingId as string);
+
+  return {
+    title: `${listing?.title}` || "Place not found",
+  };
 }
 
 const ListingPage = async ({ params }: { params: IParams }) => {
