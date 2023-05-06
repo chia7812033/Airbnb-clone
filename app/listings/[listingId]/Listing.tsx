@@ -13,6 +13,7 @@ import {
   SafeListing,
   SafeReservation,
   SafeReview,
+  SafeRating,
 } from "@/app/types";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
@@ -27,6 +28,8 @@ interface ListingProps {
   };
   reservations?: SafeReservation[];
   reviews?: SafeReview[];
+  rating?: SafeRating;
+  avgRating?: number;
 }
 
 const Listing: React.FC<ListingProps> = ({
@@ -34,6 +37,8 @@ const Listing: React.FC<ListingProps> = ({
   listing,
   reservations = [],
   reviews = [],
+  rating,
+  avgRating = 5,
 }) => {
   const disabledDates = useMemo(() => {
     let dates: Date[] = [];
@@ -117,6 +122,7 @@ const Listing: React.FC<ListingProps> = ({
             id={listing.id}
             locationValue={listing.locationValue}
             reviews={reviews.length}
+            avgRating={avgRating}
           />
         </div>
         <div className='flex flex-row w-full gap-4'>
@@ -146,6 +152,7 @@ const Listing: React.FC<ListingProps> = ({
         listingId={listing.id}
         currentUser={currentUser}
         reviews={reviews}
+        rating={rating}
       />
     </Container>
   );

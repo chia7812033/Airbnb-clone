@@ -59,7 +59,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             px-3
             py-2'
         >
-          Host your home
+          Host my place
         </div>
         <RiGlobalLine
           size={40}
@@ -150,9 +150,8 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <MenuItem onClick={loginModal.onOpen} label={"Log in"} />
             </>
           )}
-          <div className='border-b-[1px] my-2' />
-          <MenuItem onClick={onRent} label={"Host your home"} />
-          <MenuItem onClick={() => {}} label={"Help"} />
+          <hr />
+          <MenuItem onClick={onRent} label={"Host my place"} />
         </div>
       )}
     </div>

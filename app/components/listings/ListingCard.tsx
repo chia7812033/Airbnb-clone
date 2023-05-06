@@ -3,6 +3,7 @@
 import Button from "../CustomButton";
 import LikeButton from "../LikeButton";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
+import Tooltip from "@mui/material/Tooltip";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -88,10 +89,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
         <div className='px-2'>
           <div className='font-semibold text-lg'>
             {data.title.length > 22 ? (
-              <>
-                {data.title.slice(0, 20)}
-                <span className='text-gray-400'>...</span>
-              </>
+              <Tooltip title={data.title} arrow>
+                <span>{`${data.title.slice(0, 20)}...`}</span>
+              </Tooltip>
             ) : (
               data.title
             )}

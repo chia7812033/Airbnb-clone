@@ -1,8 +1,10 @@
 import Listing from "./Listing";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getListingById from "@/app/actions/getListingById";
+import getListingRatings from "@/app/actions/getListingRatings";
 import getReservations from "@/app/actions/getReservations";
 import getReviews from "@/app/actions/getReviews";
+import getUserRating from "@/app/actions/getUserRating";
 import EmptyState from "@/app/components/EmptyState";
 import { Metadata } from "next";
 
@@ -29,6 +31,8 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   const currentUser = await getCurrentUser();
   const reservations = await getReservations({ listingId });
   const reviews = await getReviews(listingId);
+  const rating = await getUserRating(listingId);
+  const avgRating = await getListingRatings(listingId);
 
   if (!listing) {
     return (
@@ -45,6 +49,8 @@ const ListingPage = async ({ params }: { params: IParams }) => {
         currentUser={currentUser}
         reservations={reservations}
         reviews={reviews}
+        rating={rating}
+        avgRating={avgRating}
       />
     </div>
   );
