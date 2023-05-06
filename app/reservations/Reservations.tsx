@@ -54,7 +54,10 @@ const Reservations: React.FC<ReservationsProps> = ({
               currentUser={currentUser}
               disabled={res.status === "Cancel"}
             />
-            <div className='text-center'>
+            <div
+              className='text-center'
+              onClick={() => router.push(`/users/${res.user.id}`)}
+            >
               By{" "}
               <span className='hover:underline cursor-pointer'>
                 {res.user.name}

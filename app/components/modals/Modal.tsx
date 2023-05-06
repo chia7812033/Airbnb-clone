@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "../Button";
+import CustomButton from "../CustomButton";
 import { useCallback, useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 
@@ -169,7 +169,7 @@ const Modal: React.FC<ModalProps> = ({
                     w-full'
                 >
                   {secondaryAction && secondaryActionLabel && (
-                    <Button
+                    <CustomButton
                       outline
                       disabled={disabled}
                       label={secondaryActionLabel}
@@ -178,7 +178,7 @@ const Modal: React.FC<ModalProps> = ({
                     />
                   )}
 
-                  <Button
+                  <CustomButton
                     disabled={disabled}
                     label={actionLabel}
                     onClick={handleSubmit}

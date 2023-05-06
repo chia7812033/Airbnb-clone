@@ -24,6 +24,7 @@ const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {
             actionLabel={"Edit"}
             onAction={() => {}}
             currentUser={currentUser}
+            edit
           />
         ))}
       </ListingContainer>

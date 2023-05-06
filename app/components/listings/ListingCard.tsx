@@ -1,10 +1,8 @@
 "use client";
 
-import Button from "../Button";
+import Button from "../CustomButton";
 import LikeButton from "../LikeButton";
-import useCountries from "@/app/hooks/useCountries";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
-import { Listing, Reservation } from "@prisma/client";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -18,6 +16,7 @@ interface ListingCardProps {
   disabled?: boolean;
   actionLabel?: string;
   actionId?: string;
+  edit?: boolean;
 }
 
 const ListingCard: React.FC<ListingCardProps> = ({
@@ -28,11 +27,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
   disabled,
   actionLabel,
   actionId = "",
+  edit,
 }) => {
   const router = useRouter();
-  const { getByValue } = useCountries();
-
-  const location = getByValue(data.locationValue);
 
   const handleCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -42,9 +39,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
         return;
       }
 
+      if (edit) {
+        router.push(`/listings/${actionId}/edit`);
+        return;
+      }
+
       onAction?.(actionId);
     },
-    [onAction, actionId, disabled]
+    [onAction, actionId, disabled, edit, router]
   );
 
   const price = useMemo(() => {
@@ -98,9 +100,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             {reservationDate || data.category}
           </div>
           <div className='flex gap-2'>
-            <div>{`$ ${
-              reservation ? reservation.totalPrice : data.price
-            }`}</div>
+            <div>{`$ ${reservation ? reservation.totalPrice : price}`}</div>
             {!reservation ? (
               <div className='font-light text-gray-500'>night</div>
             ) : (
@@ -113,7 +113,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <Button
               disabled={disabled}
               small
-              label={actionLabel}
+              label={actionLabel || ""}
               onClick={handleCancel}
               outline={disabled}
               wFull

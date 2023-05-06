@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from "../CustomButton";
 import ListingDate from "./ListingDate";
 import useReservation from "@/app/hooks/useReservation";
 import { differenceInCalendarDays } from "date-fns";

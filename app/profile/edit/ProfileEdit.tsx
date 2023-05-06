@@ -1,10 +1,11 @@
 "use client";
 
-import Button from "@/app/components/Button";
 import Container from "@/app/components/Container";
+import Button from "@/app/components/CustomButton";
 import Input from "@/app/components/inputs/Input";
 import { SafeUser } from "@/app/types";
 import axios from "axios";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";

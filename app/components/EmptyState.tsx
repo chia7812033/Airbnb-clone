@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "./Button";
+import Button from "./CustomButton";
 import Heading from "./Heading";
 import { useRouter } from "next/navigation";
 

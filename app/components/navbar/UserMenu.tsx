@@ -101,6 +101,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             absolute
             right-0
             w-3/4
+            min-w-[250px]
             shadow-md
             border-[1px]
             rounded-xl
@@ -150,7 +151,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             </>
           )}
           <div className='border-b-[1px] my-2' />
-          <MenuItem onClick={rentModal.onOpen} label={"Host your home"} />
+          <MenuItem onClick={onRent} label={"Host your home"} />
           <MenuItem onClick={() => {}} label={"Help"} />
         </div>
       )}

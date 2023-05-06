@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "../Button";
 import CustomAvatar from "../CustomAvatar";
+import Button from "../CustomButton";
 import { SafeUser } from "@/app/types";
 import Image from "next/image";
 import {
@@ -25,7 +25,7 @@ const UserBody: React.FC<UserBodyProps> = ({ user, profile }) => {
     <div className='relative border-2 border-gray-200 rounded-xl mt-4'>
       <div className='flex flex-col gap-2 px-4 py-8'>
         <div className='mb-4 z-10 grow-0 bg-white w-min p-1 rounded-full'>
-          <CustomAvatar currentUser={user} size='130' />
+          <CustomAvatar currentUser={user} size={130} />
         </div>
         <div className='text-2xl font-bold'>{user.name}</div>
         <div>{user.email}</div>

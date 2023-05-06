@@ -1,6 +1,7 @@
 "use client";
 
-import Button from "../Button";
+import Button from "../CustomButton";
+import CustomButton from "../CustomButton";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Modal from "./Modal";
@@ -82,7 +83,7 @@ const LoginModal = () => {
   const footer = (
     <div>
       <hr />
-      <Button
+      <CustomButton
         outline
         label={"Continue with Google"}
         icon={FcGoogle}
@@ -91,7 +92,7 @@ const LoginModal = () => {
         }}
         wFull
       />
-      <Button
+      <CustomButton
         outline
         label={"Continue with GitHub"}
         icon={FaGithub}

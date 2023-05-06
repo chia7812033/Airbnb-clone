@@ -1,0 +1,181 @@
+"use client";
+
+import Container from "@/app/components/Container";
+import CustomButton from "@/app/components/CustomButton";
+import Heading from "@/app/components/Heading";
+import CategoryInput from "@/app/components/inputs/CategoryInput";
+import Counter from "@/app/components/inputs/Counter";
+import CountrySelect from "@/app/components/inputs/CountrySelect";
+import Input from "@/app/components/inputs/Input";
+import { categories } from "@/app/components/navbar/Categories";
+import useCountries from "@/app/hooks/useCountries";
+import { SafeListing } from "@/app/types";
+import { Button } from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+
+interface ListingEditProps {
+  listing: SafeListing;
+}
+
+const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
+  const { getByValue } = useCountries();
+  const currentLocation = getByValue(listing.locationValue);
+  const [loading, setIsLoading] = useState(false);
+  const router = useRouter();
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset,
+  } = useForm<FieldValues>({
+    defaultValues: {
+      category: listing.category,
+      location: currentLocation,
+      guestCount: listing.guestCount,
+      roomCount: listing.roomCount,
+      bathroomCount: listing.bathroomCount,
+      imageSrc: listing.imageSrc,
+      price: listing.price,
+      title: listing.title,
+      description: listing.description,
+    },
+  });
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    setIsLoading(true);
+
+    data = { ...data, id: listing.id };
+
+    axios
+      .patch("/api/listings", data)
+      .then(() => {
+        toast.success("Listing Updated!");
+        router.push(`/listings/${listing.id}`);
+      })
+      .catch((error) => toast.error(error.message))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true,
+    });
+  };
+
+  const category = watch("category");
+  const location = watch("location");
+  const guestCount = watch("guestCount");
+  const roomCount = watch("roomCount");
+  const bathroomCount = watch("bathroomCount");
+  const imageSrc = watch("imageSrc");
+
+  return (
+    <Container>
+      <div className='flex flex-col gap-4'>
+        <div>
+          <Heading title={"1. Category"} />
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 my-2'>
+            {categories.map((cat) => (
+              <CategoryInput
+                key={cat.label}
+                label={cat.label}
+                icon={cat.icon}
+                onClick={(category) => {
+                  setCustomValue("category", category);
+                }}
+                selected={category === cat.label}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <Heading title={"2. Location"} />
+          <div>
+            <CountrySelect
+              value={location}
+              onChange={(location) => {
+                setCustomValue("location", location);
+              }}
+            />
+          </div>
+        </div>
+        <div>
+          <Heading title={"3. Guest, Rooms, Bathrooms"} />
+          <Counter
+            title={"Guests"}
+            value={guestCount}
+            onChange={(value) => setCustomValue("guestCount", value)}
+          />
+          <Counter
+            title={"Rooms"}
+            value={roomCount}
+            onChange={(value) => setCustomValue("roomCount", value)}
+          />
+          <Counter
+            title={"Bathrooms"}
+            value={bathroomCount}
+            onChange={(value) => setCustomValue("bathroomCount", value)}
+          />
+        </div>
+        <div>
+          <Heading title={"4. Image Source"} />
+          <Input
+            id={"imageSrc"}
+            label={"Image Src"}
+            register={register}
+            errors={errors}
+            required
+          />
+        </div>
+        <div className='mt-2'>
+          <Heading title={"5. Title and Description"} />
+          <Input
+            id='title'
+            label='title'
+            register={register}
+            errors={errors}
+            required
+          />
+          <hr />
+          <Input
+            id='description'
+            label='description'
+            register={register}
+            errors={errors}
+            required
+          />
+        </div>
+        <div>
+          <Heading title={"6. Price"} />
+          <Input
+            id='price'
+            label='price'
+            formatPrice
+            register={register}
+            errors={errors}
+            required
+          />
+        </div>
+        <div>
+          <CustomButton
+            label='Update Change'
+            onClick={handleSubmit(onSubmit)}
+          />
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default ListingEdit;
