@@ -1,4 +1,4 @@
-import useReservation from "../hooks/useReservation";
+import useReservation from "../../hooks/useReservation";
 // theme css file
 import Button from "./CustomButton";
 import useDateModal from "@/app/hooks/useDateModal";

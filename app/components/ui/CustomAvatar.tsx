@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "../types";
+import { SafeUser } from "../../types";
 import { Avatar } from "@mui/material";
 import { useRouter } from "next/navigation";
 
@@ -16,11 +16,15 @@ const CustomAvatar: React.FC<CustomAvatarProps> = ({
   profile,
 }) => {
   const router = useRouter();
-  const url = profile ? "/profile" : `/users/${currentUser?.id}`;
+  const url = `/users/${currentUser?.id}`;
 
   return (
     <Avatar
-      onClick={() => router.push(url)}
+      onClick={() => {
+        if (!profile) {
+          router.push(url);
+        }
+      }}
       src={currentUser?.image || ""}
       sx={{ width: size, height: size }}
     >

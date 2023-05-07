@@ -1,7 +1,11 @@
 "user client";
 
-import Container from "../Container";
-import { TbBeach, TbMountain } from "react-icons/tb";
+import Container from "../ui/Container";
+import CategoryBox from "./CategoryBox";
+import { usePathname, useSearchParams } from "next/navigation";
+import { BiWater } from "react-icons/bi";
+import { BsSnow } from "react-icons/bs";
+import { FaSkiing, FaCampground } from "react-icons/fa";
 import {
   GiWindmill,
   GiModernCity,
@@ -13,11 +17,7 @@ import {
   GiBigDiamondRing,
 } from "react-icons/gi";
 import { MdPool } from "react-icons/md";
-import { BiWater } from "react-icons/bi";
-import { FaSkiing, FaCampground } from "react-icons/fa";
-import { BsSnow } from "react-icons/bs";
-import CategoryBox from "./CategoryBox";
-import { usePathname, useSearchParams } from "next/navigation";
+import { TbBeach, TbMountain } from "react-icons/tb";
 
 export const categories = [
   {

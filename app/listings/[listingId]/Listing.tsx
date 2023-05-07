@@ -1,11 +1,11 @@
 "use client";
 
 import ListingBody from "../../components/listings/ListingBody";
-import Container from "@/app/components/Container";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingReviews from "@/app/components/listings/ListingReviews";
 import { categories } from "@/app/components/navbar/Categories";
+import Container from "@/app/components/ui/Container";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useReservation from "@/app/hooks/useReservation";
 import {

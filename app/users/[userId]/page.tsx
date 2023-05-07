@@ -1,7 +1,7 @@
 import User from "./User";
 import getProperties from "@/app/actions/getProperties";
 import getUserById from "@/app/actions/getUserById";
-import EmptyState from "@/app/components/EmptyState";
+import EmptyState from "@/app/components/ui/EmptyState";
 import { Metadata } from "next";
 
 interface IParams {

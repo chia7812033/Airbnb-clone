@@ -1,6 +1,6 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getFavorites from "../actions/getFavorites";
-import EmptyState from "../components/EmptyState";
+import EmptyState from "../components/ui/EmptyState";
 import Favorites from "./Favorites";
 
 export const metadata = {

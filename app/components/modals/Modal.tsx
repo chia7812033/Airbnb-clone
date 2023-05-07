@@ -1,6 +1,6 @@
 "use client";
 
-import CustomButton from "../CustomButton";
+import CustomButton from "../ui/CustomButton";
 import { useCallback, useEffect, useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 

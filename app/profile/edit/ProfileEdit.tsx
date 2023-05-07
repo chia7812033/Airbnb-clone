@@ -1,8 +1,8 @@
 "use client";
 
-import Container from "@/app/components/Container";
-import Button from "@/app/components/CustomButton";
 import Input from "@/app/components/inputs/Input";
+import Container from "@/app/components/ui/Container";
+import CustomButton from "@/app/components/ui/CustomButton";
 import { SafeUser } from "@/app/types";
 import axios from "axios";
 import Image from "next/image";
@@ -38,7 +38,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {
       .patch("/api/register", data)
       .then(() => {
         toast.success("Update profile successfully");
-        router.refresh();
+        router.push("/profile");
       })
       .catch((error) => toast.error("Something went wrong"))
       .finally(() => {
@@ -76,7 +76,7 @@ const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {
           errors={errors}
         />
 
-        <Button
+        <CustomButton
           label='Save'
           onClick={handleSubmit(onSubmit)}
           disabled={loading}

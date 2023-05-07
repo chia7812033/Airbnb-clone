@@ -1,9 +1,9 @@
 "use client";
 
-import Button from "../CustomButton";
-import CustomButton from "../CustomButton";
-import Heading from "../Heading";
 import Input from "../inputs/Input";
+import Button from "../ui/CustomButton";
+import CustomButton from "../ui/CustomButton";
+import Heading from "../ui/Heading";
 import Modal from "./Modal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";

@@ -1,12 +1,12 @@
 "use client";
 
-import Heading from "../Heading";
 import CategoryInput from "../inputs/CategoryInput";
 import Counter from "../inputs/Counter";
 import CountrySelect from "../inputs/CountrySelect";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
 import { categories } from "../navbar/Categories";
+import Heading from "../ui/Heading";
 import Modal from "./Modal";
 import useRentModal from "@/app/hooks/useRentModal";
 import axios from "axios";
@@ -100,7 +100,7 @@ const RentModal = () => {
   const imageSrc = watch("imageSrc");
 
   const Map = useMemo(
-    () => dynamic(() => import("../Map"), { ssr: false }),
+    () => dynamic(() => import("../ui/Map"), { ssr: false }),
     [location]
   );
 

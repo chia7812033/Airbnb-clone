@@ -5,7 +5,7 @@ import getListingRatings from "@/app/actions/getListingRatings";
 import getReservations from "@/app/actions/getReservations";
 import getReviews from "@/app/actions/getReviews";
 import getUserRating from "@/app/actions/getUserRating";
-import EmptyState from "@/app/components/EmptyState";
+import EmptyState from "@/app/components/ui/EmptyState";
 import { Metadata } from "next";
 
 interface IParams {

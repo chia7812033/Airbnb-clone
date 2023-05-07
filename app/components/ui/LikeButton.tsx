@@ -1,6 +1,6 @@
+import useFavorites from "../../hooks/useFavorite";
+import { SafeUser } from "../../types";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { SafeUser } from "../types";
-import useFavorites from "../hooks/useFavorite";
 
 interface LikeButtonProps {
   listingId: string;

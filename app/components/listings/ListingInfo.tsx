@@ -29,7 +29,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   const { getByValue } = useCountries();
   const location = getByValue(locationValue);
   const Map = useMemo(
-    () => dynamic(() => import("../Map"), { ssr: false }),
+    () => dynamic(() => import("../ui/Map"), { ssr: false }),
     [location]
   );
 

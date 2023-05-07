@@ -1,6 +1,6 @@
 import getCurrentUser from "../actions/getCurrentUser";
 import getMyProperties from "../actions/getMyProperties";
-import EmptyState from "../components/EmptyState";
+import EmptyState from "../components/ui/EmptyState";
 import Properties from "./Properties";
 
 export const metadata = {

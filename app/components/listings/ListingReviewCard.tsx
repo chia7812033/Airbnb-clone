@@ -1,4 +1,4 @@
-import CustomAvatar from "../CustomAvatar";
+import CustomAvatar from "../ui/CustomAvatar";
 import { SafeUser } from "@/app/types";
 import React from "react";
 

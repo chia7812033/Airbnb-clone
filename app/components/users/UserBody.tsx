@@ -1,7 +1,7 @@
 "use client";
 
-import CustomAvatar from "../CustomAvatar";
-import Button from "../CustomButton";
+import CustomAvatar from "../ui/CustomAvatar";
+import Button from "../ui/CustomButton";
 import { SafeUser } from "@/app/types";
 import Image from "next/image";
 import {

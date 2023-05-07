@@ -1,9 +1,9 @@
 import getCurrentUser from "./actions/getCurrentUser";
 import getLisings from "./actions/getLisings";
-import Container from "./components/Container";
-import EmptyState from "./components/EmptyState";
-import ListingContainer from "./components/ListingContainer";
 import ListingCard from "./components/listings/ListingCard";
+import Container from "./components/ui/Container";
+import EmptyState from "./components/ui/EmptyState";
+import ListingContainer from "./components/ui/ListingContainer";
 import Loading from "./loading";
 import { Suspense } from "react";
 

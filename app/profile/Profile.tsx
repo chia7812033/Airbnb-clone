@@ -1,7 +1,7 @@
 "use client";
 
-import Heading from "../components/Heading";
-import Container from "@/app/components/Container";
+import Container from "../components/ui/Container";
+import Heading from "../components/ui/Heading";
 import UserBody from "@/app/components/users/UserBody";
 import UserProperties from "@/app/components/users/UserProperties";
 import { SafeListing, SafeUser } from "@/app/types";

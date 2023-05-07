@@ -1,6 +1,6 @@
 "use client";
 
-import LikeButton from "@/app/components/LikeButton";
+import LikeButton from "../ui/LikeButton";
 import useCountries from "@/app/hooks/useCountries";
 import { SafeUser } from "@/app/types";
 import Image from "next/image";

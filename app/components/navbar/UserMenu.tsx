@@ -1,6 +1,6 @@
 "use client";
 
-import CustomAvatar from "../CustomAvatar";
+import CustomAvatar from "../ui/CustomAvatar";
 import MenuItem from "./MenuItem";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
@@ -72,6 +72,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             p-2'
         />
         <div
+          onClick={toggleOpen}
           className='
             flex
             flex-row
@@ -84,11 +85,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
             gap-2
             items-center'
         >
-          <HiBars3
-            onClick={toggleOpen}
-            size={26}
-            className='hover:scale-110 transition'
-          />
+          <HiBars3 size={26} className='hover:scale-110 transition' />
           <div className='hidden md:block hover:opacity-80 transition'>
             <CustomAvatar currentUser={currentUser} profile />
           </div>
@@ -143,15 +140,22 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           ) : (
             <>
               <MenuItem
-                onClick={registerModal.onOpen}
+                onClick={() => router.push("/users")}
                 label={"Sign up"}
                 isBold
               />
-              <MenuItem onClick={loginModal.onOpen} label={"Log in"} />
+              <MenuItem
+                onClick={() => router.push("/users")}
+                label={"Log in"}
+              />
             </>
           )}
           <hr />
           <MenuItem onClick={onRent} label={"Host my place"} />
+          <MenuItem
+            onClick={() => router.push("/profile")}
+            label={"My profile"}
+          />
         </div>
       )}
     </div>

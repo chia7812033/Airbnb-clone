@@ -1,7 +1,7 @@
 "use client";
 
-import Button from "../CustomButton";
-import LikeButton from "../LikeButton";
+import Button from "../ui/CustomButton";
+import LikeButton from "../ui/LikeButton";
 import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
 import { format } from "date-fns";

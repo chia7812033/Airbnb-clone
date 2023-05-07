@@ -1,5 +1,5 @@
-import ListingContainer from "../ListingContainer";
 import ListingCard from "../listings/ListingCard";
+import ListingContainer from "../ui/ListingContainer";
 import { SafeListing } from "@/app/types";
 
 interface UserPropertiesProps {

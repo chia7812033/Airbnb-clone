@@ -1,7 +1,7 @@
 import getCurrentUser from "../actions/getCurrentUser";
+import EmptyState from "../components/ui/EmptyState";
 import Profile from "./Profile";
 import getProperties from "@/app/actions/getProperties";
-import EmptyState from "@/app/components/EmptyState";
 
 export const metadata = {
   title: "My Profile",
