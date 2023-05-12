@@ -1,10 +1,9 @@
 import CustomAvatar from "../ui/CustomAvatar";
 import { SafeUser } from "@/app/types";
-import { User } from "@prisma/client";
 import React from "react";
 
 interface ListingReviewCardProps {
-  author: User;
+  author: SafeUser;
   review: string;
 }
 

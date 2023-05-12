@@ -1,8 +1,8 @@
 import ReviewInput from "../inputs/ReviewInput";
 import ListingReviewCard from "./ListingReviewCard";
-import { SafeUser } from "@/app/types";
+import { SafeReview, SafeUser } from "@/app/types";
 import Rating from "@mui/material/Rating";
-import { Rating as RatingModel, Review } from "@prisma/client";
+import { Rating as RatingModel } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -11,7 +11,7 @@ import { toast } from "react-hot-toast";
 interface ListingReviewsProps {
   listingId: string;
   currentUser?: SafeUser | null;
-  reviews?: Review[];
+  reviews?: SafeReview[];
   rating?: RatingModel;
 }
 
