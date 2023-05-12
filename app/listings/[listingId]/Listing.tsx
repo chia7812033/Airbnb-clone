@@ -125,7 +125,7 @@ const Listing: React.FC<ListingProps> = ({
             avgRating={avgRating}
           />
         </div>
-        <div className='flex flex-row w-full gap-4'>
+        <div className='flex flex-col md:flex-row w-full gap-4 mb-2'>
           <div className='flex-1 w-full'>
             <ListingInfo
               user={listing.user}
@@ -138,7 +138,7 @@ const Listing: React.FC<ListingProps> = ({
             />
           </div>
 
-          <div className='mr-0 w-1/3 lg:w-1/4'>
+          <div className='mr-0 w-full sm:w-1/3 lg:w-1/4'>
             <ListingReservation
               price={listing.price}
               onSubmit={onCreateReservation}

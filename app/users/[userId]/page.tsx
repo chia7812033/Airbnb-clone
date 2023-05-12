@@ -1,8 +1,10 @@
 import User from "./User";
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import getProperties from "@/app/actions/getProperties";
 import getUserById from "@/app/actions/getUserById";
 import EmptyState from "@/app/components/ui/EmptyState";
 import { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 interface IParams {
   userId: string;
@@ -22,7 +24,11 @@ export async function generateMetadata({
 }
 
 const UserPage = async ({ params }: { params: IParams }) => {
+  const currentUser = await getCurrentUser();
   const { userId } = params;
+  if (currentUser?.id === userId) {
+    redirect("/profile");
+  }
   const user = await getUserById(userId as string);
   const properties = await getProperties(userId);
 

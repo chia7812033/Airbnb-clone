@@ -3,6 +3,7 @@
 import CustomAvatar from "../ui/CustomAvatar";
 import Button from "../ui/CustomButton";
 import { SafeUser } from "@/app/types";
+import axios from "axios";
 import Image from "next/image";
 import {
   useParams,
@@ -10,6 +11,7 @@ import {
   useRouter,
   useSearchParams,
 } from "next/navigation";
+import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiFillSetting } from "react-icons/ai";
 
@@ -20,6 +22,19 @@ interface UserBodyProps {
 
 const UserBody: React.FC<UserBodyProps> = ({ user, profile }) => {
   const router = useRouter();
+  const [iSLoading, setIsLoading] = useState(false);
+
+  const sendMessage = useCallback(() => {
+    setIsLoading(true);
+
+    axios
+      .post("/api/chat", {
+        userId: user.id,
+      })
+      .then((data) => router.push(`/chat/${data.data.id}`))
+      .catch((error) => toast.error("Something went wrong"))
+      .finally(() => setIsLoading(false));
+  }, [router, user.id]);
 
   return (
     <div className='relative border-2 border-gray-200 rounded-xl mt-4'>
@@ -30,7 +45,11 @@ const UserBody: React.FC<UserBodyProps> = ({ user, profile }) => {
         <div className='text-2xl font-bold'>{user.name}</div>
         <div>{user.email}</div>
         <div className='flex gap-4'>
-          <Button label={"Message"} onClick={() => {}} />
+          <Button
+            disabled={iSLoading}
+            label={"Message"}
+            onClick={sendMessage}
+          />
           <Button
             outline
             label={"Share profile"}

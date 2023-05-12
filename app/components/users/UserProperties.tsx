@@ -1,6 +1,7 @@
 import ListingCard from "../listings/ListingCard";
 import ListingContainer from "../ui/ListingContainer";
 import { SafeListing } from "@/app/types";
+import Link from "next/link";
 
 interface UserPropertiesProps {
   properties: SafeListing[];
@@ -9,7 +10,12 @@ interface UserPropertiesProps {
 const UserProperties: React.FC<UserPropertiesProps> = ({ properties }) => {
   return (
     <div className='my-4'>
-      <div className='text-2xl font-bold'>His/Her Place</div>
+      <div className='flex flex-row gap-2 items-end'>
+        <div className='text-2xl font-bold'>His/Her Place </div>
+        <span className='underline text-blue-600'>
+          <Link href='/properties'>Manage my properties</Link>
+        </span>
+      </div>
       <div>
         {properties ? (
           <ListingContainer>

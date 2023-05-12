@@ -13,5 +13,6 @@ export const config = {
     "/favorites/:path*",
     "/reservations/:path*",
     "/trips/:path*",
+    "/chat/:path*",
   ],
 };

@@ -5,6 +5,9 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { IconType } from "react-icons";
+import { FaBath } from "react-icons/fa";
+import { IoIosPeople } from "react-icons/io";
+import { MdMeetingRoom } from "react-icons/md";
 
 interface ListingInfoProps {
   user: SafeUser;
@@ -52,14 +55,25 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
       <hr />
       <div>{description}</div>
       <hr />
-      <div>
-        <div>{`Allow ${guestCount} ${
-          guestCount == 1 ? "person" : "people"
-        }`}</div>
-        <div>{`${roomCount} ${roomCount == 1 ? "room" : "rooms"}`}</div>
-        <div>{`${bathroomCount} ${
-          bathroomCount == 1 ? "bathroom" : "bathrooms"
-        }`}</div>
+      <div className='flex flex-row justify-around items-center font-semibold'>
+        <div className='flex flex-col items-center'>
+          <IoIosPeople size={48} />
+          <div>{`Max ${guestCount} ${
+            guestCount == 1 ? "person" : "people"
+          }`}</div>
+        </div>
+
+        <div className='flex flex-col items-center'>
+          <MdMeetingRoom size={48} />
+          <div>{`${roomCount} ${roomCount == 1 ? "room" : "rooms"}`}</div>
+        </div>
+
+        <div className='flex flex-col items-center'>
+          <FaBath size={48} />
+          <div>{`${bathroomCount} ${
+            bathroomCount == 1 ? "bathroom" : "bathrooms"
+          }`}</div>
+        </div>
       </div>
       <hr />
       <div className='w-full lg:w-3/4'>

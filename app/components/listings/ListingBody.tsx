@@ -31,7 +31,7 @@ const ListingBody: React.FC<ListingBodyProps> = ({
   const location = getByValue(locationValue);
 
   return (
-    <div className='my-2 w-full md:w-5/6 lg:w-4/5 xl:w-3/4 2xl:w-2/3'>
+    <div className='my-2 w-full lg:w-4/5 xl:w-3/4'>
       <div className='font-bold text-2xl'>{title}</div>
       <div className='flex font-semibold items-center justify-between'>
         <div className='flex gap-2'>

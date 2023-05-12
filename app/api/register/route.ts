@@ -29,6 +29,8 @@ export async function PATCH(request: Request) {
     return NextResponse.error();
   }
 
+  const now: Date = new Date();
+
   const user = await prisma.user.update({
     where: {
       id: currentUser.id,
@@ -37,6 +39,7 @@ export async function PATCH(request: Request) {
       email,
       name,
       image,
+      updatedAt: now.toISOString(),
     },
   });
 
