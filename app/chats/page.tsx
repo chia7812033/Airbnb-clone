@@ -1,25 +1,22 @@
 import getChats from "../actions/getChats";
+import getCurrentUser from "../actions/getCurrentUser";
 import ChatList from "../components/chats/ChatList";
 import EmptyState from "../components/ui/EmptyState";
 import ListingContainer from "../components/ui/ListingContainer";
+import Chats from "./Chats";
 
 export const metadata = {
   title: "My Chat",
 };
 
 const page = async () => {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return <EmptyState />;
+  }
   const chats = await getChats();
 
-  return (
-    <ListingContainer>
-      <div className='hidden lg:block lg:pl-80 col-span-2 bg-gray-50'>
-        <ChatList chats={chats} />
-      </div>
-      <div className='col-span-auto'>
-        <EmptyState title='No Chat Found' subtitle='' />
-      </div>
-    </ListingContainer>
-  );
+  return <Chats chats={chats} currentUser={currentUser} />;
 };
 
 export default page;

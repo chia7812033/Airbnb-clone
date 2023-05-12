@@ -1,6 +1,6 @@
 "use client";
 
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast";
 
 interface ReviewInputProps {
   listingId: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const ReviewInput: React.FC<ReviewInputProps> = ({

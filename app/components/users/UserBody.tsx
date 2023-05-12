@@ -26,7 +26,7 @@ const UserBody: React.FC<UserBodyProps> = ({ user, profile }) => {
       .post("/api/chat", {
         userId: user.id,
       })
-      .then((data) => router.push(`/chat/${data.data.id}`))
+      .then((data) => router.push(`/chats/${data.data.id}`))
       .catch((error) => toast.error("Something went wrong"))
       .finally(() => setIsLoading(false));
   }, [router, user.id]);

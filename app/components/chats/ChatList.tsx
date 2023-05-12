@@ -1,18 +1,22 @@
+"use client";
+
 import ChatCard from "./ChatCard";
 import { ChatType } from "@/app/types";
-import { Chat } from "@prisma/client";
+import { User } from "@prisma/client";
 import React from "react";
 
 interface ChatListProps {
   chats: ChatType[];
+  currentUser: User;
 }
 
-const ChatList: React.FC<ChatListProps> = ({ chats }) => {
+const ChatList: React.FC<ChatListProps> = ({ chats, currentUser }) => {
+  console.log(chats);
   return (
     <div className='bg-gray-50'>
       <div>
         {chats.map((item) => (
-          <ChatCard key={item.id} chat={item} />
+          <ChatCard key={item.id} chat={item} currentUser={currentUser} />
         ))}
       </div>
     </div>

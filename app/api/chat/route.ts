@@ -12,7 +12,7 @@ export async function POST(request: Request) {
       return new NextResponse("Unauthorized", { status: 401 });
     }
 
-    const existingChats = await prisma.conversation.findMany({
+    const existingChats = await prisma.chat.findMany({
       where: {
         OR: [
           {
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
       return NextResponse.json(chat);
     }
 
-    const newChat = await prisma.conversation.create({
+    const newChat = await prisma.chat.create({
       data: {
         users: {
           connect: [
