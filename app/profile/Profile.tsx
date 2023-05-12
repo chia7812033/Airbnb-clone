@@ -4,11 +4,11 @@ import Container from "../components/ui/Container";
 import Heading from "../components/ui/Heading";
 import UserBody from "@/app/components/users/UserBody";
 import UserProperties from "@/app/components/users/UserProperties";
-import { SafeListing, SafeUser } from "@/app/types";
+import { Listing, User } from "@prisma/client";
 
 interface ProfileProps {
-  user: SafeUser;
-  properties: SafeListing[];
+  user: User;
+  properties: Listing[];
 }
 
 const Profile: React.FC<ProfileProps> = ({ user, properties }) => {

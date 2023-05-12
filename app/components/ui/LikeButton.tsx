@@ -1,10 +1,10 @@
 import useFavorites from "../../hooks/useFavorite";
-import { SafeUser } from "../../types";
+import { User } from "@prisma/client";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 interface LikeButtonProps {
   listingId: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
   black?: boolean;
   aboslute?: boolean;
 }

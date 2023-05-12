@@ -1,14 +1,13 @@
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
 import { toast } from "react-hot-toast";
 
-import { SafeUser } from "../types";
-
 interface IUseFavorite {
   listingId: string;
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
@@ -33,16 +32,15 @@ const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
         let request;
 
         if (isFavorite) {
-          toast.success('Delete Favorite')
+          toast.success("Delete Favorite");
           request = () => axios.delete(`/api/favorites/${listingId}`);
         } else {
-          toast.success('Add Favorite')
+          toast.success("Add Favorite");
           request = () => axios.post(`/api/favorites/${listingId}`);
         }
 
         await request();
         router.refresh();
-        toast.success(`Success`);
       } catch (error: any) {
         toast.error(error.message);
       }

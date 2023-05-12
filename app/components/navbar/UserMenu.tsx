@@ -5,7 +5,7 @@ import MenuItem from "./MenuItem";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useRentModal from "@/app/hooks/useRentModal";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -14,7 +14,7 @@ import { HiBars3 } from "react-icons/hi2";
 import { RiGlobalLine } from "react-icons/ri";
 
 interface UserMenuProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
@@ -40,50 +40,20 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   return (
     <div className='relative'>
-      <div
-        className='
-          flex
-          flex-row
-          items-center
-          gap-3
-          cursor-pointer'
-      >
+      <div className='flex flex-row items-center gap-3 cursor-pointer'>
         <div
           onClick={onRent}
-          className='
-            hidden
-            lg:block
-            rounded-full
-            hover:bg-gray-100
-            transition
-            px-3
-            py-2'
+          className='hidden lg:block rounded-full hover:bg-gray-100 transition px-3 py-2'
         >
           Host my place
         </div>
         <RiGlobalLine
           size={40}
-          className='
-            hidden
-            md:block
-          hover:bg-gray-100
-            transition
-            rounded-full
-            p-2'
+          className=' hidden md:block hover:bg-gray-100 transition rounded-full p-2'
         />
         <div
           onClick={toggleOpen}
-          className='
-            flex
-            flex-row
-            border
-            rounded-full
-            lg:p-3
-            lg:py-2
-            md:p-2
-            p-1
-            gap-2
-            items-center'
+          className='flex flex-row border rounded-full lg:p-3 lg:py-2 md:p-2 p-1 gap-2 items-center'
         >
           <HiBars3 size={26} className='hover:scale-110 transition' />
           <div className='hidden md:block hover:opacity-80 transition'>
@@ -93,22 +63,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       </div>
 
       {isClick && (
-        <div
-          className='
-            absolute
-            right-0
-            w-3/4
-            min-w-[250px]
-            shadow-md
-            border-[1px]
-            rounded-xl
-            flex
-            flex-col
-            bg-white
-            py-2
-            mt-2
-            text-sm'
-        >
+        <div className=' absolute right-0 w-3/4 min-w-[250px] shadow-md border-[1px] rounded-xl flex flex-col bg-white py-2 mt-2 text-sm'>
           {currentUser ? (
             <>
               <MenuItem
@@ -122,6 +77,10 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
               <MenuItem
                 onClick={() => router.push("./reservations")}
                 label={"My reservations"}
+              />
+              <MenuItem
+                onClick={() => router.push("./chats")}
+                label={"My chats"}
               />
               <MenuItem
                 onClick={() => {

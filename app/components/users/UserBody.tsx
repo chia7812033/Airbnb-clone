@@ -2,21 +2,16 @@
 
 import CustomAvatar from "../ui/CustomAvatar";
 import Button from "../ui/CustomButton";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import axios from "axios";
 import Image from "next/image";
-import {
-  useParams,
-  usePathname,
-  useRouter,
-  useSearchParams,
-} from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { toast } from "react-hot-toast";
 import { AiFillSetting } from "react-icons/ai";
 
 interface UserBodyProps {
-  user: SafeUser;
+  user: User;
   profile?: boolean;
 }
 

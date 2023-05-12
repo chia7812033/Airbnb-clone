@@ -2,16 +2,17 @@
 
 import Button from "../ui/CustomButton";
 import LikeButton from "../ui/LikeButton";
-import { SafeListing, SafeReservation, SafeUser } from "@/app/types";
+import { SafeReservation } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
+import { Listing, User } from "@prisma/client";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
 
 interface ListingCardProps {
-  currentUser?: SafeUser | null;
-  data: SafeListing;
+  currentUser?: User | null;
+  data: Listing;
   reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;

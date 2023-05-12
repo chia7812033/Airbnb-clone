@@ -3,16 +3,15 @@
 import Input from "@/app/components/inputs/Input";
 import Container from "@/app/components/ui/Container";
 import CustomButton from "@/app/components/ui/CustomButton";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import axios from "axios";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 interface ProfileEditProps {
-  user: SafeUser;
+  user: User;
 }
 
 const ProfileEdit: React.FC<ProfileEditProps> = ({ user }) => {

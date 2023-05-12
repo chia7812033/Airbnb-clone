@@ -2,14 +2,14 @@
 
 import LikeButton from "../ui/LikeButton";
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import Image from "next/image";
 import toast from "react-hot-toast";
 import { AiFillStar } from "react-icons/ai";
 import { FiShare } from "react-icons/fi";
 
 interface ListingBodyProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
   title: string;
   locationValue: string;
   id: string;

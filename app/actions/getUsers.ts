@@ -20,14 +20,7 @@ const getUsers = async () => {
       },
     });
 
-    const SafeUsers = users.map((item) => ({
-      ...item,
-      createdAt: item.createdAt.toISOString(),
-      updatedAt: item.updatedAt.toISOString(),
-      emailVerified: item.emailVerified?.toISOString() || null,
-    }));
-
-    return SafeUsers;
+    return users;
   } catch (error: any) {
     return [];
   }

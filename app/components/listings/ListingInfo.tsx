@@ -1,6 +1,6 @@
 import ListingCategory from "./ListingCategory";
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { User } from "@prisma/client";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useMemo } from "react";
@@ -10,7 +10,7 @@ import { IoIosPeople } from "react-icons/io";
 import { MdMeetingRoom } from "react-icons/md";
 
 interface ListingInfoProps {
-  user: SafeUser;
+  user: User;
   category: { label: string; icon: IconType } | undefined;
   description: string;
   roomCount: number;

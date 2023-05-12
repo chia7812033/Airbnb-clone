@@ -1,11 +1,11 @@
 "use client";
 
-import { SafeUser } from "../../types";
 import { Avatar } from "@mui/material";
+import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 
 interface CustomAvatarProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
   size?: number;
   profile?: boolean;
 }

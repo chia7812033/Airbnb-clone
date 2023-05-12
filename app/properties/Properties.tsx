@@ -4,11 +4,11 @@ import ListingCard from "../components/listings/ListingCard";
 import Container from "../components/ui/Container";
 import Heading from "../components/ui/Heading";
 import ListingContainer from "../components/ui/ListingContainer";
-import { SafeListing, SafeUser } from "../types";
+import { Listing, User } from "@prisma/client";
 
 interface PropertiesProps {
-  currentUser?: SafeUser | null;
-  properties: SafeListing[];
+  currentUser?: User | null;
+  properties: Listing[];
 }
 
 const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {

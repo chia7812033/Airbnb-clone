@@ -4,14 +4,15 @@ import ListingCard from "../components/listings/ListingCard";
 import Container from "../components/ui/Container";
 import Heading from "../components/ui/Heading";
 import ListingContainer from "../components/ui/ListingContainer";
-import { SafeReservation, SafeUser } from "../types";
+import { SafeReservation } from "../types";
+import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "react-hot-toast";
 
 interface TripsProps {
-  currentUser?: SafeUser | null;
+  currentUser?: User | null;
   reservations: SafeReservation[];
 }
 

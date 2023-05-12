@@ -9,7 +9,7 @@ import Container from "@/app/components/ui/Container";
 import CustomButton from "@/app/components/ui/CustomButton";
 import Heading from "@/app/components/ui/Heading";
 import useCountries from "@/app/hooks/useCountries";
-import { SafeListing } from "@/app/types";
+import { Listing } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -17,13 +17,13 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
 interface ListingEditProps {
-  listing: SafeListing;
+  listing: Listing;
 }
 
 const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
   const { getByValue } = useCountries();
   const currentLocation = getByValue(listing.locationValue);
-  const [loading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const {
@@ -170,6 +170,7 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
           <CustomButton
             label='Update Change'
             onClick={handleSubmit(onSubmit)}
+            disabled={isLoading}
           />
         </div>
       </div>

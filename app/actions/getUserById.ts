@@ -10,12 +10,7 @@ export default async function getUserById(id: string) {
 
     if (!user) return null;
 
-    return {
-      ...user,
-      createdAt: user.createdAt.toISOString(),
-      updatedAt: user.updatedAt.toISOString(),
-      emailVerified: user.emailVerified?.toISOString() || null,
-    };
+    return user;
   } catch (error: any) {
     return null;
   }

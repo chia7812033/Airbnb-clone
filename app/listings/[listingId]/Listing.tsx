@@ -9,12 +9,10 @@ import Container from "@/app/components/ui/Container";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useReservation from "@/app/hooks/useReservation";
 import {
-  SafeUser,
-  SafeListing,
   SafeReservation,
   SafeReview,
 } from "@/app/types";
-import { Rating } from "@prisma/client";
+import { Listing, Rating, User } from "@prisma/client";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -22,9 +20,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
 
 interface ListingProps {
-  currentUser?: SafeUser | null;
-  listing: SafeListing & {
-    user: SafeUser;
+  currentUser?: User | null;
+  listing: Listing & {
+    user: User;
   };
   reservations?: SafeReservation[];
   reviews?: SafeReview[];

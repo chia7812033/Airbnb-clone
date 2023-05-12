@@ -15,12 +15,7 @@ export default async function getMyProperties() {
       },
     });
 
-    const SafeListing = listings.map((item) => ({
-      ...item,
-      createdAt: item.createdAt.toISOString(),
-    }));
-
-    return SafeListing;
+    return listings;
   } catch (error: any) {
     throw new Error(error.message);
   }
