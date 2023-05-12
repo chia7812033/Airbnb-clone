@@ -23,13 +23,3 @@ export type SafeReservation = Omit<
   listing: SafeListing;
   user: SafeUser;
 };
-
-export type SafeReview = Omit<Review, "createdAt" | "listing" | "user"> & {
-  createdAt: string;
-  listing: SafeListing;
-  user: SafeUser;
-};
-
-export type SafeRating = Omit<Rating, "createdAt"> & {
-  createdAt: string;
-};

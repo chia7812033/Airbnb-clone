@@ -14,18 +14,7 @@ export default async function getReservations(listingId: string) {
       },
     });
 
-    const SafeReviews = reviews.map((item: any) => ({
-      ...item,
-      createdAt: item.createdAt.toISOString(),
-      user: {
-        ...item.user,
-        createdAt: item.user.createdAt.toISOString(),
-        updatedAt: item.user.updatedAt.toISOString(),
-        emailVerified: item.user.emailVerified?.toISOString(),
-      },
-    }));
-
-    return SafeReviews;
+    return reviews;
   } catch (error: any) {
     throw new Error(error.message);
   }

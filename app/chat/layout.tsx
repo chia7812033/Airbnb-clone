@@ -6,7 +6,6 @@ export default async function UsersLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const users = await getUsers();
   return (
     <Container>
       <div className='h-full flex flex-row'>{children}</div>

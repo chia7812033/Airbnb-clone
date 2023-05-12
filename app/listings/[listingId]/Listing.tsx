@@ -8,13 +8,8 @@ import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/ui/Container";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import useReservation from "@/app/hooks/useReservation";
-import {
-  SafeUser,
-  SafeListing,
-  SafeReservation,
-  SafeReview,
-  SafeRating,
-} from "@/app/types";
+import { SafeUser, SafeListing, SafeReservation } from "@/app/types";
+import { Rating, Review } from "@prisma/client";
 import axios from "axios";
 import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
 import { useRouter } from "next/navigation";
@@ -27,8 +22,8 @@ interface ListingProps {
     user: SafeUser;
   };
   reservations?: SafeReservation[];
-  reviews?: SafeReview[];
-  rating?: SafeRating;
+  reviews?: Review[];
+  rating?: Rating;
   avgRating?: number;
 }
 
