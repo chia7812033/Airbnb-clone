@@ -1,7 +1,6 @@
 "use client";
 
 import Button from "../ui/CustomButton";
-import LikeButton from "../ui/LikeButton";
 import { SafeReservation } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
 import { Listing, User } from "@prisma/client";
@@ -85,7 +84,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
             alt={data.title}
             className='object-cover h-full w-full rounded-t-xl hover:scale-105 transition'
           />
-          <LikeButton currentUser={currentUser} listingId={data.id} aboslute />
         </div>
         <div className='px-2'>
           <div className='font-semibold text-lg truncate'>

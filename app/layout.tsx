@@ -1,5 +1,4 @@
 import getCurrentUser from "./actions/getCurrentUser";
-import RentModal from "./components/modals/RentModal";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
 import AuthProvider from "./providers/AuthProvider";
@@ -27,7 +26,6 @@ export default async function RootLayout({
       <body className={font.className}>
         <AuthProvider>
           <ToastProvider />
-          <RentModal />
           <Navbar currentUser={currentUser} />
           <div className='pt-28'>{children}</div>
         </AuthProvider>

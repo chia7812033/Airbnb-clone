@@ -1,14 +1,13 @@
 "use client";
 
-import CategoryInput from "../inputs/CategoryInput";
-import Counter from "../inputs/Counter";
-import CountrySelect from "../inputs/CountrySelect";
-import ImageUpload from "../inputs/ImageUpload";
-import Input from "../inputs/Input";
+import CustomButton from "../ui/CustomButton";
 import Heading from "../ui/Heading";
-import Modal from "./Modal";
+import CategoryInput from "./CategoryInput";
+import Counter from "./Counter";
+import CountrySelect from "./CountrySelect";
+import ImageUpload from "./ImageUpload";
+import Input from "./Input";
 import { categories } from "@/app/hooks/useCategories";
-import useRentModal from "@/app/hooks/useRentModal";
 import axios from "axios";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
@@ -16,8 +15,7 @@ import { useState, useMemo } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
-const RentModal = () => {
-  const rentModal = useRentModal();
+const CreateHotel = () => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -50,12 +48,12 @@ const RentModal = () => {
 
     axios
       .post("api/listings", data)
-      .then(() => {
-        toast.success("Listing Created!");
+      .then((res) => {
+        toast.success("Created!");
         router.refresh();
         reset();
         setStep(STEPS.CATEGORY);
-        rentModal.onClose();
+        router.push(`/listings/${res.data.id}`);
       })
       .catch((error) => toast.error("Something went wrong"))
       .finally(() => {
@@ -232,18 +230,31 @@ const RentModal = () => {
   }
 
   return (
-    <Modal
-      disabled={isLoading}
-      isOpen={rentModal.isOpen}
-      title={"Host your own home"}
-      actionLabel={actionLabel}
-      secondaryActionLabel={"Back"}
-      secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      onClose={rentModal.onClose}
-      onSubmit={handleSubmit(onSubmit)}
-      body={body}
-    />
+    <div className='flex justify-center items-center overflow-x-hidden overflow-y-auto'>
+      <div className='relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto'>
+        <div className='h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
+          <div className='relative px-6 py-2 flex-auto'>{body}</div>
+          <div className='flex flex-col gap-2 px-6 py-2'>
+            <div className='flex items-center gap-4 w-full'>
+              <CustomButton
+                outline
+                disabled={isLoading}
+                label={"Back"}
+                onClick={step === STEPS.CATEGORY ? () => {} : onBack}
+                wFull
+              />
+              <CustomButton
+                disabled={isLoading}
+                label={actionLabel}
+                onClick={handleSubmit(onSubmit)}
+                wFull
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
-export default RentModal;
+export default CreateHotel;

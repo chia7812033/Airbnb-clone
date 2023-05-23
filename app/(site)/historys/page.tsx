@@ -1,10 +1,10 @@
-import Trips from "./Trips";
+import Historys from "./Historys";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getReservations from "@/app/actions/getReservations";
 import EmptyState from "@/app/components/ui/EmptyState";
 
 export const metadata = {
-  title: "My Trips",
+  title: "My Historys",
 };
 
 const TripsPage = async () => {
@@ -20,7 +20,7 @@ const TripsPage = async () => {
     return <EmptyState title='No any trip found' />;
   }
 
-  return <Trips currentUser={currentUser} reservations={reservations} />;
+  return <Historys currentUser={currentUser} reservations={reservations} />;
 };
 
 export default TripsPage;

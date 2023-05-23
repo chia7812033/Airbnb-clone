@@ -7,7 +7,10 @@ const LoginMenu = () => {
 
   return (
     <>
-      <MenuOption onClick={() => router.push("/trips")} label={"My trips"} />
+      <MenuOption
+        onClick={() => router.push("/historys")}
+        label={"My historys"}
+      />
       <MenuOption
         onClick={() => router.push("/favorites")}
         label={"My favorites"}

@@ -3,8 +3,7 @@
 import CustomAvatar from "../ui/CustomAvatar";
 import LoginMenu from "./LoginMenu";
 import MenuOption from "./MenuOption";
-import NotLoginMenu from "./NotLoginMenu";
-import useRentModal from "@/app/hooks/useRentModal";
+import NotLoginMenu from "./NotLoginMenu";;
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -17,7 +16,6 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const router = useRouter();
-  const rentModal = useRentModal();
 
   const [isClick, setIsClick] = useState(false);
 
@@ -25,20 +23,11 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
     setIsClick((state) => !state);
   }, []);
 
-  const onRent = useCallback(() => {
-    if (!currentUser) {
-      router.push("/users");
-      return;
-    }
-
-    rentModal.onOpen();
-  }, [currentUser, rentModal, router]);
-
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3 cursor-pointer'>
         <div
-          onClick={onRent}
+          onClick={() => router.push("/createHotel")}
           className='hidden lg:block rounded-full hover:bg-gray-100 transition px-3 py-2'
         >
           Host my place
@@ -62,7 +51,10 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         <div className=' absolute right-0 w-3/4 min-w-[250px] shadow-md border-[1px] rounded-xl flex flex-col bg-white py-2 mt-2 text-sm'>
           {currentUser ? <LoginMenu /> : <NotLoginMenu />}
           <hr />
-          <MenuOption onClick={onRent} label={"Host my place"} />
+          <MenuOption
+            onClick={() => router.push("/createHotel")}
+            label={"Host my place"}
+          />
           {currentUser && (
             <MenuOption
               onClick={() => router.push("/profile")}

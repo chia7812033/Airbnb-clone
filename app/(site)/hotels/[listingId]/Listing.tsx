@@ -8,7 +8,6 @@ import { categories } from "@/app/hooks/useCategories";
 import Container from "@/app/components/ui/Container";
 import useReservation from "@/app/hooks/useReservation";
 import {
-  SafeReservation,
   SafeReview,
 } from "@/app/types";
 import { Listing, Rating, User } from "@prisma/client";
@@ -60,13 +59,13 @@ const Listing: React.FC<ListingProps> = ({
         guestCount: reservationStore.guestCount,
       })
       .then(() => {
-        toast.success("Hotel reserved");
+        toast.success("Listing reserved");
         reservationStore.setDateRangeInitial();
+        router.push("/trips");
       })
       .catch((error) => toast.error(error.message))
       .finally(() => {
         setIsLoading(false);
-        router.push("/historys");
       });
   }, [
     reservationStore,

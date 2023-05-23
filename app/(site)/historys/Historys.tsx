@@ -3,7 +3,6 @@
 import ListingRow from "@/app/components/listings/ListingRow";
 import Container from "@/app/components/ui/Container";
 import Heading from "@/app/components/ui/Heading";
-import ListingContainer from "@/app/components/ui/ListingContainer";
 import ListingRows from "@/app/components/ui/ListingRows";
 import { SafeReservation } from "@/app/types";
 import { User } from "@prisma/client";
@@ -12,12 +11,12 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 import { toast } from "react-hot-toast";
 
-interface TripsProps {
+interface HistorysProps {
   currentUser?: User | null;
   reservations: SafeReservation[];
 }
 
-const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
+const Historys: React.FC<HistorysProps> = ({ currentUser, reservations }) => {
   const router = useRouter();
   const onCancel = useCallback(
     (id: string) => {
@@ -34,7 +33,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
 
   return (
     <Container>
-      <Heading title='My trips' />
+      <Heading title='My Historys' />
       <ListingRows>
         {reservations.map((res) => (
           <ListingRow
@@ -55,4 +54,4 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
   );
 };
 
-export default Trips;
+export default Historys;
