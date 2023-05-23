@@ -5,7 +5,7 @@ interface ChatsProps {}
 const Chats: React.FC<ChatsProps> = () => {
   return (
     <div>
-      <EmptyState title='No Chat Found' subtitle='' />
+      <EmptyState title='No Chat Found' />
     </div>
   );
 };

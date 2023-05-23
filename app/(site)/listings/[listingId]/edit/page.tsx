@@ -31,16 +31,11 @@ const ListingEditPage = async ({ params }: { params: IParams }) => {
   }
 
   if (!currentUser) {
-    return <EmptyState title='Not log in' subtitle='Please login first' />;
+    return <EmptyState title='Not log in' />;
   }
 
   if (listing.userId != currentUser.id) {
-    return (
-      <EmptyState
-        title='No permission to edit this page'
-        subtitle='You can only edit your own properties'
-      />
-    );
+    return <EmptyState title='No permission to edit this page' />;
   }
 
   return (

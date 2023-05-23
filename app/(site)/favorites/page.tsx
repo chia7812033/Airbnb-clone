@@ -11,20 +11,13 @@ const FavoritesPage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return (
-      <EmptyState title={"Not logged in"} subtitle={"Please login first"} />
-    );
+    return <EmptyState title={"Not logged in"} />;
   }
 
   const favorites = await getFavorites();
 
   if (favorites.length === 0) {
-    return (
-      <EmptyState
-        title={"No favorites place found"}
-        subtitle={"Add some place to favorites first!"}
-      />
-    );
+    return <EmptyState title={"No favorites place found"} />;
   }
 
   return <Favorites favorites={favorites} currentUser={currentUser} />;

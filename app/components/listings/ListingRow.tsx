@@ -5,6 +5,7 @@ import { SafeReservation } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
 import { Listing, User } from "@prisma/client";
 import { format } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
@@ -58,8 +59,15 @@ const ListingRow: React.FC<ListingRowProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
+  const reservationDays = useMemo(() => {
+    const start = new Date(reservation.startDate);
+    const end = new Date(reservation.endDate);
+
+    return Math.abs(differenceInCalendarDays(start, end));
+  }, [reservation]);
+
   return (
-    <div className='cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-2 border-gray-300 px-2 bg-neutral-50'>
+    <div className='cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-2 border-gray-300 px-2 bg-gray-50'>
       <div className='flex my-2 gap-2 h-60'>
         <div
           onClick={() => {
@@ -86,7 +94,7 @@ const ListingRow: React.FC<ListingRowProps> = ({
               )}
             </div>
             <div className='text-gray-600'>
-              {reservationDate || data.category}
+              {`${reservationDate} (${reservationDays} Night)` || data.category}
             </div>
             <div className='flex gap-2'>
               <div>${data.price}</div>

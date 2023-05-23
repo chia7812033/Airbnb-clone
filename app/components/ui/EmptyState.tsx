@@ -6,14 +6,12 @@ import { useRouter } from "next/navigation";
 
 interface EmptyStateProps {
   title?: string;
-  subtitle?: string;
   showReset?: boolean;
 }
 
 const EmptyState: React.FC<EmptyStateProps> = ({
   showReset,
   title = "No exact match",
-  subtitle = "Please retry with another filter",
 }) => {
   const router = useRouter();
 

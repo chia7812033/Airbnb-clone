@@ -11,9 +11,7 @@ const Propertiespage = async () => {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
-    return (
-      <EmptyState title={"Not logged in"} subtitle={"Please login first"} />
-    );
+    return <EmptyState title={"Not logged in"} />;
   }
 
   const properties = await getMyProperties();
