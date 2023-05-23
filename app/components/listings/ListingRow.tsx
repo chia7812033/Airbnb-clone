@@ -59,7 +59,7 @@ const ListingRow: React.FC<ListingRowProps> = ({
   }, [reservation]);
 
   return (
-    <div className='cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-[0.5px] border-gray-300 px-2'>
+    <div className='cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-2 border-gray-300 px-2 bg-neutral-50'>
       <div className='flex my-2 gap-2 h-60'>
         <div
           onClick={() => {

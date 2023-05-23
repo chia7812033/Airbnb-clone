@@ -1,8 +1,5 @@
 "user client";
 
-import Container from "../ui/Container";
-import CategoryBox from "./CategoryBox";
-import { usePathname, useSearchParams } from "next/navigation";
 import { BiWater } from "react-icons/bi";
 import { BsSnow } from "react-icons/bs";
 import { FaSkiing, FaCampground } from "react-icons/fa";
@@ -81,29 +78,3 @@ export const categories = [
     icon: GiBigDiamondRing,
   },
 ];
-
-const Categories = () => {
-  const params = useSearchParams();
-  const category = params?.get("category");
-  const pathname = usePathname();
-
-  const isMainpage = pathname === "/";
-  if (!isMainpage) return null;
-
-  return (
-    <Container>
-      <div className='flex justify-around overflow-x-auto'>
-        {categories.map((cat) => (
-          <CategoryBox
-            key={cat.label}
-            label={cat.label}
-            icon={cat.icon}
-            selected={category === cat.label}
-          />
-        ))}
-      </div>
-    </Container>
-  );
-};
-
-export default Categories;

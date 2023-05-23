@@ -119,7 +119,6 @@ const RentModal = () => {
       <div>
         <Heading
           title={"Which is the best to describe your place?"}
-          subtitle={"Choose a category"}
         />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 my-2'>
           {categories.map((cat) => (
@@ -143,7 +142,6 @@ const RentModal = () => {
       <div>
         <Heading
           title={"Where is your place?"}
-          subtitle={"Choose one of the location"}
         />
         <CountrySelect
           value={location}
@@ -161,7 +159,6 @@ const RentModal = () => {
       <div>
         <Heading
           title={"Share some info about your place"}
-          subtitle={"Tell us some appealing!"}
         />
         <Counter
           title={"Guests"}
@@ -190,7 +187,6 @@ const RentModal = () => {
       <div>
         <Heading
           title={"Upload some photos about your place!"}
-          subtitle={"Show us some beautiful pictures"}
         />
 
         <ImageUpload
@@ -206,7 +202,6 @@ const RentModal = () => {
       <div className='mt-2'>
         <Heading
           title={"How would you describe your place?"}
-          subtitle='Short and sweet works best!'
         />
         <Input
           id='title'
@@ -234,7 +229,6 @@ const RentModal = () => {
       <div>
         <Heading
           title={"Last, set a price"}
-          subtitle='How much will you charge for a night'
         />
         <Input
           id='price'

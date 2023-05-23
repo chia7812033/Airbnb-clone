@@ -19,7 +19,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({
 
   return (
     <div className='flex flex-col justify-center items-center h-[65vh]'>
-      <Heading center title={title} subtitle={subtitle} />
+      <Heading center title={title} />
       {showReset && (
         <Button
           label='Reset filter'

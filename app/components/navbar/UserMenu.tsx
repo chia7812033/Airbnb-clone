@@ -2,8 +2,6 @@
 
 import CustomAvatar from "../ui/CustomAvatar";
 import MenuItem from "./MenuItem";
-import useLoginModal from "@/app/hooks/useLoginModal";
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useRentModal from "@/app/hooks/useRentModal";
 import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
@@ -19,8 +17,6 @@ interface UserMenuProps {
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const router = useRouter();
-  const registerModal = useRegisterModal();
-  const loginModal = useLoginModal();
   const rentModal = useRentModal();
 
   const [isClick, setIsClick] = useState(false);
@@ -31,12 +27,12 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   const onRent = useCallback(() => {
     if (!currentUser) {
-      loginModal.onOpen();
+      router.push("/users");
       return;
     }
 
     rentModal.onOpen();
-  }, [currentUser, loginModal, rentModal]);
+  }, [currentUser, rentModal, router]);
 
   return (
     <div className='relative'>

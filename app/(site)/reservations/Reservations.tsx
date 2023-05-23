@@ -37,10 +37,7 @@ const Reservations: React.FC<ReservationsProps> = ({
 
   return (
     <Container>
-      <Heading
-        title='Your all reservations'
-        subtitle='These are all reservations comes from all over the world'
-      />
+      <Heading title='My all reservations' />
       <ListingRows>
         {reservations.map((res) => (
           <div className='col-span-1 flex flex-col gap-2' key={res.id}>

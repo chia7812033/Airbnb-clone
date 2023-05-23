@@ -14,7 +14,7 @@ interface PropertiesProps {
 const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {
   return (
     <Container>
-      <Heading title='My properties' subtitle='Consider to host more place?' />
+      <Heading title='My properties' />
       <ListingContainer>
         {properties.map((property) => (
           <ListingCard

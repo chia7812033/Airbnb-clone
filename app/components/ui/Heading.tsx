@@ -2,11 +2,10 @@
 
 interface ClientProps {
   title: string;
-  subtitle?: string;
   center?: boolean;
 }
 
-const Heading: React.FC<ClientProps> = ({ title, subtitle, center }) => {
+const Heading: React.FC<ClientProps> = ({ title, center }) => {
   return (
     <div className={center ? "text-center" : "text-start"}>
       <div
@@ -16,9 +15,6 @@ const Heading: React.FC<ClientProps> = ({ title, subtitle, center }) => {
       >
         {title}
       </div>
-      {subtitle && (
-        <div className='font-light text-neutral-500 mt-2'>{subtitle}</div>
-      )}
     </div>
   );
 };

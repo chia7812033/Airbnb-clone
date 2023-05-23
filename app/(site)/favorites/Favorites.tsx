@@ -14,10 +14,7 @@ interface FavoritesProps {
 const Favorites: React.FC<FavoritesProps> = ({ currentUser, favorites }) => {
   return (
     <Container>
-      <Heading
-        title='Your Favorites'
-        subtitle='These are what you want to stay'
-      />
+      <Heading title='My Favorites' />
       <ListingContainer>
         {favorites.map((favorite) => (
           <ListingCard

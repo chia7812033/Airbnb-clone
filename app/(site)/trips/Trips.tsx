@@ -34,10 +34,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
 
   return (
     <Container>
-      <Heading
-        title='Your trips'
-        subtitle='Where have you been? Where will you go?'
-      />
+      <Heading title='My trips' />
       <ListingRows>
         {reservations.map((res) => (
           <ListingRow
