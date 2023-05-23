@@ -1,6 +1,5 @@
 import ProfileEdit from "./ProfileEdit";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import getProperties from "@/app/actions/getProperties";
 import EmptyState from "@/app/components/ui/EmptyState";
 
 export const metadata = {

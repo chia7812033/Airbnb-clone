@@ -8,11 +8,7 @@ import "react-date-range/dist/styles.css";
 // main css file
 import "react-date-range/dist/theme/default.css";
 
-interface DatePickerProps {
-  disabledDate: Date[];
-}
-
-const DatePicker: React.FC<DatePickerProps> = ({ disabledDate }) => {
+const DatePicker = () => {
   const DateModal = useDateModal();
   const reservationStore = useReservation();
 
@@ -26,7 +22,6 @@ const DatePicker: React.FC<DatePickerProps> = ({ disabledDate }) => {
         direction='horizontal'
         minDate={new Date()}
         maxDate={addDays(new Date(), 30)}
-        disabledDates={disabledDate}
       />
       <div className='flex justify-end px-4 -mt-4'>
         <Button label='Close' onClick={DateModal.onClose} outline />

@@ -1,5 +1,5 @@
-import Container from "../components/ui/Container";
 import AuthForm from "./AuthForm";
+import Container from "@/app/components/ui/Container";
 
 const UserPage = () => {
   return (

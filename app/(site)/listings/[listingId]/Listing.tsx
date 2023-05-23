@@ -1,6 +1,6 @@
 "use client";
 
-import ListingBody from "../../components/listings/ListingBody";
+import ListingBody from "@/app/components/listings/ListingBody";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingReviews from "@/app/components/listings/ListingReviews";
@@ -38,20 +38,6 @@ const Listing: React.FC<ListingProps> = ({
   rating,
   avgRating = 5,
 }) => {
-  const disabledDates = useMemo(() => {
-    let dates: Date[] = [];
-
-    reservations.forEach((reservation: any) => {
-      const range = eachDayOfInterval({
-        start: new Date(reservation.startDate),
-        end: new Date(reservation.endDate),
-      });
-
-      dates = [...dates, ...range];
-    });
-
-    return dates;
-  }, [reservations]);
 
   const category = useMemo(() => {
     return categories.find((item) => item.label === listing.category);
@@ -141,7 +127,6 @@ const Listing: React.FC<ListingProps> = ({
               price={listing.price}
               onSubmit={onCreateReservation}
               disabled={isLoading}
-              disabledDate={disabledDates}
             />
           </div>
         </div>

@@ -7,14 +7,12 @@ interface ListingReservationProps {
   price: number;
   onSubmit: () => void;
   disabled: boolean;
-  disabledDate: Date[];
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
   price,
   onSubmit,
   disabled,
-  disabledDate,
 }) => {
   const reservationStore = useReservation();
 
@@ -25,7 +23,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         <span className='text-gray-400 font-normal text-md'> night</span>
       </div>
 
-      <ListingDate disabledDate={disabledDate} />
+      <ListingDate />
 
       <Button label='Reserve' onClick={onSubmit} disabled={disabled} />
       <div className='text-center text-sm text-gray-500 font-light'>

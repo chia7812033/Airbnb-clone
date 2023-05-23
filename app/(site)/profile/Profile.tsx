@@ -1,7 +1,7 @@
 "use client";
 
-import Container from "../components/ui/Container";
-import Heading from "../components/ui/Heading";
+import Container from "@/app/components/ui/Container";
+import Heading from "@/app/components/ui/Heading";
 import UserBody from "@/app/components/users/UserBody";
 import UserProperties from "@/app/components/users/UserProperties";
 import { Listing, User } from "@prisma/client";

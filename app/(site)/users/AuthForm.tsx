@@ -1,8 +1,8 @@
 "use client";
 
-import CustomButton from "../components/ui/CustomButton";
-import Heading from "../components/ui/Heading";
 import Input from "@/app/components/inputs/Input";
+import CustomButton from "@/app/components/ui/CustomButton";
+import Heading from "@/app/components/ui/Heading";
 import axios from "axios";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";

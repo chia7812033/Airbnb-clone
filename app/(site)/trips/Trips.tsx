@@ -1,10 +1,11 @@
 "use client";
 
-import ListingCard from "../components/listings/ListingCard";
-import Container from "../components/ui/Container";
-import Heading from "../components/ui/Heading";
-import ListingContainer from "../components/ui/ListingContainer";
-import { SafeReservation } from "../types";
+import ListingRow from "@/app/components/listings/ListingRow";
+import Container from "@/app/components/ui/Container";
+import Heading from "@/app/components/ui/Heading";
+import ListingContainer from "@/app/components/ui/ListingContainer";
+import ListingRows from "@/app/components/ui/ListingRows";
+import { SafeReservation } from "@/app/types";
 import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -37,9 +38,9 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
         title='Your trips'
         subtitle='Where have you been? Where will you go?'
       />
-      <ListingContainer>
+      <ListingRows>
         {reservations.map((res) => (
-          <ListingCard
+          <ListingRow
             key={res.id}
             data={res.listing}
             reservation={res}
@@ -52,7 +53,7 @@ const Trips: React.FC<TripsProps> = ({ currentUser, reservations }) => {
             disabled={res.status === "Cancel"}
           />
         ))}
-      </ListingContainer>
+      </ListingRows>
     </Container>
   );
 };

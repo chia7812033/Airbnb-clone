@@ -6,11 +6,7 @@ import useReservation from "@/app/hooks/useReservation";
 import { format, parseISO } from "date-fns";
 import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 
-interface ListingDateProps {
-  disabledDate: Date[];
-}
-
-const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
+const ListingDate = () => {
   const dateModal = useDateModal();
   const reservationStore = useReservation();
   const guestModal = useGuestModal();
@@ -76,7 +72,7 @@ const ListingDate: React.FC<ListingDateProps> = ({ disabledDate }) => {
       </div>
 
       <div className='absolute -top-4 right-0 z-50 shadow-lg'>
-        {dateModal.isOpen && <DatePicker disabledDate={disabledDate} />}
+        {dateModal.isOpen && <DatePicker />}
       </div>
     </div>
   );

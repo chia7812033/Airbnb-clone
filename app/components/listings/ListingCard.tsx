@@ -88,10 +88,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
           <LikeButton currentUser={currentUser} listingId={data.id} aboslute />
         </div>
         <div className='px-2'>
-          <div className='font-semibold text-lg'>
-            {data.title.length > 22 ? (
+          <div className='font-semibold text-lg truncate'>
+            {data.title.length > 20 ? (
               <Tooltip title={data.title} arrow>
-                <span>{`${data.title.slice(0, 20)}...`}</span>
+                <span>{data.title}</span>
               </Tooltip>
             ) : (
               data.title
