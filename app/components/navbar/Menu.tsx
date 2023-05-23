@@ -1,21 +1,21 @@
 "use client";
 
 import CustomAvatar from "../ui/CustomAvatar";
-import MenuItem from "./MenuItem";
+import LoginMenu from "./LoginMenu";
+import MenuOption from "./MenuOption";
+import NotLoginMenu from "./NotLoginMenu";
 import useRentModal from "@/app/hooks/useRentModal";
 import { User } from "@prisma/client";
-import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
-import { toast } from "react-hot-toast";
 import { HiBars3 } from "react-icons/hi2";
 import { RiGlobalLine } from "react-icons/ri";
 
-interface UserMenuProps {
+interface MenuProps {
   currentUser?: User | null;
 }
 
-const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const router = useRouter();
   const rentModal = useRentModal();
 
@@ -60,57 +60,19 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
       {isClick && (
         <div className=' absolute right-0 w-3/4 min-w-[250px] shadow-md border-[1px] rounded-xl flex flex-col bg-white py-2 mt-2 text-sm'>
-          {currentUser ? (
-            <>
-              <MenuItem
-                onClick={() => router.push("/trips")}
-                label={"My trips"}
-              />
-              <MenuItem
-                onClick={() => router.push("/favorites")}
-                label={"My favorites"}
-              />
-              <MenuItem
-                onClick={() => router.push("./reservations")}
-                label={"My reservations"}
-              />
-              <MenuItem
-                onClick={() => router.push("./chats")}
-                label={"My chats"}
-              />
-              <MenuItem
-                onClick={() => {
-                  signOut();
-                  toast.success("Logged out successfully");
-                  router.push("/");
-                }}
-                label={"Logout"}
-                isBold={true}
-              />
-            </>
-          ) : (
-            <>
-              <MenuItem
-                onClick={() => router.push("/users")}
-                label={"Sign up"}
-                isBold
-              />
-              <MenuItem
-                onClick={() => router.push("/users")}
-                label={"Log in"}
-              />
-            </>
-          )}
+          {currentUser ? <LoginMenu /> : <NotLoginMenu />}
           <hr />
-          <MenuItem onClick={onRent} label={"Host my place"} />
-          <MenuItem
-            onClick={() => router.push("/profile")}
-            label={"My profile"}
-          />
+          <MenuOption onClick={onRent} label={"Host my place"} />
+          {currentUser && (
+            <MenuOption
+              onClick={() => router.push("/profile")}
+              label={"My profile"}
+            />
+          )}
         </div>
       )}
     </div>
   );
 };
 
-export default UserMenu;
+export default Menu;

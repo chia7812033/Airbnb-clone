@@ -4,9 +4,8 @@ import ListingBody from "@/app/components/listings/ListingBody";
 import ListingInfo from "@/app/components/listings/ListingInfo";
 import ListingReservation from "@/app/components/listings/ListingReservation";
 import ListingReviews from "@/app/components/listings/ListingReviews";
-import { categories } from "@/app/components/navbar/Categories";
+import { categories } from "@/app/hooks/useCategories";
 import Container from "@/app/components/ui/Container";
-import useLoginModal from "@/app/hooks/useLoginModal";
 import useReservation from "@/app/hooks/useReservation";
 import {
   SafeReservation,
@@ -14,7 +13,7 @@ import {
 } from "@/app/types";
 import { Listing, Rating, User } from "@prisma/client";
 import axios from "axios";
-import { differenceInCalendarDays, eachDayOfInterval } from "date-fns";
+import { differenceInCalendarDays } from "date-fns";
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { toast } from "react-hot-toast";
@@ -24,7 +23,6 @@ interface ListingProps {
   listing: Listing & {
     user: User;
   };
-  reservations?: SafeReservation[];
   reviews?: SafeReview[];
   rating?: Rating;
   avgRating?: number;
@@ -33,7 +31,6 @@ interface ListingProps {
 const Listing: React.FC<ListingProps> = ({
   currentUser,
   listing,
-  reservations = [],
   reviews = [],
   rating,
   avgRating = 5,
@@ -43,7 +40,6 @@ const Listing: React.FC<ListingProps> = ({
     return categories.find((item) => item.label === listing.category);
   }, [listing.category]);
 
-  const loginModal = useLoginModal();
   const reservationStore = useReservation();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +47,7 @@ const Listing: React.FC<ListingProps> = ({
 
   const onCreateReservation = useCallback(() => {
     if (!currentUser) {
-      return loginModal.onOpen();
+      router.push('/users')
     }
     setIsLoading(true);
 
@@ -77,7 +73,6 @@ const Listing: React.FC<ListingProps> = ({
     listing?.id,
     router,
     currentUser,
-    loginModal,
     dateRange,
   ]);
 

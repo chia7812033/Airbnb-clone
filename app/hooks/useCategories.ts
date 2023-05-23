@@ -1,5 +1,3 @@
-"user client";
-
 import { BiWater } from "react-icons/bi";
 import { BsSnow } from "react-icons/bs";
 import { FaSkiing, FaCampground } from "react-icons/fa";

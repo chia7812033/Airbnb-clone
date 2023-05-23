@@ -4,10 +4,10 @@ import CategoryInput from "@/app/components/inputs/CategoryInput";
 import Counter from "@/app/components/inputs/Counter";
 import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Input from "@/app/components/inputs/Input";
-import { categories } from "@/app/components/navbar/Categories";
 import Container from "@/app/components/ui/Container";
 import CustomButton from "@/app/components/ui/CustomButton";
 import Heading from "@/app/components/ui/Heading";
+import { categories } from "@/app/hooks/useCategories";
 import useCountries from "@/app/hooks/useCountries";
 import { Listing } from "@prisma/client";
 import axios from "axios";
@@ -32,7 +32,6 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
     setValue,
     watch,
     formState: { errors },
-    reset,
   } = useForm<FieldValues>({
     defaultValues: {
       category: listing.category,

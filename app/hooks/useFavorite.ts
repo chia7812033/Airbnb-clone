@@ -1,4 +1,3 @@
-import useLoginModal from "@/app/hooks/useLoginModal";
 import { User } from "@prisma/client";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -12,7 +11,6 @@ interface IUseFavorite {
 
 const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
   const router = useRouter();
-  const loginModal = useLoginModal();
 
   const isFavorite = useMemo(() => {
     const favoriteList = currentUser?.favoriteIds || [];
@@ -25,7 +23,7 @@ const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
       e.stopPropagation();
 
       if (!currentUser) {
-        return loginModal.onOpen();
+        router.push("/users");
       }
 
       try {
@@ -45,7 +43,7 @@ const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
         toast.error(error.message);
       }
     },
-    [currentUser, isFavorite, listingId, loginModal, router]
+    [currentUser, isFavorite, listingId, router]
   );
 
   return {

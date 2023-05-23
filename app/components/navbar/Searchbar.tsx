@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { IoSearchCircleSharp } from "react-icons/io5";
 
-const Search = () => {
+const Searchbar = () => {
   const [search, setSearch] = useState("");
   const router = useRouter();
 
@@ -45,4 +45,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Searchbar;

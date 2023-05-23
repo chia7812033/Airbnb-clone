@@ -16,7 +16,7 @@ const Profile: React.FC<ProfileProps> = ({ user, properties }) => {
     <Container>
       <Heading title='My Profile' />
       <UserBody user={user} profile />
-      <UserProperties properties={properties} />
+      <UserProperties properties={properties} profile />
     </Container>
   );
 };

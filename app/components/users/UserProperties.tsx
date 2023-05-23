@@ -1,26 +1,33 @@
 import ListingCard from "../listings/ListingCard";
 import ListingContainer from "../ui/ListingContainer";
 import { Listing } from "@prisma/client";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface UserPropertiesProps {
   properties: Listing[];
+  profile?: boolean;
 }
 
-const UserProperties: React.FC<UserPropertiesProps> = ({ properties }) => {
+const UserProperties: React.FC<UserPropertiesProps> = ({
+  properties,
+  profile,
+}) => {
   const router = useRouter();
 
   return (
     <div className='my-4'>
       <div className='flex flex-row gap-2 items-end'>
-        <div className='text-2xl font-bold'>His/Her Place </div>
-        <span
-          className='underline text-blue-600 cursor-pointer'
-          onClick={() => router.push("/properties")}
-        >
-          Manage my properties
-        </span>
+        <div className='text-2xl font-bold'>
+          {profile ? " My Place" : "His/Her Place"}{" "}
+        </div>
+        {profile && (
+          <span
+            className='underline text-blue-600 cursor-pointer'
+            onClick={() => router.push("/properties")}
+          >
+            Manage my properties
+          </span>
+        )}
       </div>
       <div>
         {properties ? (

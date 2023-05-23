@@ -5,9 +5,9 @@ import Counter from "../inputs/Counter";
 import CountrySelect from "../inputs/CountrySelect";
 import ImageUpload from "../inputs/ImageUpload";
 import Input from "../inputs/Input";
-import { categories } from "../navbar/Categories";
 import Heading from "../ui/Heading";
 import Modal from "./Modal";
+import { categories } from "@/app/hooks/useCategories";
 import useRentModal from "@/app/hooks/useRentModal";
 import axios from "axios";
 import dynamic from "next/dynamic";
@@ -117,9 +117,7 @@ const RentModal = () => {
   if (step === STEPS.CATEGORY) {
     body = (
       <div>
-        <Heading
-          title={"Which is the best to describe your place?"}
-        />
+        <Heading title={"Which is the best to describe your place?"} />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 my-2'>
           {categories.map((cat) => (
             <CategoryInput
@@ -140,9 +138,7 @@ const RentModal = () => {
   if (step === STEPS.LOCATION) {
     body = (
       <div>
-        <Heading
-          title={"Where is your place?"}
-        />
+        <Heading title={"Where is your place?"} />
         <CountrySelect
           value={location}
           onChange={(location) => {
@@ -157,9 +153,7 @@ const RentModal = () => {
   if (step === STEPS.INFO) {
     body = (
       <div>
-        <Heading
-          title={"Share some info about your place"}
-        />
+        <Heading title={"Share some info about your place"} />
         <Counter
           title={"Guests"}
           subtitle={"Share some info about your place"}
@@ -185,9 +179,7 @@ const RentModal = () => {
   if (step === STEPS.IMAGES) {
     body = (
       <div>
-        <Heading
-          title={"Upload some photos about your place!"}
-        />
+        <Heading title={"Upload some photos about your place!"} />
 
         <ImageUpload
           value={imageSrc}
@@ -200,9 +192,7 @@ const RentModal = () => {
   if (step === STEPS.DESCRIPTION) {
     body = (
       <div className='mt-2'>
-        <Heading
-          title={"How would you describe your place?"}
-        />
+        <Heading title={"How would you describe your place?"} />
         <Input
           id='title'
           label='title'
@@ -227,9 +217,7 @@ const RentModal = () => {
   if (step === STEPS.PRICE) {
     body = (
       <div>
-        <Heading
-          title={"Last, set a price"}
-        />
+        <Heading title={"Last, set a price"} />
         <Input
           id='price'
           label='price'
