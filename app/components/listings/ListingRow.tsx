@@ -67,7 +67,7 @@ const ListingRow: React.FC<ListingRowProps> = ({
   }, [reservation]);
 
   return (
-    <div className='cursor-pointer hover:shadow-lg transition rounded-xl pb-2 border-2 border-gray-300 px-2 bg-gray-50'>
+    <div className='cursor-pointer hover:shadow-lg transition pb-2 px-2'>
       <div className='flex my-2 gap-2 h-60'>
         <div
           onClick={() => {
@@ -103,31 +103,32 @@ const ListingRow: React.FC<ListingRowProps> = ({
               } ${reservation.guestCount != 1 ? "people" : "person"}`}</div>
             </div>
           </div>
-          <div className='font-semibold'>
-            Total Price: ${reservation.totalPrice}
+          <div className='flex flex-col items-end h-full justify-end'>
+            <div className='font-semibold text-xl'>
+              Total Price: ${reservation.totalPrice}
+            </div>
+            <div className='flex items-center justify-end gap-4'>
+              {order && (
+                <div
+                  className='text-center'
+                  onClick={() => router.push(`/users/${reservation.user.id}`)}
+                >
+                  <span className='hover:underline cursor-pointer'>
+                    {reservation.user.name}
+                  </span>
+                </div>
+              )}
+              {onAction && actionLabel && (
+                <CustomButton
+                  disabled={disabled}
+                  label={actionLabel || ""}
+                  onClick={handleCancel}
+                  outline={disabled}
+                />
+              )}
+            </div>
           </div>
         </div>
-      </div>
-      <hr />
-      <div className='flex items-center justify-end gap-4'>
-        {order && (
-          <div
-            className='text-center'
-            onClick={() => router.push(`/users/${reservation.user.id}`)}
-          >
-            <span className='hover:underline cursor-pointer'>
-              {reservation.user.name}
-            </span>
-          </div>
-        )}
-        {onAction && actionLabel && (
-          <CustomButton
-            disabled={disabled}
-            label={actionLabel || ""}
-            onClick={handleCancel}
-            outline={disabled}
-          />
-        )}
       </div>
     </div>
   );

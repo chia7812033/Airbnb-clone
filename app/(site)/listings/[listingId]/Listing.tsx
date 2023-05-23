@@ -8,7 +8,6 @@ import { categories } from "@/app/hooks/useCategories";
 import Container from "@/app/components/ui/Container";
 import useReservation from "@/app/hooks/useReservation";
 import {
-  SafeReservation,
   SafeReview,
 } from "@/app/types";
 import { Listing, Rating, User } from "@prisma/client";
