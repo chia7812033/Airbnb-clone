@@ -1,10 +1,10 @@
-import Favorites from "./Favorites";
+import Wishlist from "./Wishlist";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import getFavorites from "@/app/actions/getFavorites";
 import EmptyState from "@/app/components/ui/EmptyState";
 
 export const metadata = {
-  title: "My Favorites",
+  title: "My Wishlist",
 };
 
 const FavoritesPage = async () => {
@@ -20,7 +20,7 @@ const FavoritesPage = async () => {
     return <EmptyState title={"No favorites place found"} />;
   }
 
-  return <Favorites favorites={favorites} currentUser={currentUser} />;
+  return <Wishlist favorites={favorites} currentUser={currentUser} />;
 };
 
 export default FavoritesPage;

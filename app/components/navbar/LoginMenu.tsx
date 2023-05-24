@@ -7,26 +7,20 @@ const LoginMenu = () => {
 
   return (
     <>
-      <MenuOption
-        onClick={() => router.push("/historys")}
-        label={"My historys"}
-      />
-      <MenuOption
-        onClick={() => router.push("/favorites")}
-        label={"My favorites"}
-      />
+      <MenuOption onClick={() => router.push("/historys")} label={"Historys"} />
+      <MenuOption onClick={() => router.push("/wishlist")} label={"Wishlist"} />
       <MenuOption
         onClick={() => router.push("./reservations")}
-        label={"My reservations"}
+        label={"Reservations"}
       />
-      <MenuOption onClick={() => router.push("./chats")} label={"My chats"} />
+      <MenuOption onClick={() => router.push("./chats")} label={"Messages"} />
       <MenuOption
         onClick={() => {
           signOut();
           router.push("/");
         }}
         label={"Logout"}
-        isBold={true}
+        isBold
       />
     </>
   );

@@ -23,7 +23,7 @@ const useFavorites = ({ listingId, currentUser }: IUseFavorite) => {
       e.stopPropagation();
 
       if (!currentUser) {
-        router.push("/users");
+        return router.push("/users");
       }
 
       try {

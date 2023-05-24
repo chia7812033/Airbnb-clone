@@ -86,3 +86,30 @@ export async function PATCH(request: Request) {
 
   return NextResponse.json(listing);
 }
+
+export async function PUT(request: Request) {
+  const currentUser = await getCurrentUser();
+  if (!currentUser) {
+    return NextResponse.error();
+  }
+
+  const body = await request.json();
+  const { id } = body;
+
+  if (!id) {
+    return NextResponse.error();
+  }
+
+  try {
+    const listing = await prisma.listing.deleteMany({
+      where: {
+        id: id,
+        userId: currentUser.id,
+      },
+    });
+
+    return NextResponse.json(listing);
+  } catch (error) {
+    return NextResponse.error();
+  }
+}

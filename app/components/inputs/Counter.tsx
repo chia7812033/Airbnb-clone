@@ -1,18 +1,17 @@
 "use client";
 
+import Slider from "@mui/material/Slider";
 import { AiOutlinePlusCircle, AiOutlineMinusCircle } from "react-icons/ai";
 
 interface CounterProps {
   value: number;
   title: string;
-  subtitle?: string;
   onChange: (value: number) => void;
   noBorder?: boolean;
 }
 
 const Counter: React.FC<CounterProps> = ({
   title,
-  subtitle,
   value,
   onChange,
   noBorder,
@@ -40,7 +39,6 @@ const Counter: React.FC<CounterProps> = ({
     >
       <div className='flex flex-col'>
         <div className='text-lg font-semibold'>{title}</div>
-        <div className='text-sm text-gray-400'>{subtitle}</div>
       </div>
       <div
         className='

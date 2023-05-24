@@ -6,15 +6,15 @@ import Heading from "@/app/components/ui/Heading";
 import ListingContainer from "@/app/components/ui/ListingContainer";
 import { Listing, User } from "@prisma/client";
 
-interface FavoritesProps {
+interface WishlistProps {
   currentUser?: User | null;
   favorites: Listing[];
 }
 
-const Favorites: React.FC<FavoritesProps> = ({ currentUser, favorites }) => {
+const Wishlist: React.FC<WishlistProps> = ({ currentUser, favorites }) => {
   return (
     <Container>
-      <Heading title='My Favorites' />
+      <Heading title='My Wishlist' />
       <ListingContainer>
         {favorites.map((favorite) => (
           <ListingCard
@@ -28,4 +28,4 @@ const Favorites: React.FC<FavoritesProps> = ({ currentUser, favorites }) => {
   );
 };
 
-export default Favorites;
+export default Wishlist;

@@ -3,7 +3,7 @@
 import CustomAvatar from "../ui/CustomAvatar";
 import LoginMenu from "./LoginMenu";
 import MenuOption from "./MenuOption";
-import NotLoginMenu from "./NotLoginMenu";;
+import NotLoginMenu from "./NotLoginMenu";
 import { User } from "@prisma/client";
 import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
@@ -36,12 +36,8 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           size={40}
           className=' hidden md:block hover:bg-gray-100 transition rounded-full p-2'
         />
-        <div
-          onClick={toggleOpen}
-          className='flex flex-row border rounded-full lg:p-3 lg:py-2 md:p-2 p-1 gap-2 items-center'
-        >
-          <HiBars3 size={26} className='hover:scale-110 transition' />
-          <div className='hidden md:block hover:opacity-80 transition'>
+        <div onClick={toggleOpen} className='border-2 rounded-full p-1'>
+          <div className='hover:opacity-80 transition'>
             <CustomAvatar currentUser={currentUser} profile />
           </div>
         </div>
@@ -58,7 +54,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           {currentUser && (
             <MenuOption
               onClick={() => router.push("/profile")}
-              label={"My profile"}
+              label={"Profile"}
             />
           )}
         </div>

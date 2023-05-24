@@ -154,19 +154,16 @@ const CreateHotel = () => {
         <Heading title={"Share some info about your place"} />
         <Counter
           title={"Guests"}
-          subtitle={"Share some info about your place"}
           value={guestCount}
           onChange={(value) => setCustomValue("guestCount", value)}
         />
         <Counter
           title={"Rooms"}
-          subtitle={"How many room do you have?"}
           value={roomCount}
           onChange={(value) => setCustomValue("roomCount", value)}
         />
         <Counter
           title={"Bathrooms"}
-          subtitle={"How many bathroom do you have?"}
           value={bathroomCount}
           onChange={(value) => setCustomValue("bathroomCount", value)}
         />

@@ -6,6 +6,7 @@ import CountrySelect from "@/app/components/inputs/CountrySelect";
 import Input from "@/app/components/inputs/Input";
 import Container from "@/app/components/ui/Container";
 import CustomButton from "@/app/components/ui/CustomButton";
+import CustomDialog from "@/app/components/ui/CustomDialog";
 import Heading from "@/app/components/ui/Heading";
 import { categories } from "@/app/hooks/useCategories";
 import useCountries from "@/app/hooks/useCountries";
@@ -21,6 +22,31 @@ interface ListingEditProps {
 }
 
 const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const deleteItem = () => {
+    setIsLoading(true);
+    setOpen(false);
+
+    axios
+      .put("/api/listings", { id: listing.id })
+      .then(() => {
+        router.push("/properties");
+      })
+      .catch((error) => toast.error(error.message))
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
   const { getByValue } = useCountries();
   const currentLocation = getByValue(listing.locationValue);
   const [isLoading, setIsLoading] = useState(false);
@@ -170,6 +196,18 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
             label='Update Change'
             onClick={handleSubmit(onSubmit)}
             disabled={isLoading}
+          />
+          <CustomButton
+            label='Delete'
+            onClick={handleClickOpen}
+            disabled={isLoading}
+            outline
+          />
+          <CustomDialog
+            handleClose={handleClose}
+            title={"This action cannnot be recovered. Continue?"}
+            open={open}
+            action={deleteItem}
           />
         </div>
       </div>
