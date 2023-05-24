@@ -191,7 +191,7 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
             required
           />
         </div>
-        <div>
+        <div className='flex flex-row gap-4'>
           <CustomButton
             label='Update Change'
             onClick={handleSubmit(onSubmit)}

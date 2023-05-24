@@ -9,10 +9,6 @@ const LoginMenu = () => {
     <>
       <MenuOption onClick={() => router.push("/historys")} label={"Historys"} />
       <MenuOption onClick={() => router.push("/wishlist")} label={"Wishlist"} />
-      <MenuOption
-        onClick={() => router.push("./reservations")}
-        label={"Reservations"}
-      />
       <MenuOption onClick={() => router.push("./chats")} label={"Messages"} />
       <MenuOption
         onClick={() => {

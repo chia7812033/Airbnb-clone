@@ -52,10 +52,16 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
             label={"Host my place"}
           />
           {currentUser && (
-            <MenuOption
-              onClick={() => router.push("/profile")}
-              label={"Profile"}
-            />
+            <>
+              <MenuOption
+                onClick={() => router.push("./reservations")}
+                label={"Reservations"}
+              />
+              <MenuOption
+                onClick={() => router.push("/profile")}
+                label={"Profile"}
+              />
+            </>
           )}
         </div>
       )}
