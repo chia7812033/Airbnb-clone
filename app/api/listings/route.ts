@@ -2,6 +2,26 @@ import prisma from "@/app/libs/prismadb";
 import getCurrentUser from "@/app/utils/getCurrentUser";
 import { NextResponse } from "next/server";
 
+export async function GET(request: Request) {
+  try {
+    const listings = await prisma.listing.findMany({
+      where: {
+        title: {
+          contains: "",
+          mode: "insensitive",
+        },
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return NextResponse.json(listings);
+  } catch (error: any) {
+    NextResponse.error();
+  }
+}
+
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();
   if (!currentUser) {

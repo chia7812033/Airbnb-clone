@@ -31,7 +31,6 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
     if (!reservation) {
       return NextResponse.error();
     }
-    console.log(reservation);
 
     return NextResponse.json(reservation);
   } catch (error) {

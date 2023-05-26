@@ -1,17 +1,18 @@
 "use client";
 
 import Button from "../ui/CustomButton";
-import { SafeReservation } from "@/app/types";
+import { ListingTypeWithRating, SafeReservation } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
 import { Listing, User } from "@prisma/client";
 import { format } from "date-fns";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useCallback, useMemo } from "react";
+import { AiFillStar } from "react-icons/ai";
 
 interface ListingCardProps {
   currentUser?: User | null;
-  data: Listing;
+  data: ListingTypeWithRating;
   reservation?: SafeReservation;
   onAction?: (id: string) => void;
   disabled?: boolean;
@@ -69,6 +70,15 @@ const ListingCard: React.FC<ListingCardProps> = ({
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
 
+  const ratings = useMemo(() => {
+    if (data.ratings.length === 0) {
+      return [];
+    }
+    return data.ratings.map((item) => item.rating);
+  }, [data.ratings]);
+  const sum = ratings.reduce((a, b) => a + b, 0);
+  const avg = sum / data.ratings.length || 0;
+
   return (
     <div
       onClick={() => {
@@ -95,8 +105,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
               data.title
             )}
           </div>
-          <div className='text-gray-600'>
-            {reservationDate || data.category}
+          <div className='text-gray-600 flex flex-row gap-1 items-center'>
+            <AiFillStar size={16} />
+            {avg || "New"}
           </div>
           <div className='flex gap-2'>
             <div>{`$ ${reservation ? reservation.totalPrice : price}`}</div>

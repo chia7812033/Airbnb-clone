@@ -12,6 +12,9 @@ export default async function getLisings(value: string = "") {
       orderBy: {
         createdAt: "desc",
       },
+      include: {
+        ratings: true,
+      },
     });
 
     return listings;

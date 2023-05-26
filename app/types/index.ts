@@ -5,7 +5,12 @@ import {
   Review,
   Chat,
   Message,
+  Rating,
 } from "@prisma/client";
+
+export type ListingTypeWithRating = Listing & {
+  ratings: Rating[];
+}
 
 export type SafeReservation = Reservation & {
   listing: Listing;

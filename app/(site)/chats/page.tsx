@@ -7,11 +7,6 @@ export const metadata = {
 };
 
 const page = async () => {
-  const currentUser = await getCurrentUser();
-  if (!currentUser) {
-    return <EmptyState />;
-  }
-
   return <Chats />;
 };
 
