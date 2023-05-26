@@ -1,7 +1,7 @@
 import ListingEdit from "./ListingEdit";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getListingById from "@/app/actions/getListingById";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getCurrentUser from "@/app/utils/getCurrentUser";
+import getListingById from "@/app/utils/getListingById";
 import { Metadata } from "next";
 
 interface IParams {

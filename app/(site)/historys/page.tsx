@@ -1,7 +1,7 @@
 import Historys from "./Historys";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getReservations from "@/app/actions/getReservations";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getCurrentUser from "@/app/utils/getCurrentUser";
+import getReservations from "@/app/utils/getReservations";
 
 export const metadata = {
   title: "My Historys",

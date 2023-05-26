@@ -1,7 +1,7 @@
 import Properties from "./Properties";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getMyProperties from "@/app/actions/getMyProperties";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getCurrentUser from "@/app/utils/getCurrentUser";
+import getMyProperties from "@/app/utils/getMyProperties";
 
 export const metadata = {
   title: "My Properties",

@@ -1,6 +1,6 @@
 import ProfileEdit from "./ProfileEdit";
-import getCurrentUser from "@/app/actions/getCurrentUser";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getCurrentUser from "@/app/utils/getCurrentUser";
 
 export const metadata = {
   title: "My Profile - Edit",

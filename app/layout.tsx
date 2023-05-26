@@ -1,8 +1,8 @@
-import getCurrentUser from "./actions/getCurrentUser";
 import Navbar from "./components/navbar/Navbar";
 import "./globals.css";
 import AuthProvider from "./providers/AuthProvider";
 import ToastProvider from "./providers/ToastProvider";
+import getCurrentUser from "./utils/getCurrentUser";
 import { Nunito } from "next/font/google";
 
 export const metadata = {

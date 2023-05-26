@@ -1,10 +1,10 @@
-import getCurrentUser from "./actions/getCurrentUser";
-import getLisings from "./actions/getLisings";
 import ListingCard from "./components/listings/ListingCard";
 import Container from "./components/ui/Container";
 import EmptyState from "./components/ui/EmptyState";
 import ListingContainer from "./components/ui/ListingContainer";
 import Loading from "./loading";
+import getCurrentUser from "./utils/getCurrentUser";
+import getLisings from "./utils/getLisings";
 import { Suspense } from "react";
 
 interface HomeProps {

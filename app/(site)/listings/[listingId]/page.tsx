@@ -1,10 +1,10 @@
 import Listing from "./Listing";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getListingById from "@/app/actions/getListingById";
-import getListingRatings from "@/app/actions/getListingRatings";
-import getReviews from "@/app/actions/getReviews";
-import getUserRating from "@/app/actions/getUserRating";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getListingRatings from "@/app/ultis/getListingRatings";
+import getCurrentUser from "@/app/utils/getCurrentUser";
+import getListingById from "@/app/utils/getListingById";
+import getReviews from "@/app/utils/getReviews";
+import getUserRating from "@/app/utils/getUserRating";
 import { Metadata } from "next";
 
 interface IParams {

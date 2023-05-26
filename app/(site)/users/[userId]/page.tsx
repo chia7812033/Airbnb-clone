@@ -1,8 +1,8 @@
 import User from "./User";
-import getCurrentUser from "@/app/actions/getCurrentUser";
-import getProperties from "@/app/actions/getProperties";
-import getUserById from "@/app/actions/getUserById";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getCurrentUser from "@/app/utils/getCurrentUser";
+import getProperties from "@/app/utils/getProperties";
+import getUserById from "@/app/utils/getUserById";
 import { Metadata } from "next";
 import { redirect } from "next/navigation";
 

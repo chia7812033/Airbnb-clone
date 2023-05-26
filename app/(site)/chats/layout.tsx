@@ -1,8 +1,8 @@
-import getChats from "@/app/actions/getChats";
-import getCurrentUser from "@/app/actions/getCurrentUser";
 import ChatList from "@/app/components/chats/ChatList";
 import Container from "@/app/components/ui/Container";
 import EmptyState from "@/app/components/ui/EmptyState";
+import getChats from "@/app/utils/getChats";
+import getCurrentUser from "@/app/utils/getCurrentUser";
 
 export default async function ChatLayout({
   children,
