@@ -1,4 +1,4 @@
-import ListingCard from "../listings/ListingCard";
+import ListingCardSafe from "../listings/ListingCardSafe";
 import ListingContainer from "../ui/ListingContainer";
 import { Listing } from "@prisma/client";
 import { useRouter } from "next/navigation";
@@ -33,7 +33,7 @@ const UserProperties: React.FC<UserPropertiesProps> = ({
         {properties ? (
           <ListingContainer>
             {properties.map((property) => (
-              <ListingCard key={property.id} data={property} />
+              <ListingCardSafe key={property.id} data={property} />
             ))}
           </ListingContainer>
         ) : (

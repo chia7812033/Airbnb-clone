@@ -1,6 +1,6 @@
 "use client";
 
-import ListingCard from "@/app/components/listings/ListingCard";
+import ListingCardSafe from "@/app/components/listings/ListingCardSafe";
 import Container from "@/app/components/ui/Container";
 import Heading from "@/app/components/ui/Heading";
 import ListingContainer from "@/app/components/ui/ListingContainer";
@@ -17,7 +17,7 @@ const Properties: React.FC<PropertiesProps> = ({ currentUser, properties }) => {
       <Heading title='My properties' />
       <ListingContainer>
         {properties.map((property) => (
-          <ListingCard
+          <ListingCardSafe
             key={property.id}
             data={property}
             actionId={property.id}

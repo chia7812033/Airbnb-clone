@@ -1,6 +1,6 @@
 "use client";
 
-import ListingCard from "@/app/components/listings/ListingCard";
+import ListingCardSafe from "@/app/components/listings/ListingCardSafe";
 import Container from "@/app/components/ui/Container";
 import Heading from "@/app/components/ui/Heading";
 import ListingContainer from "@/app/components/ui/ListingContainer";
@@ -17,7 +17,7 @@ const Wishlist: React.FC<WishlistProps> = ({ currentUser, favorites }) => {
       <Heading title='My Wishlist' />
       <ListingContainer>
         {favorites.map((favorite) => (
-          <ListingCard
+          <ListingCardSafe
             key={favorite.id}
             data={favorite}
             currentUser={currentUser}

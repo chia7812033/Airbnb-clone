@@ -1,17 +1,16 @@
 "use client";
 
 import Button from "../ui/CustomButton";
-import { ListingTypeWithRating } from "@/app/types";
 import Tooltip from "@mui/material/Tooltip";
 import { User, Listing } from "@prisma/client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 import { AiFillStar } from "react-icons/ai";
 
 interface ListingCardProps {
   currentUser?: User | null;
-  data: ListingTypeWithRating;
+  data: Listing;
   onAction?: (id: string) => void;
   disabled?: boolean;
   actionLabel?: string;
@@ -47,15 +46,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
     [onAction, actionId, disabled, edit, router]
   );
 
-  const ratings = useMemo(() => {
-    if (data.ratings.length === 0) {
-      return [];
-    }
-    return data.ratings.map((item) => item.rating);
-  }, [data.ratings]);
-  const sum = ratings.reduce((a, b) => a + b, 0);
-  const avg = sum / data.ratings.length || 0;
-
   return (
     <div
       onClick={() => {
@@ -84,7 +74,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
           <div className='text-gray-600 flex flex-row gap-1 items-center'>
             <AiFillStar size={16} />
-            {avg || "New"}
+            {data.category}
           </div>
           <div className='flex gap-2'>
             <div>{`$ ${data.price}`}</div>
