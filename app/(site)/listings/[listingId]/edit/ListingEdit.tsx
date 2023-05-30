@@ -109,7 +109,7 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
       <div className='flex flex-col gap-4'>
         <div>
           <Heading title={"1. Category"} />
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 my-2'>
+          <div className='grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2 my-2'>
             {categories.map((cat) => (
               <CategoryInput
                 key={cat.label}
