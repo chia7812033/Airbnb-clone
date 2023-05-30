@@ -9,7 +9,7 @@ export const metadata = {
 
 const page = async () => {
   return (
-    <Container darkBg>
+    <Container>
       <CreateHotel />
     </Container>
   );

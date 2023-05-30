@@ -3,16 +3,13 @@
 interface ClientProps {
   title: string;
   center?: boolean;
+  small?: boolean;
 }
 
-const Heading: React.FC<ClientProps> = ({ title, center }) => {
+const Heading: React.FC<ClientProps> = ({ title, center, small }) => {
   return (
     <div className={center ? "text-center" : "text-start"}>
-      <div
-        className='
-            text-2xl font-bold
-        '
-      >
+      <div className={`${small ? "text-lg" : "text-2xl font-bold"}`}>
         {title}
       </div>
     </div>

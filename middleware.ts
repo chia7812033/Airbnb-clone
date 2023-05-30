@@ -17,5 +17,6 @@ export const config = {
     "/chat/:path*",
     "/listings/:path*/edit",
     "/createHotel/:path*",
+    "/host/:path*",
   ],
 };

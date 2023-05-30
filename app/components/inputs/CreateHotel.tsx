@@ -20,30 +20,7 @@ const CreateHotel = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  enum STEPS {
-    CATEGORY = 0,
-    LOCATION = 1,
-    INFO = 2,
-    IMAGES = 3,
-    DESCRIPTION = 4,
-    PRICE = 5,
-  }
-
-  const [step, setStep] = useState(STEPS.CATEGORY);
-
-  const onNext = () => {
-    setStep((step) => step + 1);
-  };
-
-  const onBack = () => {
-    setStep((step) => step - 1);
-  };
-
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    if (step != STEPS.PRICE) {
-      return onNext();
-    }
-
     setIsLoading(true);
 
     axios
@@ -52,7 +29,6 @@ const CreateHotel = () => {
         toast.success("Created!");
         router.refresh();
         reset();
-        setStep(STEPS.CATEGORY);
         router.push(`/listings/${res.data.id}`);
       })
       .catch((error) => toast.error("Something went wrong"))
@@ -60,14 +36,6 @@ const CreateHotel = () => {
         setIsLoading(false);
       });
   };
-
-  const actionLabel = useMemo(() => {
-    if (step === STEPS.PRICE) {
-      return "Create";
-    }
-
-    return "Next";
-  }, [step, STEPS.PRICE]);
 
   const {
     register,
@@ -110,146 +78,116 @@ const CreateHotel = () => {
     });
   };
 
-  let body = <></>;
-
-  if (step === STEPS.CATEGORY) {
-    body = (
-      <div>
-        <Heading title={"Which is the best to describe your place?"} />
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-2 my-2'>
-          {categories.map((cat) => (
-            <CategoryInput
-              key={cat.label}
-              label={cat.label}
-              icon={cat.icon}
-              onClick={(category) => {
-                setCustomValue("category", category);
-              }}
-              selected={category === cat.label}
-            />
-          ))}
-        </div>
+  const catergory = (
+    <div>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 my-2'>
+        {categories.map((cat) => (
+          <CategoryInput
+            key={cat.label}
+            label={cat.label}
+            icon={cat.icon}
+            onClick={(category) => {
+              setCustomValue("category", category);
+            }}
+            selected={category === cat.label}
+          />
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
 
-  if (step === STEPS.LOCATION) {
-    body = (
-      <div>
-        <Heading title={"Where is your place?"} />
-        <CountrySelect
-          value={location}
-          onChange={(location) => {
-            setCustomValue("location", location);
-          }}
-        />
-        <Map position={location} />
-      </div>
-    );
-  }
+  const locationBlock = (
+    <div>
+      <CountrySelect
+        value={location}
+        onChange={(location) => {
+          setCustomValue("location", location);
+        }}
+      />
+      <Map position={location} />
+    </div>
+  );
 
-  if (step === STEPS.INFO) {
-    body = (
-      <div>
-        <Heading title={"Share some info about your place"} />
-        <Counter
-          title={"Guests"}
-          value={guestCount}
-          onChange={(value) => setCustomValue("guestCount", value)}
-        />
-        <Counter
-          title={"Rooms"}
-          value={roomCount}
-          onChange={(value) => setCustomValue("roomCount", value)}
-        />
-        <Counter
-          title={"Bathrooms"}
-          value={bathroomCount}
-          onChange={(value) => setCustomValue("bathroomCount", value)}
-        />
-      </div>
-    );
-  }
+  const info = (
+    <div>
+      <Counter
+        title={"Guests"}
+        value={guestCount}
+        onChange={(value) => setCustomValue("guestCount", value)}
+      />
+      <Counter
+        title={"Rooms"}
+        value={roomCount}
+        onChange={(value) => setCustomValue("roomCount", value)}
+      />
+      <Counter
+        title={"Bathrooms"}
+        value={bathroomCount}
+        onChange={(value) => setCustomValue("bathroomCount", value)}
+      />
+    </div>
+  );
 
-  if (step === STEPS.IMAGES) {
-    body = (
-      <div>
-        <Heading title={"Upload some photos about your place!"} />
+  const image = (
+    <div>
+      <ImageUpload
+        value={imageSrc}
+        onChange={(value) => setCustomValue("imageSrc", value)}
+      />
+    </div>
+  );
 
-        <ImageUpload
-          value={imageSrc}
-          onChange={(value) => setCustomValue("imageSrc", value)}
-        />
-      </div>
-    );
-  }
+  const title = (
+    <div className='my-2'>
+      <Input
+        id='title'
+        label='title'
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+      <Input
+        id='description'
+        label='description'
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+    </div>
+  );
 
-  if (step === STEPS.DESCRIPTION) {
-    body = (
-      <div className='mt-2'>
-        <Heading title={"How would you describe your place?"} />
-        <Input
-          id='title'
-          label='title'
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-        <hr />
-        <Input
-          id='description'
-          label='description'
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-      </div>
-    );
-  }
-
-  if (step === STEPS.PRICE) {
-    body = (
-      <div>
-        <Heading title={"Last, set a price"} />
-        <Input
-          id='price'
-          label='price'
-          formatPrice
-          disabled={isLoading}
-          register={register}
-          errors={errors}
-          required
-        />
-      </div>
-    );
-  }
+  const price = (
+    <div>
+      <Input
+        id='price'
+        label='price'
+        formatPrice
+        disabled={isLoading}
+        register={register}
+        errors={errors}
+        required
+      />
+    </div>
+  );
 
   return (
-    <div className='flex justify-center items-center overflow-x-hidden overflow-y-auto'>
-      <div className='relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto'>
-        <div className='h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none'>
-          <div className='relative px-6 py-2 flex-auto'>{body}</div>
-          <div className='flex flex-col gap-2 px-6 py-2'>
-            <div className='flex items-center gap-4 w-full'>
-              <CustomButton
-                outline
-                disabled={isLoading}
-                label={"Back"}
-                onClick={step === STEPS.CATEGORY ? () => {} : onBack}
-                wFull
-              />
-              <CustomButton
-                disabled={isLoading}
-                label={actionLabel}
-                onClick={handleSubmit(onSubmit)}
-                wFull
-              />
-            </div>
-          </div>
-        </div>
+    <div className='flex flex-col w-full lg:w-2/3'>
+      <Heading title='Create a new hotel' />
+      <div className='flex flex-col'>
+        {title}
+        {price}
+        {info}
+        {locationBlock}
+        {catergory}
+        {image}
       </div>
+      <CustomButton
+        disabled={isLoading}
+        label={"Create"}
+        onClick={handleSubmit(onSubmit)}
+      />
     </div>
   );
 };

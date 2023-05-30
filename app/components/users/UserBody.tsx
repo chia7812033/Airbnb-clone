@@ -52,7 +52,7 @@ const UserBody: React.FC<UserBodyProps> = ({ user, profile }) => {
               navigator.clipboard.writeText(
                 `${window.location.host}/users/${user.id}`
               );
-              toast.success("Already copy to clipboard");
+              toast.success("Copied");
             }}
           />
         </div>

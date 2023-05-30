@@ -23,7 +23,7 @@ const UserProperties: React.FC<UserPropertiesProps> = ({
         {profile && (
           <span
             className='underline text-blue-600 cursor-pointer'
-            onClick={() => router.push("/properties")}
+            onClick={() => router.push("/host")}
           >
             Manage my properties
           </span>

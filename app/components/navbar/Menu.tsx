@@ -26,16 +26,6 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   return (
     <div className='relative'>
       <div className='flex flex-row items-center gap-3 cursor-pointer'>
-        <div
-          onClick={() => router.push("/createHotel")}
-          className='hidden lg:block rounded-full hover:bg-gray-100 transition px-3 py-2'
-        >
-          Host my place
-        </div>
-        <RiGlobalLine
-          size={40}
-          className=' hidden md:block hover:bg-gray-100 transition rounded-full p-2'
-        />
         <div onClick={toggleOpen} className='border-2 rounded-full p-1'>
           <div className='hover:opacity-80 transition'>
             <CustomAvatar currentUser={currentUser} profile />
@@ -46,23 +36,6 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
       {isClick && (
         <div className=' absolute right-0 w-3/4 min-w-[250px] shadow-md border-[1px] rounded-xl flex flex-col bg-white py-2 mt-2 text-sm'>
           {currentUser ? <LoginMenu /> : <NotLoginMenu />}
-          <hr />
-          <MenuOption
-            onClick={() => router.push("/createHotel")}
-            label={"Host my place"}
-          />
-          {currentUser && (
-            <>
-              <MenuOption
-                onClick={() => router.push("./reservations")}
-                label={"Reservations"}
-              />
-              <MenuOption
-                onClick={() => router.push("/profile")}
-                label={"Profile"}
-              />
-            </>
-          )}
         </div>
       )}
     </div>

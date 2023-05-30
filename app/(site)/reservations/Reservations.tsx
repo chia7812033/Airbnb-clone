@@ -1,6 +1,5 @@
 "use client";
 
-import ListingCard from "@/app/components/listings/ListingCard";
 import ListingRow from "@/app/components/listings/ListingRow";
 import Container from "@/app/components/ui/Container";
 import Heading from "@/app/components/ui/Heading";
