@@ -3,6 +3,10 @@ import "./globals.css";
 import AuthProvider from "./providers/AuthProvider";
 import ToastProvider from "./providers/ToastProvider";
 import getCurrentUser from "./utils/getCurrentUser";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 import { Nunito } from "next/font/google";
 
 export const metadata = {

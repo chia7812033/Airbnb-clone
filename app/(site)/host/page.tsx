@@ -15,10 +15,16 @@ const Page = async () => {
     return <EmptyState title={"Not logged in"} />;
   }
 
-  const reservations = await getReservations({ userId: currentUser.id });
+  const reservations = await getReservations({ authorId: currentUser.id });
   const properties = await getMyProperties();
 
-  return <Host currentUser={currentUser} reservations={reservations} properties={properties}/>;
+  return (
+    <Host
+      currentUser={currentUser}
+      reservations={reservations}
+      properties={properties}
+    />
+  );
 };
 
 export default Page;

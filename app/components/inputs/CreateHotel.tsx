@@ -80,7 +80,7 @@ const CreateHotel = () => {
 
   const catergory = (
     <div>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-2 my-2'>
+      <div className='grid grid-cols-3 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2 my-2'>
         {categories.map((cat) => (
           <CategoryInput
             key={cat.label}
@@ -173,21 +173,23 @@ const CreateHotel = () => {
   );
 
   return (
-    <div className='flex flex-col w-full lg:w-2/3'>
-      <Heading title='Create a new hotel' />
-      <div className='flex flex-col'>
-        {title}
-        {price}
-        {info}
-        {locationBlock}
-        {catergory}
-        {image}
+    <div className='w-full flex justify-center'>
+      <div className='flex flex-col w-full lg:w-2/3'>
+        <Heading title='Create a new hotel' />
+        <div className='flex flex-col'>
+          {title}
+          {price}
+          {info}
+          {locationBlock}
+          {catergory}
+          {image}
+        </div>
+        <CustomButton
+          disabled={isLoading}
+          label={"Create"}
+          onClick={handleSubmit(onSubmit)}
+        />
       </div>
-      <CustomButton
-        disabled={isLoading}
-        label={"Create"}
-        onClick={handleSubmit(onSubmit)}
-      />
     </div>
   );
 };

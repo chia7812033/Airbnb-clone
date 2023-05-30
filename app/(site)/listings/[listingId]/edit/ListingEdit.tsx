@@ -39,7 +39,7 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
     axios
       .put("/api/listings", { id: listing.id })
       .then(() => {
-        router.push("/properties");
+        router.push("/host");
       })
       .catch((error) => toast.error(error.message))
       .finally(() => {

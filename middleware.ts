@@ -9,10 +9,8 @@ export default withAuth({
 export const config = {
   matcher: [
     // the page which should not be access when the user is not logged in
-    "/properties/:path*",
     "/profile/:path*",
     "/favorites/:path*",
-    "/reservations/:path*",
     "/trips/:path*",
     "/chat/:path*",
     "/listings/:path*/edit",

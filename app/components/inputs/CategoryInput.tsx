@@ -16,20 +16,9 @@ const CategoryInput: React.FC<CategoryInputProps> = ({
   return (
     <div
       onClick={() => onClick(label)}
-      className={`
-            flex
-            gap-2
-            items-center
-            rounded-lg
-            border-2
-            border-gray-400
-            p-2
-            cursor-pointer
-            hover:border-black
-            transition
-            ${selected ? "bg-neutral-100" : ""}
-            ${selected ? "border-neutral-900" : ""}
-            `}
+      className={`flex flex-col gap-2 items-center rounded-lg border-2 border-gray-400 p-2 cursor-pointer hover:border-black transition ${
+        selected ? "bg-neutral-100" : ""
+      } ${selected ? "border-neutral-900" : ""}`}
     >
       <Icon size={16} />
       <div>{label}</div>
