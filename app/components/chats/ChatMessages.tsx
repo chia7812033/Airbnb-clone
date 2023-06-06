@@ -15,7 +15,7 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({
 }) => {
   const router = useRouter();
 
-  setTimeout(() => router.refresh(), 5000000);
+  setTimeout(() => router.refresh(), 5000);
 
   return (
     <div className='flex flex-col gap-2 py-2 flex-1 justify-end overflow-auto my-2'>
