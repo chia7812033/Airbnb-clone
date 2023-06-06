@@ -13,6 +13,7 @@ interface ClientProps {
   required?: boolean;
   register: UseFormRegister<FieldValues>;
   errors: FieldErrors;
+  rows?: number;
 }
 
 const Input: React.FC<ClientProps> = ({
@@ -24,6 +25,7 @@ const Input: React.FC<ClientProps> = ({
   required,
   register,
   errors,
+  rows,
 }) => {
   return (
     <div className='w-full my-2'>
@@ -49,6 +51,8 @@ const Input: React.FC<ClientProps> = ({
           error={!!errors[id]}
           type={type}
           {...register(id, { required })}
+          multiline
+          rows={rows}
         />
       )}
     </div>

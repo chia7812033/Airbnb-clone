@@ -5,9 +5,7 @@ interface ListingRowsProps {
 }
 
 const ListingRows: React.FC<ListingRowsProps> = ({ children }) => {
-  return (
-    <div className='my-8 flex flex-col gap-4 bg-slate-200'>{children}</div>
-  );
+  return <div className='my-8 flex flex-col gap-2 bg-slate-50'>{children}</div>;
 };
 
 export default ListingRows;

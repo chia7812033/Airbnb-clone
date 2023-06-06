@@ -178,6 +178,7 @@ const ListingEdit: React.FC<ListingEditProps> = ({ listing }) => {
             register={register}
             errors={errors}
             required
+            rows={4}
           />
         </div>
         <div>

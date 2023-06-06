@@ -57,7 +57,7 @@ const Host: React.FC<HostProps> = ({
           />
           <div
             onClick={() => router.push("/createHotel")}
-            className='text-xl hover:bg-gray-200 transition rounded-full cursor-pointer px-4 py-2'
+            className='text-xl hover:bg-gray-200 active:scale-105 transition rounded-full cursor-pointer px-4 py-2'
           >
             Host my place
           </div>

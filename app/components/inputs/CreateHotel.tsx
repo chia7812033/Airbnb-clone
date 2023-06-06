@@ -15,6 +15,7 @@ import { useState, useMemo } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 
+
 const CreateHotel = () => {
   const router = useRouter();
 
@@ -154,6 +155,7 @@ const CreateHotel = () => {
         register={register}
         errors={errors}
         required
+        rows={4}
       />
     </div>
   );

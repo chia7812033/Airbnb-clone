@@ -31,7 +31,7 @@ export default async function RootLayout({
         <AuthProvider>
           <ToastProvider />
           <Navbar currentUser={currentUser} />
-          <div className='pt-28'>{children}</div>
+          <div className='pt-28 h-screen'>{children}</div>
         </AuthProvider>
       </body>
     </html>
