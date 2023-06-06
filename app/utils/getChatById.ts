@@ -1,7 +1,7 @@
 import getCurrentUser from "./getCurrentUser";
 import prisma from "@/app/libs/prismadb";
 
-export default async function getChats() {
+export default async function getChatById(id: string) {
   const currentUser = await getCurrentUser();
 
   if (!currentUser) {
@@ -9,11 +9,9 @@ export default async function getChats() {
   }
 
   try {
-    const chats = await prisma.chat.findMany({
-      orderBy: {
-        lastMessageAt: "desc",
-      },
+    const chat = await prisma.chat.findMany({
       where: {
+        id: id,
         userIds: {
           has: currentUser.id,
         },
@@ -29,11 +27,7 @@ export default async function getChats() {
       },
     });
 
-    if (chats.length === 0) {
-      return [];
-    }
-
-    return chats;
+    return chat;
   } catch (error) {
     return [];
   }

@@ -12,11 +12,10 @@ interface ChatListProps {
 }
 
 const ChatList: React.FC<ChatListProps> = ({ chats, currentUser }) => {
-  console.log(chats);
   return (
-    <div className='bg-gray-50'>
+    <div className='border-r-2 h-full px-2'>
       <Heading title='Messages' />
-      <div>
+      <div className='mt-2'>
         {chats.map((item) => (
           <ChatCard key={item.id} chat={item} currentUser={currentUser} />
         ))}

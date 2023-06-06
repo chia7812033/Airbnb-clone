@@ -17,11 +17,11 @@ export default async function ChatLayout({
 
   return (
     <Container>
-      <div className='flex flex-row'>
-        <div className='h-full hidden md:block md:w-1/3 bg-gray-50'>
+      <div className='flex flex-row h-full'>
+        <div className='h-full hidden md:block md:w-1/3 lg:w-1/4'>
           <ChatList chats={chats} currentUser={currentUser} />
         </div>
-        <div className='pt-28'>{children}</div>
+        <div className='w-full'>{children}</div>
       </div>
     </Container>
   );

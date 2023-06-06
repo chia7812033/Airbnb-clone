@@ -17,7 +17,7 @@ const ChatCard: React.FC<ChatCardProps> = ({ chat, currentUser }) => {
   return (
     <div
       onClick={() => router.push(`/chats/${chat.id}`)}
-      className='flex flex-row gap-2 items-center px-4 py-2 cursor-pointer'
+      className='flex flex-row gap-2 items-center px-4 py-2 cursor-pointer hover:bg-slate-200 transition rounded-lg'
     >
       <div>
         <CustomAvatar currentUser={other} profile />
