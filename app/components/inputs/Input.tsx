@@ -27,6 +27,19 @@ const Input: React.FC<ClientProps> = ({
   errors,
   rows,
 }) => {
+  if (type === "password") {
+    return (
+      <TextField
+        fullWidth
+        label={label}
+        id={id}
+        disabled={disabled}
+        error={!!errors[id]}
+        type={type}
+        {...register(id, { required })}
+      />
+    );
+  }
   return (
     <div className='w-full my-2'>
       {formatPrice ? (
@@ -53,6 +66,7 @@ const Input: React.FC<ClientProps> = ({
           {...register(id, { required })}
           multiline
           rows={rows}
+          hiddenLabel
         />
       )}
     </div>

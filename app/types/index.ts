@@ -10,7 +10,7 @@ import {
 
 export type ListingTypeWithRating = Listing & {
   ratings: Rating[];
-}
+};
 
 export type SafeReservation = Reservation & {
   listing: Listing;
@@ -21,12 +21,7 @@ export type SafeReview = Review & {
   user: User;
 };
 
-export type FullMessageType = Message & {
-  sender: User;
-  seen: User[];
-};
-
 export type ChatType = Chat & {
   users: User[];
-  messages: FullMessageType[];
+  messages: Message[];
 };

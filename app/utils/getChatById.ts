@@ -21,7 +21,6 @@ export default async function getChatById(id: string) {
         messages: {
           include: {
             sender: true,
-            seen: true,
           },
         },
       },

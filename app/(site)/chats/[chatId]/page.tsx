@@ -28,7 +28,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   }
   const currentUser = await getCurrentUser();
   if (!currentUser) {
-    return <EmptyState title='Something went wrong!' />;
+    return <EmptyState title='Not login' />;
   }
 
   return (

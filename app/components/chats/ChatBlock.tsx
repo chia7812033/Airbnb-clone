@@ -1,5 +1,6 @@
 import ChatHeading from "./ChatHeading";
 import ChatInput from "./ChatInput";
+import ChatMessages from "./ChatMessages";
 import { ChatType } from "@/app/types";
 import { User } from "@prisma/client";
 import { useMemo } from "react";
@@ -18,8 +19,10 @@ const ChatBlock: React.FC<ChatBlockProps> = ({ chat, currentUser }) => {
   return (
     <div className='px-4 py-2 w-full flex flex-col h-full'>
       <ChatHeading currentUser={user[0]} />
-      <div className='flex-1'>123</div>
-      <ChatInput />
+      <div className='flex-1'>
+        <ChatMessages messages={chat.messages} currentUser={currentUser}/>
+      </div>
+      <ChatInput chatId={chat.id} />
     </div>
   );
 };

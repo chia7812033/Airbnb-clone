@@ -23,7 +23,6 @@ export default async function getChats() {
         messages: {
           include: {
             sender: true,
-            seen: true,
           },
         },
       },

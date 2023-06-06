@@ -31,9 +31,6 @@ model User {
   chatIds String[] @db.ObjectId
   chats   Chat[]   @relation(fields: [chatIds], references: [id])
 
-  seenMessageIds String[]  @db.ObjectId
-  seenMessages   Message[] @relation("Seen", fields: [seenMessageIds], references: [id])
-
   messages Message[]
 }
 
@@ -134,8 +131,6 @@ model Message {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   body      String?
   createdAt DateTime @default(now())
-  seenIds   String[] @db.ObjectId
-  seen      User[]   @relation("Seen", fields: [seenIds], references: [id])
   chatId    String   @db.ObjectId
   chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
 

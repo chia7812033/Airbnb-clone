@@ -4,11 +4,18 @@ import { IoMdPhotos } from "react-icons/io";
 
 const ChatInputOptions = () => {
   return (
-    <div className='w-full'>
-      <div className='flex flex-row gap-2 text-orange-500'>
+    <div className='flex flex-row gap-2 text-orange-500'>
+      <div className='hover:bg-gray-100 transition rounded-full cursor-pointer p-1'>
         <BsFillPlusCircleFill size={24} />
+      </div>
+
+      <div className='hover:bg-gray-100 transition rounded-full cursor-pointer p-1'>
         <IoMdPhotos size={24} />
+      </div>
+      <div className='hover:bg-gray-100 transition rounded-full cursor-pointer p-1'>
         <BsFillEmojiKissFill size={24} />
+      </div>
+      <div className='hover:bg-gray-100 transition rounded-full cursor-pointer p-1'>
         <AiOutlineGif size={24} />
       </div>
     </div>
