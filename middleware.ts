@@ -12,7 +12,7 @@ export const config = {
     "/profile/:path*",
     "/favorites/:path*",
     "/trips/:path*",
-    "/chat/:path*",
+    "/chats/:path*",
     "/listings/:path*/edit",
     "/createHotel/:path*",
     "/host/:path*",

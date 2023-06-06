@@ -17,13 +17,13 @@ const ChatCard: React.FC<ChatCardProps> = ({ chat, currentUser }) => {
   return (
     <div
       onClick={() => router.push(`/chats/${chat.id}`)}
-      className='flex flex-row gap-2 items-center pr-4 py-2 cursor-pointer hover:bg-slate-200 transition rounded-lg w-full'
+      className='flex flex-row gap-2 items-center pr-4 pl-2 py-2 cursor-pointer hover:bg-slate-200 transition rounded-lg w-full'
     >
       <div>
         <CustomAvatar currentUser={other} profile />
       </div>
-      <div className='flex flex-row justify-between overflow-hidden'>
-        <div className=''>
+      <div className='flex flex-row justify-between overflow-hidden w-full'>
+        <div className='w-full'>
           <div className='font-semibold'>{other.name}</div>
           <span className='text-sm'>
             {chat.messages[chat.messages.length - 1]?.body ||

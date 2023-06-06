@@ -14,7 +14,6 @@ interface ChatInputProps {
 const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
   const [message, setMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
 
   const onSubmit = () => {
     setIsLoading(true);
@@ -36,12 +35,11 @@ const ChatInput: React.FC<ChatInputProps> = ({ chatId }) => {
       .finally(() => {
         setMessage("");
         setIsLoading(false);
-        router.refresh();
       });
   };
 
   return (
-    <div className='flex flex-row w-full'>
+    <div className='flex flex-row w-full min-h-0 mb-2'>
       <form
         onSubmit={onSubmit}
         className='flex flex-row gap-2 items-center w-full'

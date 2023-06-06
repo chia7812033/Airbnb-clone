@@ -2,18 +2,23 @@
 
 import Tooltip from "@mui/material/Tooltip";
 import { Message, User } from "@prisma/client";
+import { useRouter } from "next/navigation";
 
-interface chatMessagesProps {
+interface ChatMessagesProps {
   currentUser: User;
   messages: Message[];
 }
 
-const chatMessages: React.FC<chatMessagesProps> = ({
+const ChatMessages: React.FC<ChatMessagesProps> = ({
   messages,
   currentUser,
 }) => {
+  const router = useRouter();
+
+  setTimeout(() => router.refresh(), 5000000);
+
   return (
-    <div className='flex flex-col gap-2 py-2 h-full justify-end'>
+    <div className='flex flex-col gap-2 py-2 flex-1 justify-end overflow-auto my-2'>
       {messages.map((item) => (
         <Tooltip
           title={item.createdAt.toLocaleTimeString([], {
@@ -26,8 +31,8 @@ const chatMessages: React.FC<chatMessagesProps> = ({
           <div
             className={`${
               item.senderId === currentUser.id
-                ? "bg-orange-500 self-end"
-                : "bg-gray-200 self-start"
+                ? "bg-orange-500 self-end mr-2"
+                : "bg-gray-300 self-start"
             } rounded-xl px-2 py-1 text-white text-lg max-w-2xl`}
           >
             {item.body}
@@ -38,4 +43,4 @@ const chatMessages: React.FC<chatMessagesProps> = ({
   );
 };
 
-export default chatMessages;
+export default ChatMessages;
