@@ -9,7 +9,7 @@ const Searchbar = () => {
   const router = useRouter();
 
   const onSubmit = () => {
-    router.replace(`/?${search}`);
+    router.replace(`/?search=${search}`);
   };
 
   const onSubmitForm = (event: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +36,7 @@ const Searchbar = () => {
 
           <IoSearchCircleSharp
             size={32}
-            className='cursor-pointer text-orange-500 rounded-full transition'
+            className='cursor-pointer text-orange-500 active:shadow-md rounded-full transition'
             onClick={onSubmit}
           />
         </div>
